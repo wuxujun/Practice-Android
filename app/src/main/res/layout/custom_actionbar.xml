@@ -5,11 +5,14 @@
     <ImageButton android:id="@+id/ibHeadBack"
         android:layout_width="48dp" android:layout_marginBottom="3dp" android:layout_marginTop="3dp"
         android:layout_height="match_parent" android:layout_alignParentLeft="true" android:layout_centerVertical="true"
-        android:background="@null" android:src="@mipmap/ic_launcher"/>
+        android:background="@null" android:src="@drawable/ic_launcher"/>
+    <Button android:id="@+id/btnHeadLeft" android:textColor="#fff"
+        android:layout_width="wrap_content" android:textSize="16sp"
+        android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:background="@null"/>
     <TextView
         android:layout_width="wrap_content" android:id="@+id/tvHeadTitle"  android:layout_centerVertical="true"
         android:layout_height="wrap_content" android:layout_centerInParent="true" android:textColor="#ffffff" android:textSize="18sp" android:text="Home"/>
-    <Button android:id="@+id/btnHeadEdit" android:textColor="#fff"
-        android:layout_width="wrap_content" android:textSize="14sp"
+    <Button android:id="@+id/btnHeadRight" android:textColor="#fff"
+        android:layout_width="wrap_content" android:textSize="16sp"
         android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:background="@null"/>
 </RelativeLayout>

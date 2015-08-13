@@ -25,7 +25,6 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     private ItemAdapter     mAdapter;
 
-
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
@@ -34,12 +33,19 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
-        mContentView=inflater.inflate(R.layout.fragment_list,null);
+        mContentView=inflater.inflate(R.layout.search_listview,null);
         mListView=(ListView)mContentView.findViewById(R.id.list);
         mListView.setAdapter(mAdapter);
+
+
         return mContentView;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
+    
     @Override
     public void onClick(View view) {
 

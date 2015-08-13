@@ -5,4 +5,35 @@
     <string name="tab_top">Top</string>
     <string name="tab_search">Search</string>
     <string name="tab_my">My</string>
+    <string name="clear">Clear</string>
+    <string name="share">Share</string>
+
+    <string name="office_detail">Office Detail</string>
+    <string name="office_submit">Office Save</string>
+
+    <string name="search_require">Office Require</string>
+    <string name="city">City</string>
+    <string name="city_select">City Setting</string>
+
+
+    <string name="login">User Login</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+
+    <string name="register">User Register</string>
+
+
+    <string name="my_item_0">Curriculum vitae</string>
+    <string name="my_item_1">Office</string>
+    <string name="my_item_2">Attention</string>
+    <string name="my_item_3">Comment</string>
+
 </resources>

@@ -3,6 +3,7 @@ package com.xujun.app.practice;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
@@ -29,13 +30,34 @@ import java.util.List;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mHeadBack.setImageDrawable(getResources().getDrawable(R.drawable.back));
+        mHeadBack.setOnClickListener(this);
+        mHeadTitle.setText(getText(R.string.login));
+        mHeadBtnLeft.setVisibility(View.GONE);
+        mHeadBtnRight.setText(getText(R.string.register));
+        mHeadBtnRight.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.ibHeadBack:{
+                finish();
+                break;
+            }
+            case R.id.btnHeadRight:{
+                Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
+                break;
+            }
+        }
+    }
 }
 

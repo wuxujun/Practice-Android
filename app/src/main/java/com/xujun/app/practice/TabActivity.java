@@ -1,10 +1,12 @@
 package com.xujun.app.practice;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,6 +26,7 @@ import com.xujun.app.fragment.HomeFragment;
 import com.xujun.app.fragment.MyFragment;
 import com.xujun.app.fragment.SearchFragment;
 import com.xujun.app.fragment.TopFragment;
+import com.xujun.util.StringUtil;
 
 import org.w3c.dom.Text;
 
@@ -72,7 +75,8 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
 
     private TextView        mHeadTitle;
     private ImageButton     mHeadBack;
-    private Button          mHeadButton;
+    private Button          mHeadBtnLeft;
+    private Button          mHeadBtnRight;
 
     @Override
     protected void onCreate(Bundle bundle){
@@ -95,8 +99,11 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         mHeadBack=(ImageButton)actionbarLayout.findViewById(R.id.ibHeadBack);
         mHeadBack.setVisibility(View.INVISIBLE);
         mHeadBack.setOnClickListener(this);
-        mHeadButton=(Button)actionbarLayout.findViewById(R.id.btnHeadEdit);
-        mHeadButton.setOnClickListener(this);
+        mHeadBtnLeft=(Button)actionbarLayout.findViewById(R.id.btnHeadLeft);
+        mHeadBtnLeft.setOnClickListener(this);
+        mHeadBtnLeft.setText(getText(R.string.city));
+        mHeadBtnRight=(Button)actionbarLayout.findViewById(R.id.btnHeadRight);
+        mHeadBtnRight.setOnClickListener(this);
         getActionBar().setCustomView(actionbarLayout);
 
         ViewUtils.inject(this);
@@ -132,6 +139,18 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         MobclickAgent.onPause(mContext);
     }
 
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode==1){
+            if (resultCode==RESULT_OK){
+                if (!StringUtil.isEmpty(data.getStringExtra("cityName"))) {
+                    mHeadBtnLeft.setText(data.getStringExtra("cityName"));
+                }
+            }
+        }
+    }
+
     private void setSelect(int type){
         resetTabImg();
         FragmentManager fm=getSupportFragmentManager();
@@ -145,6 +164,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }else{
                     transaction.attach(mTab01);
                 }
+                mHeadBtnLeft.setVisibility(View.VISIBLE);
                 mHeadTitle.setText(getText(R.string.tab_home));
                 mTvHome.setTextColor(getResources().getColor(R.color.white));
                 mImgHome.setImageResource(R.drawable.ic_tab_home);
@@ -184,6 +204,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                     transaction.attach(mTab04);
                 }
                 mHeadTitle.setText(getText(R.string.tab_my));
+                mHeadBtnLeft.setVisibility(View.INVISIBLE);
                 mTvMy.setTextColor(getResources().getColor(R.color.white));
                 mImgMy.setImageResource(R.drawable.ic_tab_my);
                 break;
@@ -236,6 +257,12 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
             case R.id.ll_tab_my:
                 setSelect(3);
                 break;
+            case R.id.btnHeadLeft:
+            {
+                Intent intent=new Intent(TabActivity.this,CityActivity.class);
+               startActivityForResult(intent,1);
+                break;
+            }
         }
     }
 }

@@ -10,7 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.practice.R;
+import com.xujun.app.widget.RoundedLetterView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +43,31 @@ public class TopFragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        loadData();
+    }
+
+    private void loadData(){
+        items.clear();
+        items.add("互联网");
+        items.add("计算机软件");
+        items.add("房地产/建筑");
+        items.add("金融");
+        items.add("通讯电子");
+        items.add("快消");
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onClick(View view) {
 
     }
 
     static class ItemView
     {
-        public ImageView icon;
+        public RoundedLetterView icon;
+
         public TextView title;
     }
 
@@ -55,7 +75,7 @@ public class TopFragment extends BaseFragment implements View.OnClickListener{
 
         @Override
         public int getCount() {
-            return 0;
+            return items.size();
         }
 
         @Override
@@ -72,12 +92,16 @@ public class TopFragment extends BaseFragment implements View.OnClickListener{
         public View getView(int i, View convertView, ViewGroup viewGroup) {
             ItemView        holder;
             if (convertView==null){
-
+                convertView= LayoutInflater.from(mContext).inflate(R.layout.category_listview_item,null);
+                holder=new ItemView();
+                holder.icon=(RoundedLetterView)convertView.findViewById(R.id.rlName);
+                holder.title=(TextView)convertView.findViewById(R.id.tvItemTitle);
+                convertView.setTag(holder);
             }else{
                 holder=(ItemView)convertView.getTag();
             }
-
-
+            holder.title.setText(items.get(i));
+            holder.icon.setTitleText(items.get(i).substring(0,1));
             return convertView;
         }
     }

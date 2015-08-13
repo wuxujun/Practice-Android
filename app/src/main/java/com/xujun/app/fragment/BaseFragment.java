@@ -28,4 +28,9 @@ public class BaseFragment extends SherlockFragment{
         mContext=getSherlockActivity().getApplicationContext();
         mAppContext=(AppContext)getSherlockActivity().getApplication();
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
 }

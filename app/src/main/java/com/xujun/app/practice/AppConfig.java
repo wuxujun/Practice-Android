@@ -17,6 +17,19 @@ import java.util.Properties;
 public class AppConfig {
     private final static String APP_CONFIG="config";
 
+    public final static String SMS_APPKEY="6de96e7d9e78";
+    public final static String SMS_APPKSECRET="ee6510b139aa06a0a403dd4410646bef";
+
+    public final static String WEIXIN_APPID="wx7b3c49ed03390fb2";
+    public final static String WEIXIN_APPSECRET="232c9d206dbe83a905294ad00d0b8738";
+
+    public final static String QQ_APPID="1104812756";
+    public final static String QQ_APPSECRET="FMeRlwNSHJx1cqhx";
+
+    public final static String WEIBO_APPID="2846029855";
+    public final static String WEIBO_APPSECRET="6edd97b068547492519b8eefa084f344";
+
+
     public final static String APP_DEVICE_UUID="WSD01";
 
     public final static String ACTION_START_WEIGH="com.xujun.yoca.ACTION_START_WEIGH";
@@ -55,9 +68,6 @@ public class AppConfig {
     public final static String DEVICE_SET_WEIGHT_MODEL="pre_device_weight_model";
     public final static String DEVICE_SET_SHOW_UNIT="pre_device_show_unit";
     public final static String DEVICE_SET_LED_LEVEL="pre_device_led_level";
-
-    public final static String WEIXIN_APPID="";
-    public final static String WEIBO_APPID="";
 
     public final static String CONF_LOGIN_ACCOUNT="conf_login_account";
     public final static String CONF_LOGIN_PASSWORD="conf_login_password";
