@@ -70,7 +70,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
         loadData();
     }
 
-    private void loadData(){
+    public void loadData(){
         items.clear();
         items.add("0");
         items.add("每日推荐推送");
@@ -79,6 +79,11 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
         items.add("版本更新");
         items.add("关于我们");
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void parserHttpResponse(String result) {
+
     }
 
     @Override

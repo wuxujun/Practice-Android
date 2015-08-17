@@ -51,6 +51,16 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     }
 
+    @Override
+    public void loadData(){
+
+    }
+
+    @Override
+    public void parserHttpResponse(String result) {
+
+    }
+
     static class ItemView
     {
         public ImageView icon;

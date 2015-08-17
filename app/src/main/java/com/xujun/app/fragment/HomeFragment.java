@@ -56,7 +56,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         loadData();
     }
 
-    private void loadData(){
+    public void loadData(){
         List<String>  images=new ArrayList<String>();
         images.add("http://sx.asiainstitute.cn/images/ai0.png");
         images.add("http://sx.asiainstitute.cn/images/ai1.png");
@@ -83,6 +83,11 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         items.add(info);
 
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void parserHttpResponse(String result) {
+
     }
 
     @Override

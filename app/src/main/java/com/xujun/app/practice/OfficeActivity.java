@@ -69,6 +69,10 @@ public class OfficeActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    public void loadData(){
+
+    }
+
     static class ItemView
     {
         public ImageView icon;

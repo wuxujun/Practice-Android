@@ -2,8 +2,10 @@ package com.xujun.util;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -11,11 +13,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.StatFs;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -364,5 +370,173 @@ public class AppUtil {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * 打开网络设置界面
+     */
+    public static void openSetting(Activity activity)
+    {
+        Intent intent = new Intent("/");
+        ComponentName cm = new ComponentName("com.android.settings",
+                "com.android.settings.WirelessSettings");
+        intent.setComponent(cm);
+        intent.setAction("android.intent.action.VIEW");
+        activity.startActivityForResult(intent, 0);
+    }
+
+
+
+    /**
+     * dp转px
+     *
+     * @param context
+     * @param dpVal
+     * @return
+     */
+    public static int dp2px(Context context, float dpVal)
+    {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, context.getResources().getDisplayMetrics());
+    }
+
+    /**
+     * sp转px
+     *
+     * @param context
+     * @param spVal
+     * @return
+     */
+    public static int sp2px(Context context, float spVal)
+    {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                spVal, context.getResources().getDisplayMetrics());
+    }
+
+    /**
+     * px转dp
+     *
+     * @param context
+     * @param pxVal
+     * @return
+     */
+    public static float px2dp(Context context, float pxVal)
+    {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (pxVal / scale);
+    }
+
+    /**
+     * px转sp
+     *
+     * @param context
+     * @param pxVal
+     * @return
+     */
+    public static float px2sp(Context context, float pxVal)
+    {
+        return (pxVal / context.getResources().getDisplayMetrics().scaledDensity);
+    }
+
+
+    /**
+     * 打卡软键盘
+     *
+     * @param mEditText 输入框
+     * @param mContext 上下文
+     */
+    public static void openKeybord(EditText mEditText, Context mContext)
+    {
+        InputMethodManager imm = (InputMethodManager) mContext
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+
+    /**
+     * 关闭软键盘
+     *
+     * @param mEditText 输入框
+     * @param mContext 上下文
+     */
+    public static void closeKeybord(EditText mEditText, Context mContext)
+    {
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
+    }
+
+    /**
+     * 判断SDCard是否可用
+     *
+     * @return
+     */
+    public static boolean isSDCardEnable()
+    {
+        return Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED);
+
+    }
+
+    /**
+     * 获取SD卡路径
+     *
+     * @return
+     */
+    public static String getSDCardPath()
+    {
+        return Environment.getExternalStorageDirectory().getAbsolutePath()
+                + File.separator;
+    }
+
+    /**
+     * 获取SD卡的剩余容量 单位byte
+     *
+     * @return
+     */
+    public static long getSDCardAllSize()
+    {
+        if (isSDCardEnable())
+        {
+            StatFs stat = new StatFs(getSDCardPath());
+            // 获取空闲的数据块的数量
+            long availableBlocks = (long) stat.getAvailableBlocks() - 4;
+            // 获取单个数据块的大小（byte）
+            long freeBlocks = stat.getAvailableBlocks();
+            return freeBlocks * availableBlocks;
+        }
+        return 0;
+    }
+
+    /**
+     * 获取指定路径所在空间的剩余可用容量字节数，单位byte
+     *
+     * @param filePath
+     * @return 容量字节 SDCard可用空间，内部存储可用空间
+     */
+    public static long getFreeBytes(String filePath)
+    {
+        // 如果是sd卡的下的路径，则获取sd卡可用容量
+        if (filePath.startsWith(getSDCardPath()))
+        {
+            filePath = getSDCardPath();
+        } else
+        {// 如果是内部存储的路径，则获取内存存储的可用容量
+            filePath = Environment.getDataDirectory().getAbsolutePath();
+        }
+        StatFs stat = new StatFs(filePath);
+        long availableBlocks = (long) stat.getAvailableBlocks() - 4;
+        return stat.getBlockSize() * availableBlocks;
+    }
+
+    /**
+     * 获取系统存储路径
+     *
+     * @return
+     */
+    public static String getRootDirectoryPath()
+    {
+        return Environment.getRootDirectory().getAbsolutePath();
     }
 }

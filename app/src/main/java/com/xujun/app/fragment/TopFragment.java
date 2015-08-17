@@ -9,13 +9,28 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.xujun.app.model.CategoryInfo;
+import com.xujun.app.model.CategoryResp;
 import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.practice.R;
 import com.xujun.app.widget.RoundedLetterView;
+import com.xujun.util.JsonUtil;
+import com.xujun.util.L;
+import com.xujun.util.StringUtil;
+import com.xujun.util.URLs;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xujunwu on 15/8/1.
@@ -23,7 +38,7 @@ import java.util.List;
 public class TopFragment extends BaseFragment implements View.OnClickListener{
     public static final String TAG="TopFragment";
 
-    List<String> items=new ArrayList<String>();
+    List<CategoryInfo> items=new ArrayList<CategoryInfo>();
 
     private ItemAdapter     mAdapter;
 
@@ -48,15 +63,37 @@ public class TopFragment extends BaseFragment implements View.OnClickListener{
         loadData();
     }
 
-    private void loadData(){
+    public void loadData(){
         items.clear();
-        items.add("互联网");
-        items.add("计算机软件");
-        items.add("房地产/建筑");
-        items.add("金融");
-        items.add("通讯电子");
-        items.add("快消");
-        mAdapter.notifyDataSetChanged();
+        Map<String,Object> requestMap=new HashMap<String,Object>();
+
+        HttpUtils http=new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST, URLs.CATEGORY_LIST_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                L.e("onSuccess() "+responseInfo.result);
+                parserHttpResponse(responseInfo.result);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                L.i("onFailure() "+s);
+            }
+        });
+
+    }
+
+    @Override
+    public void parserHttpResponse(String result) {
+        try{
+            CategoryResp resp=(CategoryResp)JsonUtil.ObjFromJson(result,CategoryResp.class);
+            if (resp.getRoot()!=null){
+                items.addAll(resp.getRoot());
+                mAdapter.notifyDataSetChanged();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -100,8 +137,11 @@ public class TopFragment extends BaseFragment implements View.OnClickListener{
             }else{
                 holder=(ItemView)convertView.getTag();
             }
-            holder.title.setText(items.get(i));
-            holder.icon.setTitleText(items.get(i).substring(0,1));
+            CategoryInfo info=items.get(i);
+            if (info!=null) {
+                holder.title.setText(info.getCategory());
+                holder.icon.setTitleText(info.getCategory().substring(0, 1));
+            }
             return convertView;
         }
     }

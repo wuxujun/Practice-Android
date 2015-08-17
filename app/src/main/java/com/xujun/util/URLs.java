@@ -15,7 +15,7 @@ import java.net.URLEncoder;
  */
 public class URLs implements Serializable {
 	
-	public final static String HOST = "y.mchome.cn";
+	public final static String HOST = "sx.asiainstitute.cn";
 	public final static String HTTP = "http://";
 	public final static String HTTPS = "https://";
 	
@@ -24,7 +24,7 @@ public class URLs implements Serializable {
 	
 	private final static String URL_API_HOST = HTTP + HOST + URL_SPLITTER;
 
-    public final static String IMAGE_URL="http://app.woicar.cn:8089/nadmin/images/";
+    public final static String IMAGE_URL="http://sx.asiainstitute.cn/images/";
 	
 	public final static String LOGIN_VALIDATE_HTTP = HTTP + HOST + URL_SPLITTER + "index.php?/ums/login";
     public final static String REGISTER_USER=HTTP + HOST + URL_SPLITTER + "index.php?/ums/register";
@@ -33,18 +33,7 @@ public class URLs implements Serializable {
     public final static String INIT_CONFIG_URL = HTTP + HOST + URL_SPLITTER + "index.php?/ums/getConfig";
     public final static String INFO_GET_URL= HTTP + HOST + URL_SPLITTER + "index.php?/ums/getInfo";
 
-    public final static String WARN_SYNC_URL=HTTP+HOST+URL_SPLITTER+"index.php?/ums/syncwarns";
-    public final static String WEIGHT_HIS_SYNC_URL=HTTP+HOST+URL_SPLITTER+"index.php?/ums/syncweighthis";
-    public final static String WEIGHT_SYNC_URL=HTTP+HOST+URL_SPLITTER+"index.php?/ums/syncweight";
-    public final static String ACCOUNT_SYNC_URL=HTTP+HOST+URL_SPLITTER+"index.php?/ums/syncaccount";
-
-    public final static String SYNC_WEIGHT_HIS_URL=HTTP+HOST+URL_SPLITTER+"index.php?/ums/getWeightHiss";
-
-    public final static String SYNC_WEIGHT_URL=HTTP+HOST+URL_SPLITTER+"index.php?/ums/getWeights";
-
-    public final static String CATEGORY_LIST_URL=URL_API_HOST+"index.php/ums/index";
-
-    public final static String CATEGORY_CONTENT_URL=URL_API_HOST+"index.php/ums/getInfo/";
+    public final static String CATEGORY_LIST_URL=URL_API_HOST+"index.php?/ums/category";
 
     public final static String INPUTS_LIST = URL_API_HOST+"index.php/ums/getInputs";
 

@@ -34,4 +34,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             }
         }
     }
+
+    public void loadData(){
+
+    }
 }

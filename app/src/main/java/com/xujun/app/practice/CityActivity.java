@@ -55,7 +55,8 @@ public class CityActivity extends BaseActivity {
         super.onResume();
         loadData();
     }
-    private void loadData(){
+
+    public void loadData(){
         items.clear();
         items.add("上海");
         items.add("北京");

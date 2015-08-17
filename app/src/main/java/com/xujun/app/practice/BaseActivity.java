@@ -12,11 +12,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
+import com.lidroid.xutils.http.RequestParams;
+import com.umeng.message.UmengRegistrar;
+import com.xujun.util.JsonUtil;
+
+import org.apache.http.entity.StringEntity;
+import org.json.JSONException;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 /**
  * Created by xujunwu on 15/7/31.
  */
-public class BaseActivity extends SherlockActivity{
+public abstract class BaseActivity extends SherlockActivity{
 
     protected AppContext    mAppContext;
     protected Context       mContext;
@@ -61,4 +70,21 @@ public class BaseActivity extends SherlockActivity{
         }
         return super.dispatchKeyEvent(event);
     }
+
+    public RequestParams getRequestParams(Map<String,Object> maps){
+        RequestParams params=new RequestParams();
+        maps.put("imei",mAppContext.getIMSI());
+        maps.put("umeng_token", UmengRegistrar.getRegistrationId(mContext));
+        try{
+            String json= JsonUtil.toJson(maps);
+            params.setBodyEntity(new StringEntity(json));
+        }catch (JSONException e){
+            e.printStackTrace();
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+        return  params;
+    }
+
+    public abstract void loadData();
 }

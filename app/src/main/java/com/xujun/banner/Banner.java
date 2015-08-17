@@ -170,7 +170,7 @@ public class Banner <T> extends LinearLayout {
                     .setPageTransformer(
                             true,
                             (ViewPager.PageTransformer) Class.forName(
-                                    "com.bigkoo.convenientbanner.transforms."
+                                    "com.xujun.banner.transforms."
                                             + transformer.getClassName())
                                     .newInstance());
         } catch (InstantiationException e) {

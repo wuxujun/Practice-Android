@@ -21,11 +21,13 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.PushAgent;
+import com.umeng.message.UmengRegistrar;
 import com.umeng.update.UmengUpdateAgent;
 import com.xujun.app.fragment.HomeFragment;
 import com.xujun.app.fragment.MyFragment;
 import com.xujun.app.fragment.SearchFragment;
 import com.xujun.app.fragment.TopFragment;
+import com.xujun.util.L;
 import com.xujun.util.StringUtil;
 
 import org.w3c.dom.Text;
@@ -130,6 +132,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         super.onResume();
         MobclickAgent.onPageStart(TAG);
         MobclickAgent.onResume(mContext);
+        L.i("Umeng_Token:"+ UmengRegistrar.getRegistrationId(mContext));
     }
 
     @Override

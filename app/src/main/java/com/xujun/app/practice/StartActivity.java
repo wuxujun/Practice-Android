@@ -23,6 +23,11 @@ public class StartActivity extends BaseActivity{
     }
 
     @Override
+    public void loadData() {
+
+    }
+
+    @Override
     protected void onResume(){
         super.onResume();
 
