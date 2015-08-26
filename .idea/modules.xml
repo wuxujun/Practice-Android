@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/ViewPageIndicator/ViewPageIndicator.iml" filepath="$PROJECT_DIR$/ViewPageIndicator/ViewPageIndicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/actionbarsherlock/actionbarsherlock.iml" filepath="$PROJECT_DIR$/actionbarsherlock/actionbarsherlock.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xUtils/xUtils.iml" filepath="$PROJECT_DIR$/xUtils/xUtils.iml" />
     </modules>
   </component>
 </project>

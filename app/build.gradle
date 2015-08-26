@@ -10,13 +10,94 @@ android {
         versionCode 3
         versionName "1.0.2"
     }
+    signingConfigs{
+        myConfig{
+            storeFile file("practice.jks")
+            storePassword "wu9531427"
+            keyAlias    "practice"
+            keyPassword "wu9531427"
+        }
+    }
     buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.myConfig
+        }
         release {
             minifyEnabled false
+            zipAlignEnabled false
+            signingConfig signingConfigs.myConfig
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     productFlavors {
+        development {
+            versionCode 1
+            versionName '1.0.0'
+            signingConfig signingConfigs.myConfig
+        }
+        hiapk {
+            versionCode 1
+            versionName '1.0.0'
+            signingConfig signingConfigs.myConfig
+        }
+    }
+    productFlavors.all{flavor->
+        flavor.manifestPlaceholders=[umeng_channel:name]
+    }
+    variantFilter{variant->
+        def buildType=variant.buildType.name
+        def flavorName=variant.getFlavors().get(0).name
+        if (buildType.equals('debug')){
+            if (flavorName.equals('development')){
+                variant.setIgnore(false)
+            }else{
+                variant.setIgnore(true)
+            }
+        }else{
+            if (flavorName.equals('development')){
+                variant.setIgnore(true)
+            }else{
+                variant.setIgnore(false)
+            }
+        }
+    }
+    applicationVariants.all{variant->
+        variant.outputs.each{output->
+            def outputFile=output.outputFile
+            if (outputFile!=null&&outputFile.name.endsWith('.apk')){
+                def fileName=outputFile.name.replace(".apk","-v${defaultConfig.versionName}.apk")
+                fileName = fileName.replace("app", "Practice")
+                println "[FileName]: ${fileName}"
+                if (variant.buildType.name.equals('release')) {
+                    output.outputFile = file("${outputFile.parent}/release/${fileName}")
+                } else {
+                    output.outputFile = file("${outputFile.parent}/${fileName}")
+                }
+            }
+        }
+
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    dexOptions{
+        jumboMode true
+        incremental  true
     }
 }
 
@@ -26,7 +107,6 @@ dependencies {
     compile project(':ViewPageIndicator')
     compile project(':EdittextValidator')
     compile files('libs/gson-2.0.jar')
-    compile 'com.jiechic.library:xUtils:2.6.14'
     compile files('libs/com.umeng.message.lib_v2.0.0.jar')
     compile files('libs/umeng-analytics-v5.4.2.jar')
     compile files('libs/umeng-update-v2.6.0.1.jar')
@@ -41,4 +121,5 @@ dependencies {
     compile files('libs/SocialSDK_sms.jar')
     compile files('libs/SocialSDK_WeiXin_1.jar')
     compile files('libs/SocialSDK_WeiXin_2.jar')
+    compile project(':xUtils')
 }
