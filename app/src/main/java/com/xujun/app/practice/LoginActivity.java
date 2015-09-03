@@ -60,7 +60,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    @Override
     public void loadData(){
+
+    }
+
+    @Override
+    public void parserHttpResponse(String result) {
 
     }
 

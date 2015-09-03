@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout android:layout_margin="10dp"
+    <LinearLayout android:layout_margin="5dp"
         android:layout_width="match_parent" android:gravity="center_vertical"
-        android:layout_height="56dp" android:orientation="horizontal">
+        android:layout_height="wrap_content" android:orientation="horizontal">
         <com.xujun.app.widget.RoundedLetterView
             android:id="@+id/rlName"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             tools:visibility="visible" app:rlv_backgroundColorValue="@color/green"
-            app:rlv_titleColor="@color/white" app:rlv_titleSize="35sp" app:rlv_titleText="A"
+            app:rlv_titleColor="@color/white" app:rlv_titleSize="20sp" app:rlv_titleText="A"
             />
         <TextView android:id="@+id/tvItemTitle" android:layout_marginLeft="10dp" android:text="123" android:layout_weight="1"
             android:layout_width="match_parent" android:gravity="center_vertical"
@@ -21,4 +21,7 @@
             android:layout_width="wrap_content" android:layout_marginRight="10dp"
             android:layout_height="wrap_content" android:background="@drawable/enter"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"
+        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
 </LinearLayout>

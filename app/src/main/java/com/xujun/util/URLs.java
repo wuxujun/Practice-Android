@@ -34,8 +34,7 @@ public class URLs implements Serializable {
     public final static String INFO_GET_URL= HTTP + HOST + URL_SPLITTER + "index.php?/ums/getInfo";
 
     public final static String CATEGORY_LIST_URL=URL_API_HOST+"index.php?/ums/category";
-
-    public final static String INPUTS_LIST = URL_API_HOST+"index.php/ums/getInputs";
+    public final static String CITY_LIST_URL = URL_API_HOST+"index.php?/ums/city";
 
 	public final static String ADS_LIST = URL_API_HOST+"index.php/ums/ads";
 

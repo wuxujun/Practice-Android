@@ -2,4 +2,68 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="head_offset_left">14dp</dimen>
+    <dimen name="head_offset">4dp</dimen>
+    <dimen name="head_input_height">32dp</dimen>
+    <dimen name="head_center_offset">6dp</dimen>
+    <dimen name="head_img_offset_top">8dp</dimen>
+    <dimen name="head_edit_offset">12dp</dimen>
+
+    <dimen name="head_img_size_des">12sp</dimen>
+    <dimen name="menu_popupwindow_width">120dp</dimen>
+    <dimen name="menu_popupwindow_height">200dp</dimen>
+    <dimen name="home_banner_height">160dp</dimen>
+    <dimen name="pop_city_gridview_height">100dp</dimen>
+    <dimen name="home_category_gridview_height">160dp</dimen>
+
+    <dimen name="dimen_0_2">0.2000005dip</dimen>
+    <dimen name="dimen_02">2.0dip</dimen>
+    <dimen name="dimen_03">3.0dip</dimen>
+    <dimen name="dimen_04">4.0dip</dimen>
+    <dimen name="dimen_05">5.0dip</dimen>
+    <dimen name="dimen_06">6.0dip</dimen>
+    <dimen name="dimen_07">7.0dip</dimen>
+    <dimen name="dimen_08">8.0dip</dimen>
+    <dimen name="dimen_09">9.0dip</dimen>
+    <dimen name="dimen_10">10.0dip</dimen>
+    <dimen name="dimen_11">11.0dip</dimen>
+    <dimen name="dimen_12">12.0dip</dimen>
+    <dimen name="dimen_13">13.0dip</dimen>
+    <dimen name="dimen_14">14.0dip</dimen>
+    <dimen name="dimen_15">15.0dip</dimen>
+    <dimen name="dimen_16">16.0dip</dimen>
+    <dimen name="dimen_17">17.0dip</dimen>
+    <dimen name="dimen_18">18.0dip</dimen>
+    <dimen name="dimen_19">19.0dip</dimen>
+    <dimen name="dimen_20">20.0dip</dimen>
+
+
+    <dimen name="line_h">0.3000007dip</dimen>
+    <dimen name="line_w">0.10000024dip</dimen>
+    <dimen name="zero">0dip</dimen>
+
+    <dimen name="font_size_10">10sp</dimen>
+    <dimen name="font_size_11">11sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_13">13sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_15">15sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_17">17sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_19">19sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_21">21sp</dimen>
+    <dimen name="font_size_22">22sp</dimen>
+    <dimen name="font_size_23">23sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_25">25sp</dimen>
+    <dimen name="font_size_26">26sp</dimen>
+    <dimen name="font_size_27">27sp</dimen>
+    <dimen name="font_size_28">28sp</dimen>
+    <dimen name="font_size_29">29sp</dimen>
+    <dimen name="font_size_30">30sp</dimen>
+
+
 </resources>

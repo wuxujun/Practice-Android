@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" android:fitsSystemWindows="true">
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_tab_top"
+            android:id="@+id/ll_tab_category"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -46,7 +46,7 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/ib_tab_top"
+                android:id="@+id/ib_tab_category"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="#00000000"
@@ -54,14 +54,14 @@
                 android:src="@drawable/ic_tab_home" />
 
             <TextView
-                android:id="@+id/tv_tab_top"
+                android:id="@+id/tv_tab_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_top"
+                android:text="@string/tab_category"
                 android:textColor="#ffffff" />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/ll_tab_search"
+            android:id="@+id/ll_tab_attention"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -69,7 +69,7 @@
             android:orientation="vertical" >
 
             <ImageButton
-                android:id="@+id/ib_tab_search"
+                android:id="@+id/ib_tab_attention"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:background="#00000000"
@@ -77,10 +77,33 @@
                 android:src="@drawable/ic_tab_home" />
 
             <TextView
-                android:id="@+id/tv_tab_search"
+                android:id="@+id/tv_tab_attention"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tab_search"
+                android:text="@string/tab_attention"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_tab_resume"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/ib_tab_resume"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#00000000"
+                android:clickable="false"
+                android:src="@drawable/ic_tab_home" />
+
+            <TextView
+                android:id="@+id/tv_tab_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab_resume"
                 android:textColor="#ffffff" />
         </LinearLayout>
         <LinearLayout

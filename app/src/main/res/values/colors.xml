@@ -21,6 +21,7 @@
     <color name="main_black_color">#ff6f6f6f</color>
     <color name="main_white_color">#ffffffff</color>
     <color name="main_white_highlight_color">#fffafafa</color>
+    <color name="action_bar_color">#000</color>
 
     <color name="chart_background_color">#2A2A2A</color>
     <color name="chart_label_color">#45c979</color>
@@ -38,8 +39,6 @@
     <color name="cpb_green_dark">#ff6d9b00</color>
     <color name="cpb_white">@android:color/white</color>
 
-
-    <color name="line_green">#45C979</color>
-    <color name="line_red">#EB908F</color>
-    <color name="line_yellow">#fff784</color>
+    <color name="head_bg_color">#ff808080</color>
+    <color name="all_line">#ffd9d9d9</color>
 </resources>

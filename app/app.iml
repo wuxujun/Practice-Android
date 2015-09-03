@@ -125,7 +125,9 @@
     <orderEntry type="library" exported="" name="SocialSDK_QQZone_3" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_sms" level="project" />
     <orderEntry type="library" exported="" name="com.umeng.message.lib_v2.0.0" level="project" />
+    <orderEntry type="library" exported="" name="MapApiLocation_1.3.3" level="project" />
     <orderEntry type="module" module-name="xUtils" exported="" />
+    <orderEntry type="module" module-name="PullToRefreshListView" exported="" />
     <orderEntry type="module" module-name="actionbarsherlock" exported="" />
     <orderEntry type="module" module-name="EdittextValidator" exported="" />
     <orderEntry type="module" module-name="ViewPageIndicator" exported="" />

@@ -38,7 +38,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
 
     private ItemAdapter     mAdapter;
 
-    private PullToZoomListView   listView;
+    private ListView   listView;
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
@@ -47,20 +47,11 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
-        mContentView=inflater.inflate(R.layout.pull_to_zoom_listview,null);
-        listView=(PullToZoomListView)mContentView.findViewById(R.id.listview);
+        mContentView=inflater.inflate(R.layout.fragment_list,null);
+        listView=(ListView)mContentView.findViewById(R.id.list);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(this);
-        listView.getHeaderView().findViewById(R.id.tv_login).setOnClickListener(this);
-        listView.getHeaderView().findViewById(R.id.tv_register).setOnClickListener(this);
 
-        
-        DisplayMetrics localDisplayMetrics = new DisplayMetrics();
-        getSherlockActivity().getWindowManager().getDefaultDisplay().getMetrics(localDisplayMetrics);
-        int mScreenHeight = localDisplayMetrics.heightPixels;
-        int mScreenWidth = localDisplayMetrics.widthPixels;
-        AbsListView.LayoutParams localObject = new AbsListView.LayoutParams(mScreenWidth, (int) (9.0F * (mScreenWidth / 16.0F)));
-        listView.setHeaderLayoutParams(localObject);
         return mContentView;
     }
 
@@ -73,10 +64,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
     public void loadData(){
         items.clear();
         items.add("0");
-        items.add("每日推荐推送");
-        items.add("移动网络图片质量");
-        items.add("清除缓存");
-        items.add("版本更新");
+        items.add("已申请的");
+        items.add("发现更多");
+        items.add("消息通知");
+        items.add("设置");
         items.add("关于我们");
         mAdapter.notifyDataSetChanged();
     }

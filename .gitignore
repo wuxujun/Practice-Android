@@ -5,6 +5,10 @@
 .DS_Store
 /build
 /captures
+/app/practice.jks
+/app/release
+/xUtils
+/PullToRefreshListView
 /ViewPageIndicator
 /actionbarsherlock
 /EdittextValidator

@@ -4,5 +4,29 @@
     <style name="AppTheme" parent="android:Theme.Holo.Light">
         <!-- Customize your theme here. -->
     </style>
-
+    <style name="App_Head_Tab">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="App_Head_Tab_Line">
+        <item name="android:layout_height">2dip</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="App_All_line_v">
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:background">@color/all_line</item>
+    </style>
+    <style name="App_All_line_h">
+        <item name="android:layout_marginLeft">@dimen/dimen_05</item>
+        <item name="android:layout_marginRight">@dimen/dimen_05</item>
+        <item name="android:background">@color/all_line</item>
+    </style>
+    <style name="App_ListView_Head">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+    </style>
 </resources>

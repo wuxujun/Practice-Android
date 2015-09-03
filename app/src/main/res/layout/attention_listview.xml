@@ -4,14 +4,14 @@
     android:layout_height="match_parent">
     <LinearLayout android:layout_alignParentTop="true"
         android:layout_width="match_parent" android:id="@+id/llHead" android:background="@color/cpb_white"
-        android:layout_height="48dp" android:orientation="horizontal" android:gravity="center_vertical">
+        android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_vertical">
         <TextView android:layout_margin="10dp"
-            android:id="@+id/tvTitle" android:textColor="@color/black" android:layout_weight="1"
+            android:id="@+id/tvTitle" android:textColor="@color/black"
             android:layout_width="match_parent" android:gravity="center_vertical"
-            android:layout_height="match_parent"  android:text="@string/search_require"/>
-        <ImageView
-            android:layout_width="wrap_content" android:layout_marginRight="10dp"
-            android:layout_height="wrap_content" android:background="@drawable/enter"/>
+            android:layout_height="wrap_content"  android:text="@string/search_require"/>
+        <LinearLayout android:id="@+id/llAttentionSet"  android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <include layout="@layout/attention_set"/>
+        </LinearLayout>
     </LinearLayout>
     <ListView android:layout_below="@+id/llHead"
         android:layout_width="match_parent"

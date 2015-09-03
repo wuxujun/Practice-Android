@@ -29,8 +29,6 @@ public abstract class BaseFragment extends SherlockFragment{
 
     protected View          mContentView;
 
-    @ViewInject(R.id.list)
-    protected ListView      mListView;
 
     @Override
     public void onCreate(Bundle bundle){

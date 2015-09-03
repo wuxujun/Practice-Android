@@ -7,8 +7,8 @@ android {
         applicationId 'com.xujun.app.practice'
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 4
+        versionName "1.0.3"
     }
     signingConfigs{
         myConfig{
@@ -28,6 +28,7 @@ android {
             signingConfig signingConfigs.myConfig
         }
         release {
+            versionNameSuffix "-debug"
             minifyEnabled false
             zipAlignEnabled false
             signingConfig signingConfigs.myConfig
@@ -42,7 +43,7 @@ android {
             signingConfig signingConfigs.myConfig
         }
         hiapk {
-            versionCode 1
+            versionCode 5
             versionName '1.0.0'
             signingConfig signingConfigs.myConfig
         }
@@ -97,21 +98,23 @@ android {
     }
     dexOptions{
         jumboMode true
-        incremental  true
+        incremental  false
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:support-annotations:22.2.0'
     compile project(':actionbarsherlock')
     compile project(':ViewPageIndicator')
     compile project(':EdittextValidator')
+    compile project(':xUtils')
+    compile project(':PullToRefreshListView')
     compile files('libs/gson-2.0.jar')
     compile files('libs/com.umeng.message.lib_v2.0.0.jar')
     compile files('libs/umeng-analytics-v5.4.2.jar')
     compile files('libs/umeng-update-v2.6.0.1.jar')
     compile files('libs/umeng_social_sdk.jar')
-    compile 'com.android.support:support-annotations:22.2.0'
     compile files('libs/httpmime-4.1.3.jar')
     compile files('libs/SocialSDK_email.jar')
     compile files('libs/SocialSDK_QQZone_1.jar')
@@ -121,5 +124,5 @@ dependencies {
     compile files('libs/SocialSDK_sms.jar')
     compile files('libs/SocialSDK_WeiXin_1.jar')
     compile files('libs/SocialSDK_WeiXin_2.jar')
-    compile project(':xUtils')
+    compile files('libs/MapApiLocation_1.3.3.jar')
 }

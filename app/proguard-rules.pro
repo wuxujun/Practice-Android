@@ -15,3 +15,31 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+#Google Gson Begin
+-keepattributes *Annotation*
+-keep class sun.misc.Unsafe { *; }
+-keep class com.idea.fifaalarmclock.entity.***
+-keep class com.google.gson.stream.** { *; }
+#Google End
+
+#Umeng begin
+-keepclassmembers class * {
+   public <init>(org.json.JSONObject);
+}
+-keep class com.umeng.**
+-keep public class com.idea.fifaalarmclock.app.R$*{
+    public static final int *;
+}
+-keep public class com.umeng.fb.ui.ThreadView {
+}
+-dontwarn com.umeng.**
+-dontwarn org.apache.commons.**
+-keep public class * extends com.umeng.**
+-keep class com.umeng.** {*; }
+#Umeng End
+
+-keep class com.xujun.app.**{*;}
+-keep class com.xujun.banner.**{*;}
+-keep class com.xujun.pullzoom.**{*;}
+

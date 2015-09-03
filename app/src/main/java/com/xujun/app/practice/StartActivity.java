@@ -1,44 +1,216 @@
 package com.xujun.app.practice;
 
+import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.DbException;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.message.UmengRegistrar;
+import com.xujun.app.model.CategoryInfo;
+import com.xujun.app.model.CategoryResp;
+import com.xujun.app.model.CityInfo;
+import com.xujun.app.model.CityResp;
+import com.xujun.util.JsonUtil;
+import com.xujun.util.L;
+import com.xujun.util.StringUtil;
+import com.xujun.util.URLs;
+
+import org.apache.http.entity.StringEntity;
+import org.json.JSONException;
+
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xujunwu on 15/7/31.
  */
-public class StartActivity extends BaseActivity{
+public class StartActivity extends Activity{
+
+
+    private AppContext    mAppContext;
+    private Context mContext;
+
+    private int     dataType=0;
+    private String  dataVersion="1";
 
     @Override
     protected void onCreate(Bundle bundle){
         super.onCreate(bundle);
         setContentView(R.layout.activity_start);
+        mAppContext=(AppContext)getApplication();
+        mContext=getApplicationContext();
 
         createShortcut();
         ViewUtils.inject(this);
+        MobclickAgent.updateOnlineConfig(this);
     }
 
-    @Override
-    public void loadData() {
+    private DbUtils.DbUpgradeListener mUpdateListener=new DbUtils.DbUpgradeListener() {
+        @Override
+        public void onUpgrade(DbUtils db, int oldVersion, int newVersion) {
+            L.e("old:"+oldVersion+"  "+newVersion);
+            try{
+                db.dropTable(CategoryInfo.class);
+                db.createTableIfNotExist(CategoryInfo.class);
+            }catch (DbException e){
+                e.printStackTrace();
+            }
+        }
+    };
 
+    public void loadData() {
+        dataVersion=MobclickAgent.getConfigParams(mContext,"DataVersion");
+        String localDataVirsion=mAppContext.getProperty(AppConfig.LOCAL_DATABASE_VERSION);
+        L.e("loadData ..................." + dataVersion);
+        try{
+            DbUtils db=DbUtils.create(this,AppConfig.DB_NAME,1, mUpdateListener);
+            db.configAllowTransaction(true);
+            db.configDebug(true);
+            L.e("begin Create Table.....");
+            db.createTableIfNotExist(CategoryInfo.class);
+            db.createTableIfNotExist(CityInfo.class);
+            db.close();
+        }catch (DbException e){
+            e.printStackTrace();
+        }
+
+        if (StringUtil.isEmpty(localDataVirsion)){
+            L.e("...........First load");
+            loadCategoryInfo("0","20");
+        }else if(!localDataVirsion.equals(dataVersion)){
+            L.e("..........LocalDatabaseVersion "+localDataVirsion+"  Server version:"+dataVersion);
+            loadCategoryInfo("0","20");
+        }else {
+            L.e("......... No updated .....");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    openHome();
+                }
+            }, 1);
+        }
+    }
+
+    private void openHome(){
+        Intent intent = new Intent(StartActivity.this, TabActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void loadCategoryInfo(String start,String end){
+        Map<String,Object> requestMap=new HashMap<String,Object>();
+        requestMap.put("start",start);
+        requestMap.put("end", end);
+        HttpUtils http=new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST, URLs.CATEGORY_LIST_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                L.e("onSuccess() " + responseInfo.result);
+                parserHttpResponse(responseInfo.result);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                L.i("onFailure() " + s);
+            }
+        });
+    }
+
+    private void loadCityInfo(String start,String end){
+        Map<String,Object> requestMap=new HashMap<String,Object>();
+        requestMap.put("start",start);
+        requestMap.put("end", end);
+        HttpUtils http=new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST, URLs.CITY_LIST_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                L.e("onSuccess() " + responseInfo.result);
+                dataType = 1;
+                parserHttpResponse(responseInfo.result);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                L.i("onFailure() " + s);
+            }
+        });
+    }
+
+    public void parserHttpResponse(String result) {
+        try{
+            if (dataType==0) {
+                CategoryResp resp = (CategoryResp) JsonUtil.ObjFromJson(result, CategoryResp.class);
+                if (resp.getRoot() != null) {
+                    addCategoryInfo(resp.getRoot());
+                }
+                if (resp.getEnd()<resp.getTotal()){
+                    loadCategoryInfo(""+resp.getEnd(),""+(resp.getEnd()+20));
+                }else{
+                    loadCityInfo("0","20");
+                }
+            }else{
+                CityResp resp=(CityResp)JsonUtil.ObjFromJson(result,CityResp.class);
+                if (resp.getRoot()!=null){
+                    addCityInfo(resp.getRoot());
+                }
+                if (resp.getEnd()<resp.getTotal()){
+                    loadCityInfo(""+resp.getEnd(),""+(resp.getEnd()+20));
+                }else{
+                    mAppContext.setProperty(AppConfig.LOCAL_DATABASE_VERSION,dataVersion);
+                    openHome();
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void addCityInfo(List<CityInfo> list){
+        try{
+            DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
+            db.saveOrUpdateAll(list);
+//            db.close();
+            L.e("addCityInfo  save ....record:"+list.size());
+        }catch (DbException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void addCategoryInfo(List<CategoryInfo> list){
+        try{
+//            for (CategoryInfo categoryInfo :list){
+//                L.e(""+categoryInfo.getId()+"  "+categoryInfo.getCode()+"  "+categoryInfo.getCategory()+"  "+categoryInfo.getType()+"  "+categoryInfo.getParent_code()+"  "+categoryInfo.getTop());
+//            }
+            DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
+            db.saveOrUpdateAll(list);
+//            db.close();
+            L.e("addCategoryInfo  save.... record:"+list.size());
+        }catch (DbException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                final Intent intent = new Intent(StartActivity.this, TabActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 1);
+        loadData();
     }
 
     /**
@@ -69,5 +241,21 @@ public class StartActivity extends BaseActivity{
             // 提交设置
             editor.commit();
         }
+    }
+
+
+    private RequestParams getRequestParams(Map<String,Object> maps){
+        RequestParams params=new RequestParams();
+        maps.put("imei",mAppContext.getIMSI());
+        maps.put("umeng_token", UmengRegistrar.getRegistrationId(mContext));
+        try{
+            String json= JsonUtil.toJson(maps);
+            params.setBodyEntity(new StringEntity(json));
+        }catch (JSONException e){
+            e.printStackTrace();
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+        return  params;
     }
 }

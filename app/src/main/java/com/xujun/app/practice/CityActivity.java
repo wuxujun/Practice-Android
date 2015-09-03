@@ -1,6 +1,7 @@
 package com.xujun.app.practice;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +12,20 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.exception.DbException;
+import com.xujun.app.model.CityInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by xujunwu on 15/8/7.
  */
-public class CityActivity extends BaseActivity {
+public class CityActivity extends BaseActivity implements View.OnClickListener {
 
 
-    List<String> items=new ArrayList<String>();
+    List<CityInfo> items=new ArrayList<CityInfo>();
     ItemAdapter  mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +33,7 @@ public class CityActivity extends BaseActivity {
         setContentView(R.layout.fragment_list);
 
         mHeadTitle.setText(getText(R.string.city_select));
-        mHeadBack.setImageDrawable(getResources().getDrawable(R.drawable.back));
-        mHeadBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        mHeadBtnRight.setVisibility(View.INVISIBLE);
+        initHeadBackView();
 
         mAdapter=new ItemAdapter();
         mListView=(ListView)findViewById(R.id.list);
@@ -44,7 +42,9 @@ public class CityActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent();
-                intent.putExtra("cityName",items.get(i));
+                Bundle bundle=new Bundle();
+                bundle.putSerializable(AppConfig.PARAM_CITY_INFO,items.get(i));
+                intent.putExtras(bundle);
                 CityActivity.this.setResult(RESULT_OK, intent);
                 CityActivity.this.finish();
             }
@@ -56,12 +56,37 @@ public class CityActivity extends BaseActivity {
         loadData();
     }
 
+    @Override
     public void loadData(){
         items.clear();
-        items.add("上海");
-        items.add("北京");
-        items.add("杭州");
+        try{
+            DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
+            List<CityInfo> cityInfoList=db.findAll(CityInfo.class);
+            if (cityInfoList!=null&&cityInfoList.size()>0){
+                items.addAll(cityInfoList);
+            }
+        }catch (DbException e){
+            e.printStackTrace();
+        }
+
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void parserHttpResponse(String result){
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.ibHeadBack:{
+                finish();
+                break;
+            }
+            default:
+                break;
+        }
     }
 
     static class ItemView
@@ -97,7 +122,10 @@ public class CityActivity extends BaseActivity {
             }else{
                 holder=(ItemView)convertView.getTag();
             }
-            holder.title.setText(items.get(position));
+            CityInfo cityInfo=items.get(position);
+            if (cityInfo!=null) {
+                holder.title.setText(cityInfo.getCityName());
+            }
             return convertView;
         }
     }

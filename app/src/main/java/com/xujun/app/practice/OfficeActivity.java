@@ -40,18 +40,12 @@ public class OfficeActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_office);
-        mHeadBack.setImageDrawable(getResources().getDrawable(R.drawable.back));
-        mHeadBack.setOnClickListener(this);
         mHeadTitle.setText(getText(R.string.office_detail));
-        mHeadBtnLeft.setVisibility(View.GONE);
+        initHeadBackView();
+
         mHeadBtnRight.setText(getText(R.string.share));
         mHeadBtnRight.setOnClickListener(this);
-
-
         mListView=(ListView)findViewById(R.id.list);
-
-
-
     }
 
     @Override
@@ -69,7 +63,13 @@ public class OfficeActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    @Override
     public void loadData(){
+
+    }
+
+    @Override
+    public void parserHttpResponse(String result) {
 
     }
 

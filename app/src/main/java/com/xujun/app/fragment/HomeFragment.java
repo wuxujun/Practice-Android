@@ -12,11 +12,24 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.db.sqlite.WhereBuilder;
+import com.lidroid.xutils.exception.DbException;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.xujun.app.adapter.HomeCateAdapter;
+import com.xujun.app.adapter.NetworkImageHolderView;
+import com.xujun.app.model.CategoryInfo;
+import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.OfficeInfo;
+import com.xujun.app.practice.AppConfig;
 import com.xujun.app.practice.OfficeActivity;
 import com.xujun.app.practice.R;
 import com.xujun.app.widget.HeadBannerView;
+import com.xujun.app.widget.HomeHeadView;
+import com.xujun.banner.BViewHolderCreator;
+import com.xujun.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,22 +42,27 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     public static final String TAG="HomeFragment";
 
     List<OfficeInfo> items=new ArrayList<OfficeInfo>();
+    List<CategoryInfo> categoryInfos=new ArrayList<CategoryInfo>();
 
     private ItemAdapter     mAdapter;
 
-    private HeadBannerView  mHeadView;
+    private HomeHeadView    mHeadView;
+
+    @ViewInject(R.id.list)
+    private ListView      mListView;
 
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
-        mHeadView=new HeadBannerView(mContext);
+        mHeadView=new HomeHeadView(mContext);
         mAdapter=new ItemAdapter();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
         mContentView=inflater.inflate(R.layout.fragment_list,null);
-        mListView=(ListView)mContentView.findViewById(R.id.list);
+        ViewUtils.inject(this,mContentView);
+        mListView.setVerticalScrollBarEnabled(true);
         mListView.addHeaderView(mHeadView);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
@@ -58,10 +76,21 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     public void loadData(){
         List<String>  images=new ArrayList<String>();
-        images.add("http://sx.asiainstitute.cn/images/ai0.png");
         images.add("http://sx.asiainstitute.cn/images/ai1.png");
-        mHeadView.addAll(images);
+        images.add("http://sx.asiainstitute.cn/images/ai0.png");
+        reloadBannerData(images);
+        categoryInfos.clear();
 
+        try{
+            DbUtils db=DbUtils.create(mContext, AppConfig.DB_NAME);
+            List<CategoryInfo> categoryInfoList=db.findAll(Selector.from(CategoryInfo.class).where("top","=",1));
+            if (categoryInfoList!=null&&categoryInfoList.size()>0){
+                categoryInfos.addAll(categoryInfoList);
+            }
+        }catch (DbException e){
+            e.printStackTrace();
+        }
+        reloadGridViewData();
 
         items.clear();
         OfficeInfo info=new OfficeInfo();
@@ -81,7 +110,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         info.setId(4);
         info.setName("UI设计");
         items.add(info);
-
         mAdapter.notifyDataSetChanged();
     }
 
@@ -89,6 +117,29 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     public void parserHttpResponse(String result) {
 
     }
+
+    private void reloadBannerData(List<String>  images){
+        mHeadView.getBanner().setPages(new BViewHolderCreator<NetworkImageHolderView>() {
+            @Override
+            public NetworkImageHolderView createHolder() {
+                return new NetworkImageHolderView();
+            }
+        }, images).setPageIndicator(new int[]{R.drawable.ic_page_indicator,R.drawable.ic_page_indicator_focused}).setPageTransformer(Banner.Transformer.DefaultTransformer);
+
+    }
+
+    private void reloadGridViewData(){
+
+        mHeadView.getGridView().setAdapter(new HomeCateAdapter(mContext,categoryInfos));
+        mHeadView.getGridView().setOnItemClickListener(mGridViewClickListener);
+    }
+
+    private AdapterView.OnItemClickListener mGridViewClickListener=new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        }
+    };
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/district_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.xujun.app.widget.RoundedLetterView
+        android:id="@+id/rlItemName" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
+        android:layout_width="48dp" android:layout_alignParentTop="true"
+        android:layout_height="48dp" android:layout_margin="@dimen/dimen_03"
+        tools:visibility="visible" app:rlv_backgroundColorValue="@color/green"
+        app:rlv_titleColor="@color/white" app:rlv_titleSize="18sp" app:rlv_titleText="MKT"
+        />
+    <TextView
+        android:id="@+id/tvItemTitle" android:layout_below="@+id/rlItemName"
+        android:layout_width="wrap_content" android:textColor="@color/black"
+        android:layout_height="wrap_content" android:text="@string/menu_shake"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

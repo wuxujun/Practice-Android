@@ -35,7 +35,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    @Override
     public void loadData(){
 
     }
+
+    @Override
+    public void parserHttpResponse(String result) {
+
+    }
+
 }

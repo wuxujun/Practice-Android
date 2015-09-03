@@ -1,2 +1,2 @@
-include ':app', ':actionbarsherlock', ':EdittextValidator', ':xUtils'
+include ':app', ':actionbarsherlock', ':EdittextValidator', ':xUtils', ':PullToRefreshListView'
 include ':ViewPageIndicator'

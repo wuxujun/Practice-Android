@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/all_line">
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_margin="10dp"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/btnAttentionType1"
+            android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+            android:layout_width="wrap_content" android:id="@+id/tvAttentionType1"
+            android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow1"
+            android:layout_width="@dimen/head_edit_offset"
+            android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnAttentionType2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType2"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow2"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_margin="10dp"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/btnAttentionType3"
+            android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType3"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow3"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnAttentionType4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType4"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow4"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnAttentionType5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType5"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow5"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_margin="10dp"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/btnAttentionType6"
+            android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType6"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow6"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnAttentionType7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType7"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow7"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_margin="10dp"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/btnAttentionType8"
+            android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType8"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow8"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnAttentionType9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType9"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow9"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnAttentionType10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType10"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow10"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_margin="10dp"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/btnAttentionType11"
+            android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content" android:id="@+id/tvAttentionType11"
+                android:layout_height="wrap_content" android:text="兼职"/>
+            <ImageView android:id="@+id/ivAttentionTypeArrow11"
+                android:layout_width="@dimen/head_edit_offset"
+                android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnAttentionType12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <EditText android:id="@+id/etAttentionKeyword" android:background="@drawable/view_normal_shape"
+                android:layout_width="match_parent" android:hint="关键字" android:imeOptions="actionDone"
+                android:layout_height="wrap_content" android:singleLine="true" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button android:id="@+id/btnAttentionSave" android:background="@drawable/view_normal_shape"
+        android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
+        android:layout_height="wrap_content"  android:text="Save"/>
+</LinearLayout>

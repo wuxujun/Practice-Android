@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:rowCount="3" android:columnCount="3">
+    <LinearLayout android:id="@+id/btnResume1" android:layout_margin="@dimen/dimen_10"
+        android:layout_width="120dip" android:layout_rowSpan="2" android:layout_gravity="fill_vertical"
+        android:layout_height="wrap_content" android:background="@color/red">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:text="1111"/>
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/btnResume2" android:background="@color/green" android:layout_margin="@dimen/dimen_10"
+        android:layout_width="wrap_content"  android:layout_column="0" android:layout_columnSpan="2"
+        android:layout_height="80dip" android:layout_gravity="fill_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:text="1111"/>
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/btnResume3" android:layout_margin="@dimen/dimen_10" android:layout_column="0" android:layout_columnSpan="2" android:layout_gravity="fill_horizontal"
+        android:layout_width="wrap_content" android:background="@color/head_bg_color"
+        android:layout_height="80dip">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:text="1111"/>
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/btnResume4" android:background="@color/blue"
+        android:layout_width="80dp" android:layout_margin="@dimen/dimen_10"
+        android:layout_height="80dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:text="1111"/>
+
+    </LinearLayout>
+    <LinearLayout android:id="@+id/btnResume5" android:layout_margin="@dimen/dimen_10"
+        android:layout_columnSpan="1" android:layout_gravity="fill_vertical"
+        android:layout_width="120dip" android:background="@color/cpb_blue"
+        android:layout_height="wrap_content"
+        android:layout_rowSpan="2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:text="1111"/>
+
+    </LinearLayout>
+
+</GridLayout>
