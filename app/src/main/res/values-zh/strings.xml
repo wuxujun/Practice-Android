@@ -52,8 +52,10 @@
     <string name="error_field_required">This field is required</string>
     <string name="register">注册</string>
 
-    <string name="my_item_0">我的简历</string>
-    <string name="my_item_1">我的申请</string>
-    <string name="my_item_2">我的关注</string>
-    <string name="my_item_3">我的评论</string>
+    <string name="my_item_0">我的实习</string>
+    <string name="my_item_1">我的收藏</string>
+    <string name="my_item_2">我的评价</string>
+
+
+    <string name="about">关于我们</string>
 </resources>

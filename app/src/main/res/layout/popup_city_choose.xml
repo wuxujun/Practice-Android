@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/all_line" android:paddingBottom="@dimen/line_h">
     <com.xujun.app.widget.CustGridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/pop_city_gridview_height"
-        android:layout_margin="12dp"
+        android:padding="12dp"
         android:background="@color/white"
         android:choiceMode="singleChoice"
         android:gravity="center"
@@ -21,7 +21,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="45dp" android:background="@color/white"
         android:layout_below="@+id/gridview" >
         <LinearLayout
             android:layout_width="match_parent"

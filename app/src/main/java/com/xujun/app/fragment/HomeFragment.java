@@ -24,6 +24,7 @@ import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.practice.AppConfig;
+import com.xujun.app.practice.CategoryActivity;
 import com.xujun.app.practice.OfficeActivity;
 import com.xujun.app.practice.R;
 import com.xujun.app.widget.HeadBannerView;
@@ -51,6 +52,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @ViewInject(R.id.list)
     private ListView      mListView;
 
+
+
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
@@ -67,11 +70,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
         return mContentView;
-    }
-
-    public void onResume(){
-        super.onResume();
-        loadData();
     }
 
     public void loadData(){
@@ -137,7 +135,15 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     private AdapterView.OnItemClickListener mGridViewClickListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            CategoryInfo categoryInfo=categoryInfos.get(i);
+            if (categoryInfo!=null){
+                Intent intent=new Intent(getSherlockActivity(), CategoryActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable(AppConfig.PARAM_CITY_INFO,cityInfo);
+                bundle.putSerializable(AppConfig.PARAM_CATEGORY_INFO,categoryInfo);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
         }
     };
 

@@ -12,26 +12,23 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mHeadBack.setImageDrawable(getResources().getDrawable(R.drawable.back));
-        mHeadBack.setOnClickListener(this);
         mHeadTitle.setText(getText(R.string.register));
-        mHeadBtnLeft.setVisibility(View.GONE);
-
         mHeadBtnRight.setText(getText(R.string.clear));
         mHeadBtnRight.setOnClickListener(this);
+        initHeadBackView();
+        hideSearchEditView();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.ibHeadBack:{
-                finish();
-                break;
-            }
             case R.id.btnHeadRight:{
 
                 break;
             }
+            default:
+                super.onClick(view);
+                break;
         }
     }
 

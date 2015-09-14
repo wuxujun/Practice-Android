@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="bottom"
-    android:gravity="bottom">
+    android:layout_height="200dp" android:background="@drawable/ic_img_profile_bg">
 
     <ImageView
         android:id="@+id/iv_user_head"
@@ -36,7 +34,7 @@
         android:layout_alignParentBottom="true">
 
         <TextView
-            android:id="@+id/tv_register"
+            android:id="@+id/tvRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -48,7 +46,7 @@
             android:textColor="#ffffff" />
 
         <TextView
-            android:id="@+id/tv_login"
+            android:id="@+id/tvLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"

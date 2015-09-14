@@ -11,26 +11,16 @@
         <LinearLayout
             android:layout_width="match_parent" android:layout_gravity="center_vertical"
             android:layout_height="wrap_content" android:orientation="vertical">
-            <LinearLayout android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" android:orientation="horizontal">
-            <TextView android:id="@+id/tvItemTitle" android:layout_weight="1"
-                android:layout_width="match_parent"
+            <TextView android:id="@+id/tvItemTitle"  android:textSize="16sp"
+                android:layout_width="match_parent" android:text="[上海美国商会]企业社会实习"
                 android:layout_height="match_parent" android:textColor="@color/black" />
-                <TextView android:id="@+id/tvItemMoney" android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:textColor="@color/black" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent" android:layout_weight="1"
-                android:layout_height="match_parent" android:orientation="horizontal">
-                <TextView android:id="@+id/tvItemType"
-                    android:layout_width="match_parent" android:layout_weight="1"
-                    android:layout_height="match_parent" />
-                <TextView android:id="@+id/tvItemCompany"
-                    android:layout_width="match_parent" android:layout_weight="1"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
+                <TextView android:id="@+id/tvItemWorkTime" android:text="工作时间:秋/冬季,至少工作3个月"
+                    android:layout_width="match_parent"  android:textColor="@color/btn_color"
+                    android:layout_height="match_parent" android:textSize="12sp"/>
+                <TextView android:id="@+id/tvItemMoney" android:text="工资:200/天,超过800元/月扣税"
+                    android:layout_width="match_parent" android:textColor="@color/btn_color"
+                    android:layout_height="match_parent" android:textSize="12sp" />
+
         </LinearLayout>
     </LinearLayout>
     <View

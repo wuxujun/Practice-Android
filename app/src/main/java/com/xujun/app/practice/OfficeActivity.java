@@ -42,6 +42,7 @@ public class OfficeActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.activity_office);
         mHeadTitle.setText(getText(R.string.office_detail));
         initHeadBackView();
+        hideSearchEditView();
 
         mHeadBtnRight.setText(getText(R.string.share));
         mHeadBtnRight.setOnClickListener(this);

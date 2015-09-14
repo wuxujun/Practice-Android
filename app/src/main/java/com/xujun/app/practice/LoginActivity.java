@@ -37,26 +37,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mHeadBack.setImageDrawable(getResources().getDrawable(R.drawable.back));
-        mHeadBack.setOnClickListener(this);
         mHeadTitle.setText(getText(R.string.login));
-        mHeadBtnLeft.setVisibility(View.GONE);
         mHeadBtnRight.setText(getText(R.string.register));
         mHeadBtnRight.setOnClickListener(this);
+        hideSearchEditView();
+        initHeadBackView();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.ibHeadBack:{
-                finish();
-                break;
-            }
             case R.id.btnHeadRight:{
                 Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
                 break;
             }
+            default:
+                super.onClick(view);
+                break;
         }
     }
 

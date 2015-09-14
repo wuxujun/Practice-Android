@@ -19,9 +19,18 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.xujun.app.practice.AboutActivity;
 import com.xujun.app.practice.LoginActivity;
+import com.xujun.app.practice.MCollectionActivity;
+import com.xujun.app.practice.MEvaluationActivity;
+import com.xujun.app.practice.MInternshipActivity;
+import com.xujun.app.practice.MessageActivity;
 import com.xujun.app.practice.R;
 import com.xujun.app.practice.RegisterActivity;
+import com.xujun.app.practice.SettingActivity;
+import com.xujun.app.widget.MyHeadView;
+import com.xujun.app.widget.ResumeHeadView;
 import com.xujun.pullzoom.PullToZoomListView;
 
 import java.util.ArrayList;
@@ -36,9 +45,36 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
 
     List<String>  items=new ArrayList<String>();
 
+
+    private MyHeadView      mHeadView;
+
     private ItemAdapter     mAdapter;
 
+    @ViewInject(R.id.list)
     private ListView   listView;
+
+
+
+    private View.OnClickListener mClickListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.tvLogin:{
+                    Log.e(TAG,"------> Login");
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    startActivity(intent);
+                    break;
+                }
+                case R.id.tvRegister:{
+                    Log.e(TAG,"-------> Register");
+                    Intent intent=new Intent(getActivity(), RegisterActivity.class);
+                    startActivity(intent);
+                    break;
+                }
+            }
+        }
+    };
+
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
@@ -48,17 +84,15 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
         mContentView=inflater.inflate(R.layout.fragment_list,null);
-        listView=(ListView)mContentView.findViewById(R.id.list);
+        ViewUtils.inject(this,mContentView);
+
+        mHeadView=new MyHeadView(mContext,mClickListener);
+
+        listView.addHeaderView(mHeadView);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(this);
 
         return mContentView;
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        loadData();
     }
 
     public void loadData(){
@@ -79,25 +113,35 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.tv_login:{
-                Log.e(TAG,"------> Login");
-                Intent intent=new Intent(getActivity(), LoginActivity.class);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Log.e(TAG,"---------->"+position);
+        switch (position){
+            case 1:{
+                break;
+            }
+            case 2:{
+                break;
+            }
+            case 4:{
+                Intent intent=new Intent(getActivity(), MessageActivity.class);
                 startActivity(intent);
                 break;
             }
-            case R.id.tv_register:{
-                Log.e(TAG,"-------> Register");
-                Intent intent=new Intent(getActivity(), RegisterActivity.class);
+            case 5:{
+                Intent intent=new Intent(getActivity(), SettingActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case 6:{
+                Intent intent=new Intent(getActivity(), AboutActivity.class);
                 startActivity(intent);
                 break;
             }
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Log.e(TAG,"---------->"+i);
     }
 
     static class ItemView
@@ -140,6 +184,9 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
             }
             if (items.get(position).equals("0")){
                 holder.item.setVisibility(View.GONE);
+                holder.head.findViewById(R.id.tv_my_btn_0).setOnClickListener(mMyClickListener);
+                holder.head.findViewById(R.id.tv_my_btn_1).setOnClickListener(mMyClickListener);
+                holder.head.findViewById(R.id.tv_my_btn_2).setOnClickListener(mMyClickListener);
             }else {
                 holder.head.setVisibility(View.GONE);
                 holder.title.setText(items.get(position));
@@ -147,4 +194,27 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
             return convertView;
         }
     }
+
+    private View.OnClickListener mMyClickListener=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.tv_my_btn_0:{
+                    Intent intent=new Intent(getActivity(), MInternshipActivity.class);
+                    startActivity(intent);
+                    break;
+                }
+                case R.id.tv_my_btn_1:{
+                    Intent intent=new Intent(getActivity(), MCollectionActivity.class);
+                    startActivity(intent);
+                    break;
+                }
+                case R.id.tv_my_btn_2:{
+                    Intent intent=new Intent(getActivity(), MEvaluationActivity.class);
+                    startActivity(intent);
+                    break;
+                }
+            }
+        }
+    };
 }

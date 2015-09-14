@@ -33,7 +33,14 @@
     <string name="data_order_2">距离</string>
     <string name="data_order_3">工资</string>
     <string name="data_order_4">排序</string>
+    <string name="data_order_5">学历</string>
+    <string name="data_order_6">工作经验</string>
 
+    <string name="resume_head_1">基本信息</string>
+    <string name="resume_head_2">实习/工作经历</string>
+    <string name="resume_head_3">照片</string>
+    <string name="resume_head_4">校园生活</string>
+    <string name="resume_head_5">所获荣誉</string>
 
     <string name="office_detail">Office Detail</string>
     <string name="office_submit">Office Save</string>
@@ -58,9 +65,12 @@
     <string name="register">User Register</string>
 
 
-    <string name="my_item_0">Curriculum vitae</string>
-    <string name="my_item_1">Office</string>
-    <string name="my_item_2">Attention</string>
-    <string name="my_item_3">Comment</string>
+    <string name="my_item_0">Internship</string>
+    <string name="my_item_1">Collection</string>
+    <string name="my_item_2">Evaluation</string>
+
+    <string name="my_message">消息通知</string>
+    <string name="my_setting">设置</string>
+    <string name="about">About</string>
 
 </resources>

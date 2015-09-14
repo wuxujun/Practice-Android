@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.practice.R;
 import com.xujun.util.L;
 
@@ -25,9 +26,9 @@ import java.util.List;
  * Created by xujunwu on 15/8/1.
  */
 public class AttentionFragment extends BaseFragment implements View.OnClickListener{
-    public static final String TAG="HomeFragment";
+    public static final String TAG="AttentionFragment";
 
-    List<String> items=new ArrayList<String>();
+    List<OfficeInfo> items=new ArrayList<OfficeInfo>();
 
     private ItemAdapter     mAdapter;
 
@@ -121,7 +122,29 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     public void loadData(){
+        items.clear();
+        OfficeInfo info=new OfficeInfo();
+        info.setId(1);
+        info.setName("测试工程师");
+        items.add(info);
+        info=new OfficeInfo();
+        info.setId(2);
+        info.setName("销售人员");
+        items.add(info);
+        info=new OfficeInfo();
+        info.setId(3);
+        info.setName("销售人员");
+        items.add(info);
+        info=new OfficeInfo();
+        info.setId(4);
+        info.setName("销售人员");
+        items.add(info);
+        info=new OfficeInfo();
+        info.setId(5);
+        info.setName("销售人员");
+        items.add(info);
 
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -139,28 +162,30 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
 
         @Override
         public int getCount() {
-            return 0;
+            return items.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return null;
+            return items.get(i);
         }
 
         @Override
         public long getItemId(int i) {
-            return 0;
+            return i;
         }
 
         @Override
         public View getView(int i, View convertView, ViewGroup viewGroup) {
             ItemView        holder;
-            if (convertView==null){
-
-            }else{
-                holder=(ItemView)convertView.getTag();
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.home_listview_item, null);
+                holder = new ItemView();
+                holder.title = (TextView) convertView.findViewById(R.id.tvItemTitle);
+                convertView.setTag(holder);
+            } else {
+                holder = (ItemView) convertView.getTag();
             }
-
             return convertView;
         }
     }

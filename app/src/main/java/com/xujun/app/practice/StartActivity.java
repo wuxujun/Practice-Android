@@ -20,6 +20,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.message.UmengRegistrar;
+import com.xujun.app.model.AttentionEntity;
 import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CategoryResp;
 import com.xujun.app.model.CityInfo;
@@ -86,6 +87,7 @@ public class StartActivity extends Activity{
             L.e("begin Create Table.....");
             db.createTableIfNotExist(CategoryInfo.class);
             db.createTableIfNotExist(CityInfo.class);
+            db.createTableIfNotExist(AttentionEntity.class);
             db.close();
         }catch (DbException e){
             e.printStackTrace();

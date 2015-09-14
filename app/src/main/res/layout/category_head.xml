@@ -5,20 +5,51 @@
     <LinearLayout
         android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
         android:layout_height="wrap_content" android:orientation="horizontal">
-        <TextView android:id="@+id/tvCategory1" android:layout_weight="1"
+        <LinearLayout android:id="@+id/btnCategory1"
+            android:layout_width="match_parent" android:gravity="center_horizontal"
+            android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal">
+        <TextView android:id="@+id/tvCategory1"
                 android:layout_width="wrap_content" android:text="@string/category_head_1" style="@style/App_ListView_Head" />
-        <View android:layout_height="match_parent"
+            <ImageView android:id="@+id/ivCategory1"
+                android:layout_width="wrap_content" android:visibility="gone"
+                android:layout_height="wrap_content" android:src="@drawable/arrow_down_grpe"/>
+            </LinearLayout>
+        <View android:layout_height="match_parent" android:id="@+id/line1"
             android:layout_width="@dimen/line_w" style="@style/App_All_line_v"/>
-        <TextView android:id="@+id/tvCategory2" android:layout_weight="1"
+        <LinearLayout android:id="@+id/btnCategory2"
+            android:layout_width="match_parent" android:gravity="center_horizontal"
+            android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal">
+
+        <TextView android:id="@+id/tvCategory2"
                 android:layout_width="wrap_content" android:text="@string/category_head_2"   style="@style/App_ListView_Head"/>
-        <View android:layout_height="match_parent"
+            <ImageView android:id="@+id/ivCategory2"
+                android:layout_width="wrap_content" android:visibility="gone"
+                android:layout_height="wrap_content" android:src="@drawable/arrow_down_grpe"/>
+        </LinearLayout>
+        <View android:layout_height="match_parent" android:id="@+id/line2"
             android:layout_width="@dimen/line_w" style="@style/App_All_line_v"/>
-        <TextView android:id="@+id/tvCategory3" android:layout_weight="1"
+        <LinearLayout android:id="@+id/btnCategory3"
+            android:layout_width="match_parent" android:gravity="center_horizontal"
+            android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal">
+
+        <TextView android:id="@+id/tvCategory3"
                 android:layout_width="wrap_content" android:text="@string/category_head_3"  style="@style/App_ListView_Head"/>
-        <View android:layout_height="match_parent"
+        <ImageView android:id="@+id/ivCategory3"
+            android:layout_width="wrap_content" android:visibility="gone"
+            android:layout_height="wrap_content" android:src="@drawable/arrow_down_grpe"/>
+    </LinearLayout>
+        <View android:layout_height="match_parent" android:id="@+id/line3"
             android:layout_width="@dimen/line_w" style="@style/App_All_line_v"/>
-        <TextView android:id="@+id/tvCategory4" android:layout_weight="1"
+        <LinearLayout android:id="@+id/btnCategory4"
+            android:layout_width="match_parent" android:gravity="center_horizontal"
+            android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal">
+
+        <TextView android:id="@+id/tvCategory4"
                 android:layout_width="wrap_content"  style="@style/App_ListView_Head"  android:text="@string/category_head_4"/>
+    <ImageView android:id="@+id/ivCategory4"
+        android:layout_width="wrap_content" android:visibility="gone"
+        android:layout_height="wrap_content" android:src="@drawable/arrow_down_grpe"/>
+</LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

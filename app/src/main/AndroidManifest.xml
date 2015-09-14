@@ -50,9 +50,22 @@
         <activity android:name=".CityActivity"/>
         <activity android:name=".TabActivity"/>
         <activity android:name=".CategoryActivity"/>
+        <activity android:name=".AttentionSetActivity"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".OfficeActivity"/>
+        <activity android:name=".RTemplateActivity"/>
+        <activity android:name=".RInfoActivity"/>
+        <activity android:name=".RWorkActivity"/>
+        <activity android:name=".RPhotoActivity"/>
+        <activity android:name=".RLifeActivity"/>
+        <activity android:name=".RHonorActivity"/>
+        <activity android:name=".MInternshipActivity"/>
+        <activity android:name=".MCollectionActivity"/>
+        <activity android:name=".MEvaluationActivity"/>
+        <activity android:name=".MessageActivity"/>
+        <activity android:name=".SettingActivity"/>
+        <activity android:name=".AboutActivity"/>
 
         <!-- V1.3.0添加的service，负责下载通知的资源 -->
         <service android:name="com.umeng.message.UmengDownloadResourceService" />

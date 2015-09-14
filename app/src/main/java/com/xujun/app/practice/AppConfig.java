@@ -43,6 +43,7 @@ public class AppConfig {
 
     public final static String PARAM_CITY_INFO="param_city_info";
     public final static String PARAM_CATEGORY_INFO="param_category_info";
+    public final static String PARAM_MENU_INFO="param_menu_info";
 
 
     public final static String EXTRA_DATA_HEIGHT="com.xujun.yoca.EXTRA_DATA_HEIGHT";

@@ -16,12 +16,12 @@ import com.xujun.app.practice.R;
  */
 public class CategoryPopupWindow extends PopupWindow{
 
-    private ListView mListView;
+    private CustListView mListView;
 
     public CategoryPopupWindow(Context context){
         super(context);
         LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View interalView=inflater.inflate(R.layout.fragment_list,null);
+        View interalView=inflater.inflate(R.layout.popup_category_choose,null);
         setContentView(interalView);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -30,10 +30,10 @@ public class CategoryPopupWindow extends PopupWindow{
         setTouchable(true);
         setOutsideTouchable(true);
         setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
-        mListView=(ListView)interalView.findViewById(R.id.list);
+        mListView=(CustListView)interalView.findViewById(R.id.list);
     }
 
-    public ListView  getListView(){
+    public CustListView  getListView(){
         return mListView;
     }
 }

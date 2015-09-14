@@ -20,6 +20,12 @@ public class ResumeHeadView extends LinearLayout{
         super(context,null);
         this.mContext=context;
         mContentView= LayoutInflater.from(mContext).inflate(R.layout.resume_head,null);
+        mContentView.findViewById(R.id.btnResume1).setOnClickListener(clickListener);
+        mContentView.findViewById(R.id.btnResume2).setOnClickListener(clickListener);
+        mContentView.findViewById(R.id.btnResume3).setOnClickListener(clickListener);
+        mContentView.findViewById(R.id.btnResume4).setOnClickListener(clickListener);
+        mContentView.findViewById(R.id.btnResume5).setOnClickListener(clickListener);
+
         LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0,0,0,0);
         addView(mContentView,lp);

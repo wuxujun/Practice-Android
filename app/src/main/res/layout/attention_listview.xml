@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout android:layout_alignParentTop="true"
-        android:layout_width="match_parent" android:id="@+id/llHead" android:background="@color/cpb_white"
+        android:layout_width="match_parent" android:id="@+id/llHeader" android:background="@color/cpb_white"
         android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_vertical">
         <TextView android:layout_margin="10dp"
             android:id="@+id/tvTitle" android:textColor="@color/black"
@@ -13,7 +13,7 @@
             <include layout="@layout/attention_set"/>
         </LinearLayout>
     </LinearLayout>
-    <ListView android:layout_below="@+id/llHead"
+    <ListView android:layout_below="@+id/llHeader"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:id="@+id/list"/>
 </RelativeLayout>

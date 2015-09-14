@@ -205,6 +205,14 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         MobclickAgent.onPause(mContext);
     }
 
+    private void reloadData(){
+        ((HomeFragment)mTab01).setCityInfo(currentCity);
+        ((CategoryFragment)mTab02).setCityInfo(currentCity);
+        ((AttentionFragment)mTab03).setCityInfo(currentCity);
+        ((ResumeFragment)mTab04).setCityInfo(currentCity);
+        ((MyFragment)mTab05).setCityInfo(currentCity);
+    }
+
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -214,6 +222,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 if (cityInfo!=null){
                     mHeadBtnLeftTxt.setText(cityInfo.getCityName());
                     currentCity=cityInfo;
+                    reloadData();
                 }
             }
         }
@@ -369,23 +378,25 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 actionbarLayout.findViewById(R.id.lineTab1).setVisibility(View.VISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab2).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab3).setVisibility(View.INVISIBLE);
+                ((CategoryFragment)mTab02).reloadData("10");
                 break;
             }
             case R.id.btnCategoryTab2:{
                 actionbarLayout.findViewById(R.id.lineTab1).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab2).setVisibility(View.VISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab3).setVisibility(View.INVISIBLE);
+                ((CategoryFragment)mTab02).reloadData("20");
                 break;
             }
             case R.id.btnCategoryTab3:{
                 actionbarLayout.findViewById(R.id.lineTab1).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab2).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab3).setVisibility(View.VISIBLE);
+                ((CategoryFragment)mTab02).reloadData("30");
                 break;
             }
         }
     }
-
 
     private void showCityPopupWindow(){
         mHeadBtnLeftImg.setBackgroundResource(R.drawable.arrow_up_white);
