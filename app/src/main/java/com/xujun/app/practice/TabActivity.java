@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -137,7 +139,6 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setStatusBarTintResource(R.color.action_bar_color);
         }
-
         getActionBar().setDisplayHomeAsUpEnabled(false);
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
@@ -153,6 +154,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         mHeadBtnLeftImg=(ImageView)actionbarLayout.findViewById(R.id.ivHeadArrow);
         mHeadSearch=(LinearLayout)actionbarLayout.findViewById(R.id.llHeadSearch);
         mHeadSearch.setOnClickListener(this);
+        actionbarLayout.findViewById(R.id.etHeadSearch).setOnClickListener(this);
         mHeadCategory=(LinearLayout)actionbarLayout.findViewById(R.id.llHeadCategory);
         actionbarLayout.findViewById(R.id.btnCategoryTab1).setOnClickListener(this);
         actionbarLayout.findViewById(R.id.btnCategoryTab2).setOnClickListener(this);
@@ -178,6 +180,9 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
 
         PushAgent pushAgent=PushAgent.getInstance(mContext);
         pushAgent.enable();
+
+        Intent  notify=new Intent(this,NotifyService.class);
+        startService(notify);
 
         initMapLocation();
         setSelect(0);
@@ -362,6 +367,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 showCityPopupWindow();
                 break;
             }
+            case R.id.etHeadSearch:
             case R.id.llHeadSearch:{
                 Intent intent=new Intent(TabActivity.this,SearchActivity.class);
                 Bundle bundle=new Bundle();
@@ -510,5 +516,21 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
     @Override
     public void onProviderDisabled(String s) {
 
+    }
+
+    private long exitTime=0;
+    public boolean dispatchKeyEvent(KeyEvent event){
+        int keyCode=event.getKeyCode();
+        if (event.getAction()==KeyEvent.ACTION_DOWN&&keyCode==KeyEvent.KEYCODE_BACK){
+            if ((System.currentTimeMillis()-exitTime)>2000){
+                Toast.makeText(TabActivity.this,getResources().getString(R.string.exit_tips),Toast.LENGTH_LONG).show();
+                exitTime=System.currentTimeMillis();
+            }else{
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.dispatchKeyEvent(event);
     }
 }

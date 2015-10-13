@@ -1,0 +1,76 @@
+{
+    "root": [
+        {
+            "id": 1,
+            "title": "设置头像",
+            "type": 1,
+            "value": "userAvatar"
+        },
+        {
+            "id": 2,
+            "title": "昵称",
+            "type": 0,
+            "value": "nickName"
+        },
+        {
+            "id": 3,
+            "title": "手机号",
+            "type": 0,
+            "value": "mobile"
+        },
+        {
+            "id": 4,
+            "title": "密码",
+            "type": 0,
+            "value": "修改"
+        },
+        {
+            "id": 5,
+            "title": "邮箱",
+            "type": 0,
+            "value": "email"
+        },
+        {
+            "id": 6,
+            "title": "第三方帐号绑定",
+            "type": 2,
+            "value": "thridUser"
+        },
+        {
+            "id":61,
+            "title":"空",
+            "type":10,
+            "value":"123"
+        },
+        {
+            "id": 7,
+            "title": "性别",
+            "type": 0,
+            "value": "sex"
+        },
+        {
+            "id": 8,
+            "title": "出生日期",
+            "type": 3,
+            "value": "brithday"
+        },
+        {
+            "id": 9,
+            "title": "就读大学",
+            "type": 0,
+            "value": "school"
+        },
+        {
+            "id": 10,
+            "title": "就读专业",
+            "type": 0,
+            "value": "specialty"
+        },
+        {
+            "id": 11,
+            "title": "年级",
+            "type": 0,
+            "value": "grade"
+        }
+    ]
+}

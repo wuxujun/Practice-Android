@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:background="@color/all_line"
+    android:layout_height="wrap_content" android:orientation="vertical">
+   <TextView android:gravity="center_horizontal"
+       android:layout_width="match_parent" android:id="@+id/tvTitle" android:text="@string/about" android:textStyle="bold"
+       android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_20" android:textSize="@dimen/font_size_18"/>
+    <com.andreabaccega.widget.FormEditText
+        android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
+        android:layout_height="wrap_content" android:id="@+id/etInputValue"/>
+    <Button
+        android:layout_width="match_parent" android:text="@string/btn_done"
+        android:layout_height="wrap_content" android:id="@+id/btnDone"/>
+</LinearLayout>

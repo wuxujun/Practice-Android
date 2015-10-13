@@ -46,7 +46,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout android:id="@+id/llItem"
+    <LinearLayout android:id="@+id/llItem" android:background="@drawable/listitem_bg"
         android:layout_width="match_parent" android:gravity="center_vertical"
         android:layout_height="52dp" android:orientation="horizontal">
     <TextView android:id="@+id/tvItemTitle" android:layout_margin="10dp" android:textColor="@color/black"

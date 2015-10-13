@@ -10,6 +10,8 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.umeng.message.UmengRegistrar;
 import com.xujun.app.model.CityInfo;
+import com.xujun.app.model.Member;
+import com.xujun.app.practice.AppConfig;
 import com.xujun.app.practice.AppContext;
 import com.xujun.app.practice.R;
 import com.xujun.util.JsonUtil;
@@ -30,7 +32,7 @@ public abstract class BaseFragment extends SherlockFragment{
 
     protected View          mContentView;
 
-
+    protected Member        mMember;
     protected CityInfo cityInfo;
 
     public void setCityInfo(CityInfo cityInfo){
@@ -42,6 +44,7 @@ public abstract class BaseFragment extends SherlockFragment{
         super.onCreate(bundle);
         mContext=getSherlockActivity().getApplicationContext();
         mAppContext=(AppContext)getSherlockActivity().getApplication();
+        mMember=(Member)mAppContext.readObject(AppConfig.OBJECT_MEMBER);
     }
 
     @Override

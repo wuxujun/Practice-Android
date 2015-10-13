@@ -1,2 +1,2 @@
-include ':app', ':actionbarsherlock', ':EdittextValidator', ':xUtils', ':PullToRefreshListView'
+include ':app', ':actionbarsherlock', ':EdittextValidator', ':xUtils', ':PullToRefreshListView', ':dialogplus', ':Crouton', ':linkedin', ':rebound-core', ':rebound-android'
 include ':ViewPageIndicator'

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 import com.xujun.app.model.CityInfo;
 
@@ -61,7 +62,7 @@ public class CityActivity extends BaseActivity implements View.OnClickListener {
         items.clear();
         try{
             DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
-            List<CityInfo> cityInfoList=db.findAll(CityInfo.class);
+            List<CityInfo> cityInfoList=db.findAll(Selector.from(CityInfo.class).where("pid","=","0"));
             if (cityInfoList!=null&&cityInfoList.size()>0){
                 items.addAll(cityInfoList);
             }

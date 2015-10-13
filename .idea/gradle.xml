@@ -10,11 +10,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Crouton" />
             <option value="$PROJECT_DIR$/EdittextValidator" />
             <option value="$PROJECT_DIR$/PullToRefreshListView" />
             <option value="$PROJECT_DIR$/ViewPageIndicator" />
             <option value="$PROJECT_DIR$/actionbarsherlock" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/dialogplus" />
+            <option value="$PROJECT_DIR$/linkedin" />
+            <option value="$PROJECT_DIR$/rebound-android" />
+            <option value="$PROJECT_DIR$/rebound-core" />
             <option value="$PROJECT_DIR$/xUtils" />
           </set>
         </option>

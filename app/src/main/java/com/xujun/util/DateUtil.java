@@ -19,7 +19,27 @@ public class DateUtil {
 		SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		return sf.format(new Date());
 	}
-	
+
+    public static String    getToday(){
+        SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd");
+        return sf.format(new Date());
+    }
+
+    public static int  getYear(){
+        Calendar cal = Calendar.getInstance();
+        int year=cal.get(Calendar.YEAR);
+        return year;
+    }
+    public static int getMonth(){
+        Calendar cal=Calendar.getInstance();
+        return cal.get(Calendar.MONTH);
+    }
+
+    public static int getDay(){
+        Calendar cal=Calendar.getInstance();
+        return cal.get(Calendar.DAY_OF_MONTH);
+    }
+
 	public static long getDistance(int day, int hour,int minute) {
 		Calendar then = Calendar.getInstance();
 		then.set(Calendar.DAY_OF_WEEK, day);
@@ -109,6 +129,10 @@ public class DateUtil {
         return sf.format(new Date());
     }
 
+    public static String getFileNameForDate(){
+        SimpleDateFormat sf=new SimpleDateFormat("MMddHHmmss");
+        return sf.format(new Date());
+    }
     public static String getDateString(long time){
         SimpleDateFormat sf=new SimpleDateFormat("MM-dd HH:mm");
         java.util.Date dt=new Date(time);

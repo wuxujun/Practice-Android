@@ -20,6 +20,12 @@ import java.util.Properties;
 public class AppConfig {
     private final static String APP_CONFIG="config";
 
+    public final static int    SUCCESS=1000;
+    public final static int    FAILED=2000;
+    public final static int    CANCEL=3000;
+
+    public final static String  ACTION_ALARM="com.xujun.app.practice.alarm.action";
+
     public final static String SMS_APPKEY="6de96e7d9e78";
     public final static String SMS_APPKSECRET="ee6510b139aa06a0a403dd4410646bef";
 
@@ -29,8 +35,8 @@ public class AppConfig {
     public final static String QQ_APPID="1104812756";
     public final static String QQ_APPSECRET="FMeRlwNSHJx1cqhx";
 
-    public final static String WEIBO_APPID="2846029855";
-    public final static String WEIBO_APPSECRET="6edd97b068547492519b8eefa084f344";
+    public final static String WEIBO_APPID="2360797310";
+    public final static String WEIBO_APPSECRET="365b9df92cf488cee45622dd14231394";
 
 
     public final static String DB_NAME="Practice";
@@ -41,10 +47,13 @@ public class AppConfig {
     public final static String CONF_CURRENT_LONGITUDE="conf_current_longitude";
 
 
+    public final static String PARAM_LOGIN_SOURCE="param_login_source";
     public final static String PARAM_CITY_INFO="param_city_info";
     public final static String PARAM_CATEGORY_INFO="param_category_info";
     public final static String PARAM_MENU_INFO="param_menu_info";
-
+    public final static String PARAM_OFFICE_INFO="param_office_info";
+    public final static String PARAM_MEMBER="param_member";
+    public final static String PARAM_LOGOUT_RESULT="param_logout_result";
 
     public final static String EXTRA_DATA_HEIGHT="com.xujun.yoca.EXTRA_DATA_HEIGHT";
     public final static String EXTRA_DATA_AGE="com.xujun.yoca.EXTRA_DATA_AGE";
@@ -62,11 +71,23 @@ public class AppConfig {
     public final static int    REQUEST_CHOOSE_PIC=4;
     public final static int    REQUEST_CROP_PHOTO=5;
     public final static int    REQUEST_SWITCH_ACCOUNT=6;
+    public final static int    REQUEST_RESUME_LOGIN=7;
 
 
-    public final static int   REQUEST_ACCOUNT_FRAGMENT_TYPE_NORMAL=100;
-    public final static int   REQUEST_ACCOUNT_FRAGMENT_TYPE_MANAGER=200;
-    public final static int   REQUEST_ACCOUNT_FRAGMENT_TYPE_OTHER=300;
+    public final static int   REQUEST_MY_LOGIN=100;
+    public final static int   REQUEST_MY_REGISTER=200;
+    public final static int   REQUEST_ATTENTION_SET=300;
+    public final static int   REQUEST_MY_SETTING=400;
+
+    public final static int   REQUEST_RESUME_WORK_ADD=10;
+    public final static int   REQUEST_RESUME_LIFE_ADD=11;
+    public final static int   REQUEST_RESUME_HONOR_ADD=12;
+
+    public final static int   REQUEST_IMAGE=20;
+
+    public final static int   LOGIN_TYPE_MY=10;
+    public final static int   LOGIN_TYPE_RESUME=20;
+
 
     public final static String DATA_VERSION= "data_version";
     public final static String CONF_APP_UNIQUEID="APP_UNIQUEID";
@@ -85,19 +106,9 @@ public class AppConfig {
     public final static String CONF_LOGIN_PASSWORD="conf_login_password";
 
     public final static String CONF_LOGIN_FIRST="conf_login_first";
+    public final static String CONF_LOGIN_FLAG="conf_login_flag";
 
-    public final static String LOCK="lock";
-    public final static String LOCK_KEY="lock_key";
-
-    public final static String HOME_TARGET_SHOW_INDEX_0="home_target_index_0";
-    public final static String HOME_TARGET_SHOW_INDEX_1="home_target_index_1";
-    public final static String HOME_TARGET_SHOW_INDEX_2="home_target_index_2";
-    public final static String HOME_TARGET_SHOW_INDEX_3="home_target_index_3";
-    public final static String HOME_TARGET_SHOW_INDEX_4="home_target_index_4";
-    public final static String HOME_TARGET_SHOW_INDEX_5="home_target_index_5";
-    public final static String HOME_TARGET_SHOW_INDEX_6="home_target_index_6";
-    public final static String HOME_TARGET_SHOW_INDEX_7="home_target_index_7";
-    public final static String HOME_TARGET_SHOW_INDEX_8="home_target_index_8";
+    public final static String  OBJECT_MEMBER="file_member";
 
 
     private Context mContext;
@@ -184,11 +195,18 @@ public class AppConfig {
 
     public List<MenuInfo> getHeadMenu(){
         List<MenuInfo> list=new ArrayList<MenuInfo>();
-        list.add(new MenuInfo(1));
-        list.add(new MenuInfo(2));
-        list.add(new MenuInfo(3));
-        list.add(new MenuInfo(4));
-        list.add(new MenuInfo(5));
+        list.add(new MenuInfo(1,"摇一摇"));
+        list.add(new MenuInfo(2,"扫一扫"));
+        list.add(new MenuInfo(3,"消息中心"));
+        list.add(new MenuInfo(4,"邀请好友"));
+        list.add(new MenuInfo(5, "分享"));
+        return list;
+    }
+
+    public List<MenuInfo> getPhotoMenu(){
+        List<MenuInfo> list=new ArrayList<MenuInfo>();
+        list.add(new MenuInfo(1,"拍照"));
+        list.add(new MenuInfo(2,"上传"));
         return list;
     }
 

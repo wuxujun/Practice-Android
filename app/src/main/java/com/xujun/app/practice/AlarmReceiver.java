@@ -10,9 +10,9 @@ import android.content.Intent;
 public class AlarmReceiver extends BroadcastReceiver{
 
     public void onReceive(Context context,Intent intent){
-        if (intent.getAction().equals("com.xujun.app.practice.alarm.action")){
+        if (intent.getAction().equals(AppConfig.ACTION_ALARM)){
             Intent startIntent=new Intent();
-//            startIntent.setClass(context,NotifyService.class);
+            startIntent.setClass(context,NotifyService.class);
             context.startService(startIntent);
         }
     }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toggle="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout style="@style/App_My_Info_LinearLayout" android:id="@+id/content"
+        android:layout_width="match_parent" android:orientation="horizontal">
+        <TextView android:id="@+id/tvItemTitle" android:layout_weight="1"
+            android:layout_width="match_parent" style="@style/App_Resume_Info_Title" android:text="@string/my_nick_name"/>
+        <com.xujun.app.widget.ToggleButton android:layout_gravity="center_vertical"
+            android:layout_width="54dip" android:id="@+id/swType"
+            android:layout_height="30dip"
+            toggle:onColor="@color/green"
+            toggle:offColor="#dadada"
+            toggle:spotColor="@color/white"
+            toggle:offBorderColor="@color/gray"/>
+        <ImageView android:id="@+id/ivEnter" android:visibility="gone"
+            android:layout_width="wrap_content" android:layout_marginRight="10dp"
+            android:layout_height="wrap_content" android:layout_gravity="center_vertical" android:background="@drawable/enter"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginRight="@dimen/dimen_05"
+        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+
+</LinearLayout>

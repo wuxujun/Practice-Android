@@ -50,22 +50,34 @@
         <activity android:name=".CityActivity"/>
         <activity android:name=".TabActivity"/>
         <activity android:name=".CategoryActivity"/>
-        <activity android:name=".AttentionSetActivity"/>
+        <activity android:name=".AttentionSetActivity" android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".OfficeActivity"/>
         <activity android:name=".RTemplateActivity"/>
         <activity android:name=".RInfoActivity"/>
         <activity android:name=".RWorkActivity"/>
+        <activity android:name=".RWorkEditActivity"/>
         <activity android:name=".RPhotoActivity"/>
         <activity android:name=".RLifeActivity"/>
+        <activity android:name=".RLifeEditActivity"/>
         <activity android:name=".RHonorActivity"/>
+        <activity android:name=".RHonorEditActivity"/>
+        <activity android:name=".MyActivity"/>
         <activity android:name=".MInternshipActivity"/>
         <activity android:name=".MCollectionActivity"/>
         <activity android:name=".MEvaluationActivity"/>
         <activity android:name=".MessageActivity"/>
         <activity android:name=".SettingActivity"/>
         <activity android:name=".AboutActivity"/>
+        <activity android:name=".ImageMSelectActivity"/>
+
+        <service android:name=".NotifyService"/>
+        <receiver android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="com.xujun.app.practice.alarm.action"/>
+            </intent-filter>
+        </receiver>
 
         <!-- V1.3.0添加的service，负责下载通知的资源 -->
         <service android:name="com.umeng.message.UmengDownloadResourceService" />

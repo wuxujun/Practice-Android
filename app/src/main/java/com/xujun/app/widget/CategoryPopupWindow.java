@@ -6,8 +6,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.xujun.app.practice.R;
 
@@ -16,12 +19,17 @@ import com.xujun.app.practice.R;
  */
 public class CategoryPopupWindow extends PopupWindow{
 
-    private CustListView mListView;
+    private ListView mListView;
+    private LinearLayout    mHeader;
+    private TextView        mTitleView;
+    private Button          mDoneButton;
+
 
     public CategoryPopupWindow(Context context){
         super(context);
         LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View interalView=inflater.inflate(R.layout.popup_category_choose,null);
+
         setContentView(interalView);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -30,10 +38,28 @@ public class CategoryPopupWindow extends PopupWindow{
         setTouchable(true);
         setOutsideTouchable(true);
         setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
-        mListView=(CustListView)interalView.findViewById(R.id.list);
+        mListView=(ListView)interalView.findViewById(R.id.list);
+        mHeader=(LinearLayout)interalView.findViewById(R.id.llHeader);
+        mTitleView=(TextView)interalView.findViewById(R.id.tvTitle);
+        mDoneButton=(Button)interalView.findViewById(R.id.btnDone);
+
+        mHeader.setVisibility(View.GONE);
+        mDoneButton.setVisibility(View.GONE);
     }
 
-    public CustListView  getListView(){
+    public ListView  getListView(){
         return mListView;
+    }
+
+    public LinearLayout getHeader(){
+        return mHeader;
+    }
+
+    public TextView getTitleView(){
+        return mTitleView;
+    }
+
+    public Button   getDoneButton(){
+        return mDoneButton;
     }
 }

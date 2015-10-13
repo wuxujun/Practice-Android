@@ -23,7 +23,7 @@
         <TextView android:visibility="gone" android:gravity="center"
             android:layout_width="match_parent" android:id="@+id/tvHeadTitle" android:singleLine="true" android:ellipsize="marquee"
             android:layout_height="wrap_content"  android:textColor="#ffffff" android:textSize="18sp" android:text="Home"/>
-        <LinearLayout android:id="@+id/llHeadSearch" android:visibility="visible"
+        <LinearLayout android:id="@+id/llHeadSearch" android:visibility="visible" android:clickable="true"
             android:layout_width="match_parent" android:gravity="center_vertical|center_horizontal" android:background="@color/transparent"
             android:layout_height="match_parent" android:orientation="horizontal">
             <ImageView

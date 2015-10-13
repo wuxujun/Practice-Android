@@ -1,0 +1,102 @@
+{
+    "root": [
+        {
+            "id": 1,
+            "title": "工作性质",
+            "type": 0,
+            "paramValue":"1",
+            "value": "workType",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 2,
+            "title": "学历要求",
+            "type": 0,
+            "paramValue":"3",
+            "value": "grade",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 3,
+            "title": "是否留用",
+            "type": 0,
+            "paramValue":"6",
+            "value": "isSave",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 4,
+            "title": "工作经验",
+            "type": 0,
+            "paramValue":"5",
+            "value": "workExp",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 5,
+            "title": "公司性质",
+            "type": 0,
+            "paramValue":"4",
+            "value": "companyType",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 6,
+            "title": "报酬范围",
+            "type": 2,
+            "value": "reward",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 7,
+            "title": "工作地点",
+            "type": 4,
+            "paramValue":"1",
+            "value": "areaCode",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 8,
+            "title": "行业",
+            "type": 3,
+            "paramValue":"30",
+            "value": "industry",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 9,
+            "title": "类别",
+            "type": 3,
+            "paramValue":"10",
+            "value": "category",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 10,
+            "title": "职位",
+            "type": 3,
+            "paramValue":"2020",
+            "value": "office",
+            "resultTitle":"不限",
+            "resultValue":"10"
+        },
+        {
+            "id": 11,
+            "title": "关键字",
+            "type": 5,
+            "paramValue":"0",
+            "value": "keyword",
+            "resultTitle":"点击编辑",
+            "resultValue":"0"
+        }
+    ]
+}

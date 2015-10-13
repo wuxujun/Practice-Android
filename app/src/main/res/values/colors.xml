@@ -41,4 +41,45 @@
 
     <color name="head_bg_color">#ff808080</color>
     <color name="all_line">#ffd9d9d9</color>
+
+    <color name="d_gray">#ffdddddd</color>
+    <color name="gary">#ff898989</color>
+    <color name="gary_">#ff707070</color>
+    <color name="gary_assist">#ffb5b6b7</color>
+    <color name="gary_btn">#ff7b8184</color>
+    <color name="gary_frame">#ffeff1f3</color>
+    <color name="gary_heavy">#ffadadad</color>
+    <color name="gary_tab">#fff0f0f0</color>
+    <color name="gray">#ff888888</color>
+    <color name="gray_bg">#ffefefef</color>
+    <color name="gray_c">#ffcccccc</color>
+    <color name="gray_color">#ffa7b0bb</color>
+    <color name="gray_disabled">#ffd2d2d2</color>
+    <color name="gray_frame">#ffeff1f3</color>
+    <color name="gray_lite">#ffc5c5c5</color>
+    <color name="gray_white">#ffe8e8e8</color>
+
+    <color name="font_black">#ff000000</color>
+    <color name="font_c00">#ff000000</color>
+    <color name="font_c33">#ff333333</color>
+    <color name="font_c66">#ff666666</color>
+    <color name="font_c99">#ff999999</color>
+    <color name="font_ca0">#ffa0a0a0</color>
+    <color name="font_cad">#ffadadad</color>
+    <color name="font_cb">#ff0091ff</color>
+    <color name="font_cb_pressed">#ff7fc8ff</color>
+    <color name="font_cbd">#ff94c7f9</color>
+    <color name="font_cdb">#ffb5dbff</color>
+    <color name="font_cdg">#ffe2e2e2</color>
+    <color name="font_cdr">#ffffcbcc</color>
+    <color name="font_cf6">#fff67129</color>
+    <color name="font_cff">#ffffffff</color>
+    <color name="font_cg">#ff31c464</color>
+    <color name="font_co">#fff6712a</color>
+    <color name="font_cr">#ffff4546</color>
+    <color name="font_crd">#fffc8d8f</color>
+    <color name="font_ff6732">#ffff6732</color>
+    <color name="font_normal_title_text_color">#ff2b2b2b</color>
+    <color name="font_normal_title_text_white_color">#ffffffff</color>
+    <color name="font_small_comment_text_black_color">#ff494949</color>
 </resources>

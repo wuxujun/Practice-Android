@@ -18,6 +18,7 @@ import com.xujun.app.adapter.CityItemAdapter;
 import com.xujun.app.adapter.OfficeAdapter;
 import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CityInfo;
+import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.widget.CategoryPopupWindow;
 import com.xujun.app.widget.CityPopupWindow;
 import com.xujun.app.widget.SequenceHeadView;
@@ -42,6 +43,7 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
     private CategoryPopupWindow mCategoryPopupWindow;
 
     private OfficeAdapter       mAdapter;
+    private List<OfficeInfo>    items=new ArrayList<OfficeInfo>();
 
     private List<CategoryInfo>      categoryInfos=new ArrayList<CategoryInfo>();
 
@@ -94,7 +96,16 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void loadData() {
-
+        items.clear();
+        OfficeInfo info=new OfficeInfo();
+        info.setId(1);
+        info.setName("测试工程师");
+        items.add(info);
+        info=new OfficeInfo();
+        info.setId(2);
+        info.setName("销售人员");
+        items.add(info);
+        mAdapter.addAll(items);
     }
 
     @Override

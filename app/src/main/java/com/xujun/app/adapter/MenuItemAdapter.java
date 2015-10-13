@@ -55,23 +55,7 @@ public class MenuItemAdapter extends BaseAdapter{
         }
         MenuInfo info=items.get(position);
         if (info!=null){
-            switch (info.getId()){
-                case 1:
-                    holder.title.setText(R.string.menu_shake);
-                    break;
-                case 2:
-                    holder.title.setText(R.string.menu_qrcode);
-                    break;
-                case 3:
-                    holder.title.setText(R.string.menu_notice);
-                    break;
-                case 4:
-                    holder.title.setText(R.string.menu_invite_friend);
-                    break;
-                case 5:
-                    holder.title.setText(R.string.menu_share);
-                    break;
-            }
+            holder.title.setText(info.getTitle());
         }
         return convertView;
     }

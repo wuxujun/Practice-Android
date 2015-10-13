@@ -35,22 +35,25 @@ public class URLs implements Serializable {
 
     public final static String CATEGORY_LIST_URL=URL_API_HOST+"index.php?/ums/category";
     public final static String CITY_LIST_URL = URL_API_HOST+"index.php?/ums/city";
+	public final static String PARAM_LIST_URL = URL_API_HOST+"index.php?/ums/params";
 
-	public final static String ADS_LIST = URL_API_HOST+"index.php/ums/ads";
 
-	public final static String UPDATE_PASS = URL_API_HOST+"index.php/ums/upass";
+	public final static String RESUME_INFO_ADD = URL_API_HOST+"index.php?/ums/addResume";
+	public final static String RESUME_WORK_ADD = URL_API_HOST+"index.php?/ums/addMemberWork";
+	public final static String RESUME_LIFE_ADD = URL_API_HOST+"index.php?/ums/addMemberLife";
+	public final static String RESUME_HONOR_ADD = URL_API_HOST+"index.php?/ums/addMemberHonor";
 
-	public final static String ADD_SERVICE = URL_API_HOST+"index.php/ums/addService";
+	public final static String RESUME_INFO_QUERY = URL_API_HOST+"index.php?/ums/resumeInfo";
+	public final static String RESUME_WORK_LIST = URL_API_HOST+"index.php?/ums/resumeWork";
+	public final static String RESUME_LIFE_LIST = URL_API_HOST+"index.php?/ums/resumeLife";
+	public final static String RESUME_HONOR_LIST=URL_API_HOST+"index.php?/ums/resumeHonor";
 
-	public final static String ADD_TRAVEL = URL_API_HOST+"index.php/ums/addTravel";
-	public final static String ADD_BUYCAR = URL_API_HOST+"index.php/ums/addBuyCar";
-	public final static String ADD_SALECAR = URL_API_HOST+"index.php/ums/addSaleCar";
-	public final static String CHANGE_CAR_INFO = URL_API_HOST+"index.php/ums/changeCar";
+	public final static String UPLOAD_IMAGE=URL_API_HOST+"index.php?/ums/uploadImage";
+	public final static String MEMBER_PHOTO_ADD=URL_API_HOST+"index.php?/ums/addPhoto";
 
 	public final static String MESSAGES_LIST = URL_API_HOST+"index.php/ums/messages";
 
 	public final static String RATING = URL_API_HOST+"index.php/ums/rating";
-    public final static String CATEGORY=URL_API_HOST+"index.php/ums/getCategory";
 
     public final static String ADD_NOTIFY_SET=URL_API_HOST+"index.php/ums/addNotify";
 

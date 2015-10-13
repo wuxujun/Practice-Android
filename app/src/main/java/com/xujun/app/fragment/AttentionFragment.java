@@ -1,5 +1,6 @@
 package com.xujun.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +11,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.xujun.app.adapter.CategoryCheckBoxAdapter;
+import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.OfficeInfo;
+import com.xujun.app.practice.AppConfig;
+import com.xujun.app.practice.AttentionSetActivity;
 import com.xujun.app.practice.R;
+import com.xujun.app.widget.CategoryPopupWindow;
 import com.xujun.util.L;
 
 import java.util.ArrayList;
@@ -35,42 +45,8 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
     @ViewInject(R.id.tvTitle)
     private TextView        mSetTextView;
 
-    @ViewInject(R.id.llAttentionSet)
-    private LinearLayout    mSetContentLinearLayout;
-
-    @ViewInject(R.id.tvAttentionType1)
-    private TextView    typeTextView1;
-    @ViewInject(R.id.tvAttentionType2)
-    private TextView    typeTextView2;
-    @ViewInject(R.id.tvAttentionType3)
-    private TextView    typeTextView3;
-    @ViewInject(R.id.tvAttentionType4)
-    private TextView    typeTextView4;
-    @ViewInject(R.id.tvAttentionType5)
-    private TextView    typeTextView5;
-    @ViewInject(R.id.tvAttentionType6)
-    private TextView    typeTextView6;
-    @ViewInject(R.id.tvAttentionType7)
-    private TextView    typeTextView7;
-    @ViewInject(R.id.tvAttentionType8)
-    private TextView    typeTextView8;
-    @ViewInject(R.id.tvAttentionType9)
-    private TextView    typeTextView9;
-    @ViewInject(R.id.tvAttentionType10)
-    private TextView    typeTextView10;
-    @ViewInject(R.id.tvAttentionType11)
-    private TextView    typeTextView11;
-
-    @ViewInject(R.id.etAttentionKeyword)
-    private EditText keywordEditText;
-
-
-    @ViewInject(R.id.btnAttentionSave)
-    private Button     saveAttentionBtn;
-
     @ViewInject(R.id.list)
     private ListView      mListView;
-
 
     @Override
     public void onCreate(Bundle bundle){
@@ -81,11 +57,10 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
         mContentView=inflater.inflate(R.layout.attention_listview,null);
-        ViewUtils.inject(this,mContentView);
-        mSetTextView.setOnClickListener(this);
-        mSetContentLinearLayout.setVisibility(View.GONE);
-        mListView.setAdapter(mAdapter);
+        ViewUtils.inject(this, mContentView);
 
+        mSetTextView.setOnClickListener(this);
+        mListView.setAdapter(mAdapter);
         return mContentView;
     }
 
@@ -98,24 +73,19 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tvTitle:{
-                mSetContentLinearLayout.setVisibility(View.VISIBLE);
-                mSetTextView.setVisibility(View.GONE);
+                Intent intent=new Intent(getActivity(), AttentionSetActivity.class);
+                startActivityForResult(intent,AppConfig.REQUEST_ATTENTION_SET);
                 break;
             }
         }
     }
 
-    @OnClick({R.id.btnAttentionSave,R.id.tvAttentionType1,R.id.tvAttentionType2})
-    public void saveButton(View view){
-        switch (view.getId()){
-            case R.id.btnAttentionSave:{
-                mSetTextView.setVisibility(View.VISIBLE);
-                mSetContentLinearLayout.setVisibility(View.GONE);
-                break;
-            }
-            case R.id.tvAttentionType1:{
-                L.e("saveButton......");
-                break;
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data) {
+        if (requestCode == AppConfig.REQUEST_ATTENTION_SET) {
+            if (resultCode==AppConfig.SUCCESS){
+
+
             }
         }
     }

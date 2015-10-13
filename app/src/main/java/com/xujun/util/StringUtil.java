@@ -28,19 +28,6 @@ public class StringUtil {
 
 	private final static Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
 	
-	
-	public static int getWindowWidth(Context context){
-		DisplayMetrics dm = new DisplayMetrics();
-        ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(dm);
-        return dm.widthPixels;
-	}
-	
-	public static int getWindowHeight(Context context){
-		DisplayMetrics dm = new DisplayMetrics();
-        ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(dm);
-        return dm.heightPixels;
-	}
-	
 	//TODO 无小数点字符串
 	public static String doubleToString(double v){
 		DecimalFormat valueDF = new DecimalFormat("##0");
@@ -233,7 +220,6 @@ public class StringUtil {
      */
     public static int getStatusHeight(Context context)
     {
-
         int statusHeight = -1;
         try
         {
@@ -383,6 +369,15 @@ public class StringUtil {
         return result;
     }
 
+    public static String urlEncoder(String str){
+        String result=str;
+        try{
+            result= URLDecoder.decode(str,"utf-8");
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
     /**
      * int到byte[]
      * @param i

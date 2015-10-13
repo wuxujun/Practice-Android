@@ -1,0 +1,28 @@
+{
+    "root": [
+        {
+            "id": 1,
+            "title": "消息推送",
+            "type": 10,
+            "value": "conf_notify"
+        },
+        {
+            "id": 2,
+            "title": "非Wifi网络不下载图片",
+            "type": 10,
+            "value": "conf_wifi_download_image"
+        },
+        {
+            "id": 3,
+            "title": "记住帐号和密码信息",
+            "type": 10,
+            "value": "conf_save_account_pwd"
+        },
+        {
+            "id": 4,
+            "title": "帮助和反馈",
+            "type": 11,
+            "value": "修改"
+        }
+    ]
+}

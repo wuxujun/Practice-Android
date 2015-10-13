@@ -30,7 +30,9 @@ import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.practice.AppConfig;
 import com.xujun.app.practice.CategoryActivity;
+import com.xujun.app.practice.OfficeActivity;
 import com.xujun.app.practice.R;
+import com.xujun.app.widget.CategoryFootView;
 import com.xujun.app.widget.CategoryHeadView;
 import com.xujun.app.widget.CategoryPopupWindow;
 import com.xujun.app.widget.RoundedLetterView;
@@ -52,12 +54,15 @@ import java.util.Map;
 public class CategoryFragment extends BaseFragment implements View.OnClickListener,AdapterView.OnItemClickListener{
 
     private CategoryHeadView    headView;
+    private CategoryFootView    footView;
 
     private List<CategoryInfo> items=new ArrayList<CategoryInfo>();
     private List<OfficeInfo>    officeInfos=new ArrayList<OfficeInfo>();
+    private List<OfficeInfo>    topInfos=new ArrayList<OfficeInfo>();
 
     private ItemAdapter     mAdapter;
     private OfficeAdapter       officeAdapter;
+    private TopAdapter      topAdapter;
 
     private String          mHeadTabType="10";
     private String          mHeadCategory="1010";
@@ -119,6 +124,12 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         }
     };
 
+    private AdapterView.OnItemClickListener onTopItemClickListener=new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        }
+    };
 
     private void selectHeadView(View view){
         headView.getCategory1().setTextColor(getResources().getColor(R.color.btn_color));
@@ -155,6 +166,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         super.onCreate(bundle);
         mAdapter=new ItemAdapter();
         officeAdapter=new OfficeAdapter();
+        topAdapter=new TopAdapter();
     }
 
     @Override
@@ -165,7 +177,12 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 0, 0, 0);
         mHeadLinearLayout.addView(headView, lp);
+        footView=new CategoryFootView(mContext);
+        footView.getListView().setAdapter(topAdapter);
+        footView.getListView().setOnItemClickListener(onTopItemClickListener);
         resetHeadView();
+        mListView.addFooterView(footView);
+
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
         return mContentView;
@@ -181,6 +198,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     public void reloadData(String type){
         items.clear();
         officeInfos.clear();
+        topInfos.clear();
         mHeadTabType=type;
         resetHeadView();
         headView.getLinearLayout4().setVisibility(View.VISIBLE);
@@ -195,6 +213,8 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             headView.getCategory3().setText(R.string.category_head_3);
             headView.getCategory4().setText(R.string.category_head_4);
             mListView.setAdapter(mAdapter);
+
+
             loadData();
         }else if(mHeadTabType.equals("20")){
             headView.getCategory1().setText(R.string.data_order_0);
@@ -215,6 +235,8 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             officeInfos.add(info);
             mListView.setAdapter(officeAdapter);
             officeAdapter.notifyDataSetChanged();
+
+            topAdapter.notifyDataSetChanged();
 
         }else{
             headView.getCategory1().setText(R.string.head_tab_category_3);
@@ -237,6 +259,8 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
 
             mListView.setAdapter(officeAdapter);
             officeAdapter.notifyDataSetChanged();
+
+            topAdapter.notifyDataSetChanged();
         }
     }
 
@@ -252,6 +276,21 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         }catch (DbException e){
             e.printStackTrace();
         }
+        topInfos.clear();
+
+        OfficeInfo info=new OfficeInfo();
+        info.setId(1);
+        info.setName("测试工程师");
+        topInfos.add(info);
+        info=new OfficeInfo();
+        info.setId(2);
+        info.setName("销售人员");
+        topInfos.add(info);
+        info=new OfficeInfo();
+        info.setId(3);
+        info.setName("销售人员");
+        topInfos.add(info);
+        topAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -266,11 +305,20 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        CategoryInfo categoryInfo=items.get(i);
-        if (categoryInfo!=null){
-            Intent intent=new Intent(getSherlockActivity(), CategoryActivity.class);
-            Bundle bundle=new Bundle();
-            bundle.putSerializable(AppConfig.PARAM_CATEGORY_INFO,categoryInfo);
+        if (mHeadTabType.equals("10")) {
+            CategoryInfo categoryInfo = items.get(i);
+            if (categoryInfo != null) {
+                Intent intent = new Intent(getSherlockActivity(), CategoryActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(AppConfig.PARAM_CATEGORY_INFO, categoryInfo);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        }else{
+            OfficeInfo officeInfo=officeInfos.get(i);
+            Intent intent = new Intent(getSherlockActivity(), OfficeActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(AppConfig.PARAM_OFFICE_INFO, officeInfo);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -369,6 +417,9 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
                         break;
                     case 6:
                         break;
+                    case 7:
+
+                        break;
                 }
             }
             DbUtils db=DbUtils.create(getActivity(),AppConfig.DB_NAME);
@@ -383,7 +434,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         }
         mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(getActivity(), categoryInfos));
         mCategoryPopupWindow.getListView().setOnItemClickListener(mCategoryItemListener);
-
     }
 
     private AdapterView.OnItemClickListener mCategoryItemListener=new AdapterView.OnItemClickListener() {
@@ -452,6 +502,38 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         @Override
         public Object getItem(int i) {
             return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View convertView, ViewGroup viewGroup) {
+            ItemView        holder;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.home_listview_item, null);
+                holder = new ItemView();
+                holder.title = (TextView) convertView.findViewById(R.id.tvItemTitle);
+                convertView.setTag(holder);
+            } else {
+                holder = (ItemView) convertView.getTag();
+            }
+            return convertView;
+        }
+    }
+
+    class TopAdapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return topInfos.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return topInfos.get(i);
         }
 
         @Override

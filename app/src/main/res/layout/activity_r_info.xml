@@ -1,0 +1,135 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"  android:fitsSystemWindows="true" tools:context=".RInfoActivity">
+
+       <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent" android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content" style="@style/App_Resume_Info_Title" android:text="@string/resume_info_name"/>
+               <TextView android:id="@+id/tvName" style="@style/App_Resume_Info_Value"
+                   android:layout_width="match_parent" />
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content" style="@style/App_Resume_Info_Title" android:text="@string/resume_info_sex"/>
+               <TextView android:id="@+id/tvSex"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value" />
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content" style="@style/App_Resume_Info_Title" android:text="@string/resume_info_src_place"/>
+               <TextView android:id="@+id/tvSrcPlace"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value"/>
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content" style="@style/App_Resume_Info_Title" android:text="@string/resume_info_brithday"/>
+               <TextView android:id="@+id/tvBrithday"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value"/>
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/dimen_10" android:background="@color/white"/>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent" android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content" style="@style/App_Resume_Info_Title" android:text="@string/resume_info_school"/>
+               <TextView android:id="@+id/tvSchool" style="@style/App_Resume_Info_Value"
+                   android:layout_width="match_parent"/>
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent" android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"  style="@style/App_Resume_Info_Title" android:text="@string/resume_info_specialty"/>
+               <TextView android:id="@+id/tvSpecialty"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value" />
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"  style="@style/App_Resume_Info_Title" android:text="@string/resume_info_graduation"/>
+               <TextView android:id="@+id/tvGraduation"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value" />
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"  style="@style/App_Resume_Info_Title" android:text="@string/resume_info_educational"/>
+               <TextView android:id="@+id/tvEducational"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value" />
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"  style="@style/App_Resume_Info_Title" android:text="@string/resume_info_gradepoint"/>
+               <TextView android:id="@+id/tvGradepoint"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value"/>
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/dimen_20" android:background="@color/white"/>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"  style="@style/App_Resume_Info_Title" android:text="@string/resume_info_mobile"/>
+               <TextView android:id="@+id/tvMobile" style="@style/App_Resume_Info_Value"
+                   android:layout_width="match_parent" />
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+           <LinearLayout style="@style/App_Resume_Info_LinearLayout"
+               android:layout_width="match_parent"  android:orientation="horizontal">
+               <TextView
+                   android:layout_width="wrap_content"  style="@style/App_Resume_Info_Title" android:text="@string/resume_info_email"/>
+               <TextView android:id="@+id/tvEmail"
+                   android:layout_width="match_parent" style="@style/App_Resume_Info_Value" />
+           </LinearLayout>
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+
+        </LinearLayout>
+
+</ScrollView>
+

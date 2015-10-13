@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10" android:layout_marginTop="@dimen/dimen_01"
+        android:layout_height="wrap_content" android:orientation="vertical" android:background="@drawable/listitem_bg">
+    <TextView android:id="@+id/tvTitle"  android:gravity="center_vertical" android:layout_marginLeft="@dimen/dimen_10"
+        android:layout_width="match_parent" android:text="122" android:maxLines="2"
+        android:layout_height="44dip" android:textColor="@color/font_c33" />
+        </LinearLayout>
+</LinearLayout>

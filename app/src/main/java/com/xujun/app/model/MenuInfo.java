@@ -11,10 +11,12 @@ public class MenuInfo  implements Serializable{
     private String  title;
     private int     resid;
 
-    public MenuInfo(int id){
+    public MenuInfo(int id,String title){
         this.id=id;
+        this.title=title;
         this.resid=0;
     }
+
     public int getId() {
         return id;
     }

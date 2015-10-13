@@ -20,7 +20,9 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.xujun.app.model.Member;
 import com.xujun.app.practice.AboutActivity;
+import com.xujun.app.practice.AppConfig;
 import com.xujun.app.practice.LoginActivity;
 import com.xujun.app.practice.MCollectionActivity;
 import com.xujun.app.practice.MEvaluationActivity;
@@ -32,6 +34,9 @@ import com.xujun.app.practice.SettingActivity;
 import com.xujun.app.widget.MyHeadView;
 import com.xujun.app.widget.ResumeHeadView;
 import com.xujun.pullzoom.PullToZoomListView;
+import com.xujun.util.L;
+import com.xujun.util.StringUtil;
+import com.xujun.util.UIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,15 +65,21 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.tvLogin:{
-                    Log.e(TAG,"------> Login");
+                    Log.e(TAG, "------> Login");
                     Intent intent=new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent, AppConfig.REQUEST_MY_LOGIN);
                     break;
                 }
                 case R.id.tvRegister:{
                     Log.e(TAG,"-------> Register");
                     Intent intent=new Intent(getActivity(), RegisterActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent, AppConfig.REQUEST_MY_REGISTER);
+                    break;
+                }
+                case R.id.layout_view:{
+                    if (mMember!=null){
+                        UIHelper.openMy(getActivity());
+                    }
                     break;
                 }
             }
@@ -83,16 +94,42 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
-        mContentView=inflater.inflate(R.layout.fragment_list,null);
+        mContentView=inflater.inflate(R.layout.activity_list,null);
         ViewUtils.inject(this,mContentView);
-
         mHeadView=new MyHeadView(mContext,mClickListener);
-
         listView.addHeaderView(mHeadView);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(this);
 
         return mContentView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data) {
+        if (requestCode==AppConfig.REQUEST_MY_LOGIN){
+            if (resultCode==AppConfig.SUCCESS){
+                Member  member=(Member)data.getSerializableExtra(AppConfig.PARAM_MEMBER);
+                mHeadView.getActionLayout().setVisibility(View.INVISIBLE);
+                if (member!=null) {
+                    mHeadView.getUserName().setText(member.getMobile());
+                }
+            }
+        }else if (requestCode==AppConfig.REQUEST_MY_REGISTER){
+            if (resultCode==AppConfig.SUCCESS){
+                Member  member=(Member)data.getSerializableExtra(AppConfig.PARAM_MEMBER);
+                mHeadView.getActionLayout().setVisibility(View.INVISIBLE);
+                if (member!=null) {
+                    mHeadView.getUserName().setText(member.getMobile());
+                }
+            }
+        }else if(requestCode==AppConfig.REQUEST_MY_SETTING){
+            if (requestCode==AppConfig.SUCCESS){
+                mHeadView.getActionLayout().setVisibility(View.VISIBLE);
+                mHeadView.getUserName().setText("未登录");
+            }
+        } else{
+            super.onActivityResult(requestCode,resultCode,data);
+        }
     }
 
     public void loadData(){
@@ -104,6 +141,19 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
         items.add("设置");
         items.add("关于我们");
         mAdapter.notifyDataSetChanged();
+
+        String  loginFlag=mAppContext.getProperty(AppConfig.CONF_LOGIN_FLAG);
+        if (!StringUtil.isEmpty(loginFlag)){
+            L.e(".........."+loginFlag);
+            if (loginFlag.equals("1")){
+                mHeadView.getActionLayout().setVisibility(View.INVISIBLE);
+                Member member=(Member)mAppContext.readObject(AppConfig.OBJECT_MEMBER);
+                if (member!=null){
+                    L.e("--------->"+member.getMobile());
+                    mHeadView.getUserName().setText(member.getMobile());
+                }
+            }
+        }
     }
 
     @Override
@@ -133,7 +183,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
             }
             case 5:{
                 Intent intent=new Intent(getActivity(), SettingActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,AppConfig.REQUEST_MY_SETTING);
                 break;
             }
             case 6:{

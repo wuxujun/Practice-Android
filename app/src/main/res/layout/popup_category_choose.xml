@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content" android:background="@color/all_line">
-    <com.xujun.app.widget.CustListView android:id="@+id/list"
-        android:layout_width="match_parent"
+    <LinearLayout android:layout_alignParentTop="true" android:id="@+id/llHeader"
+        android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:id="@+id/tvTitle" style="@style/App_Input_Item_Title" android:textSize="@dimen/font_size_18"
+            android:layout_width="match_parent" android:gravity="center_horizontal" android:textStyle="bold"
+            android:layout_height="wrap_content" android:text="@string/about"/>
+    </LinearLayout>
+    <ListView android:id="@+id/list" android:layout_below="@+id/llHeader"
+        android:layout_width="match_parent" android:layout_above="@+id/btnDone"
         android:layout_height="wrap_content"/>
-</LinearLayout>
+    <Button android:layout_alignParentBottom="true" android:id="@+id/btnDone"
+        android:layout_width="match_parent" android:text="@string/btn_done"
+        android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"/>
+</RelativeLayout>

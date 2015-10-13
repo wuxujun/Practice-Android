@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Practice</string>
+    <string name="app_path" translatable="false">Practice</string>
+    <string name="exit_tips">再按一次退出应用</string>
 
     <string name="tab_home">Home</string>
     <string name="tab_category">Category</string>
@@ -23,10 +25,10 @@
     <string name="head_tab_category_1">行业</string>
     <string name="head_tab_category_2">职业</string>
     <string name="head_tab_category_3">职位</string>
-    <string name="category_head_1">理科</string>
-    <string name="category_head_2">工科</string>
-    <string name="category_head_3">文科</string>
-    <string name="category_head_4">商科</string>
+    <string name="category_head_1" translatable="false">理科</string>
+    <string name="category_head_2" translatable="false">工科</string>
+    <string name="category_head_3" translatable="false">文科</string>
+    <string name="category_head_4" translatable="false">商科</string>
 
     <string name="data_order_0">职业</string>
     <string name="data_order_1">行业</string>
@@ -42,6 +44,52 @@
     <string name="resume_head_4">校园生活</string>
     <string name="resume_head_5">所获荣誉</string>
 
+    <string name="resume_info_name">姓名</string>
+    <string name="resume_info_sex">性别</string>
+    <string name="resume_info_src_place">生源地</string>
+    <string name="resume_info_brithday">生日</string>
+    <string name="resume_info_school">学校</string>
+    <string name="resume_info_specialty">专业</string>
+    <string name="resume_info_graduation">毕业年份</string>
+    <string name="resume_info_educational">学历</string>
+    <string name="resume_info_gradepoint">绩点</string>
+    <string name="resume_info_mobile">手机</string>
+    <string name="resume_info_email">邮箱</string>
+
+    <string name="resume_work_company">公司名称</string>
+    <string name="resume_work_office">职位</string>
+    <string name="resume_work_time">时间</string>
+    <string name="resume_work_content">工作内容简介</string>
+    <string name="resume_lift_ogr">组织名称</string>
+    <string name="resume_honor_name">荣誉名称</string>
+    <string name="resume_honor_time">获取时间</string>
+    <string name="resume_honor_content">荣誉详情</string>
+    <string name="resume_time_select">时间选择</string>
+    <string name="resume_time_begin">开始时间</string>
+    <string name="resume_time_end">截止时间</string>
+
+    <string name="my_update_avatar">修改头像</string>
+    <string name="my_nick_name">昵称</string>
+    <string name="my_mobile">手机号</string>
+    <string name="my_password">密码</string>
+    <string name="my_email">邮箱</string>
+    <string name="my_thrid_user">第三方帐号绑定</string>
+    <string name="my_sex">性别</string>
+    <string name="my_brithday">密码</string>
+    <string name="my_school">就读大学</string>
+    <string name="my_specialty">就读专业</string>
+    <string name="my_grade">年级</string>
+
+    <string name="btn_edit">编辑</string>
+    <string name="btn_done">完成</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_add">添加</string>
+    <string name="btn_camera">拍照</string>
+    <string name="btn_upload">上传</string>
+    <string name="btn_save">保存</string>
+    <string name="btn_ok">确认</string>
+    <string name="btn_logout">注销用户</string>
+
     <string name="office_detail">Office Detail</string>
     <string name="office_submit">Office Save</string>
     <string name="search_require">Office Require</string>
@@ -54,8 +102,8 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_login">登录</string>
+    <string name="action_register">注册</string>
 
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -63,7 +111,17 @@
     <string name="error_field_required">This field is required</string>
 
     <string name="register">User Register</string>
+    <string name="input_mobile">手机号</string>
+    <string name="input_mobile_hint">请输入手机号</string>
+    <string name="input_email">Email</string>
+    <string name="input_email_hint">请输入Email</string>
+    <string name="input_password">密码</string>
+    <string name="input_password_hint">请输入密码</string>
+    <string name="input_password2">确认密码</string>
+    <string name="input_password2_hint">请输入确认密码</string>
 
+    <string name="input_mobile_or_email">登录名</string>
+    <string name="input_mobile_or_email_hint">请输入手机号/Email</string>
 
     <string name="my_item_0">Internship</string>
     <string name="my_item_1">Collection</string>
@@ -72,5 +130,12 @@
     <string name="my_message">消息通知</string>
     <string name="my_setting">设置</string>
     <string name="about">About</string>
+
+
+
+    <string name="folder_all">所有照片</string>
+    <string name="preview">预览</string>
+    <string name="msg_no_camera">没有系统相机</string>
+    <string name="msg_amount_limit">已经达到最高选择数量</string>
 
 </resources>

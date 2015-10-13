@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Crouton/Crouton.iml" filepath="$PROJECT_DIR$/Crouton/Crouton.iml" />
       <module fileurl="file://$PROJECT_DIR$/EdittextValidator/EdittextValidator.iml" filepath="$PROJECT_DIR$/EdittextValidator/EdittextValidator.iml" />
       <module fileurl="file://$PROJECT_DIR$/Practice.iml" filepath="$PROJECT_DIR$/Practice.iml" />
       <module fileurl="file://$PROJECT_DIR$/PullToRefreshListView/PullToRefreshListView.iml" filepath="$PROJECT_DIR$/PullToRefreshListView/PullToRefreshListView.iml" />
       <module fileurl="file://$PROJECT_DIR$/ViewPageIndicator/ViewPageIndicator.iml" filepath="$PROJECT_DIR$/ViewPageIndicator/ViewPageIndicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/actionbarsherlock/actionbarsherlock.iml" filepath="$PROJECT_DIR$/actionbarsherlock/actionbarsherlock.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dialogplus/dialogplus.iml" filepath="$PROJECT_DIR$/dialogplus/dialogplus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/linkedin/linkedin.iml" filepath="$PROJECT_DIR$/linkedin/linkedin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebound-android/rebound-android.iml" filepath="$PROJECT_DIR$/rebound-android/rebound-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rebound-core/rebound-core.iml" filepath="$PROJECT_DIR$/rebound-core/rebound-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/xUtils/xUtils.iml" filepath="$PROJECT_DIR$/xUtils/xUtils.iml" />
     </modules>
   </component>

@@ -5,9 +5,18 @@
     <LinearLayout android:id="@+id/llHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:layout_alignParentTop="true" android:orientation="vertical"></LinearLayout>
-    <ListView android:id="@+id/list" android:layout_below="@+id/llHeader"
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="match_parent" android:id="@+id/llCenter" android:layout_centerVertical="true"
+        android:layout_height="@dimen/line_h" android:visibility="invisible"/>
+    <ListView android:id="@+id/list" android:layout_below="@+id/llHeader" android:layout_marginTop="@dimen/dimen_02"
         android:dividerHeight="@dimen/zero"
         android:divider="@null"
+        android:listSelector="@android:color/transparent"
         android:layout_width="match_parent"
+        android:cacheColorHint="@android:color/transparent" android:layout_above="@+id/llFooter"
         android:layout_height="match_parent" android:scrollbars="none"/>
+    <LinearLayout android:id="@+id/llFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:orientation="vertical"></LinearLayout>
+
 </RelativeLayout>

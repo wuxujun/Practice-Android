@@ -62,7 +62,6 @@ public class OfficeAdapter extends BaseAdapter {
         if (info!=null){
             holder.title.setText(info.getName());
         }
-
         return convertView;
     }
 

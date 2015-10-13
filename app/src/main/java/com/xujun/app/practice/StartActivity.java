@@ -25,6 +25,9 @@ import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CategoryResp;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.CityResp;
+import com.xujun.app.model.ParamInfo;
+import com.xujun.app.model.ParamResp;
+import com.xujun.app.model.PhotoEntity;
 import com.xujun.util.JsonUtil;
 import com.xujun.util.L;
 import com.xujun.util.StringUtil;
@@ -70,6 +73,10 @@ public class StartActivity extends Activity{
             try{
                 db.dropTable(CategoryInfo.class);
                 db.createTableIfNotExist(CategoryInfo.class);
+                db.createTableIfNotExist(CityInfo.class);
+                db.createTableIfNotExist(AttentionEntity.class);
+                db.createTableIfNotExist(ParamInfo.class);
+                db.createTableIfNotExist(PhotoEntity.class);
             }catch (DbException e){
                 e.printStackTrace();
             }
@@ -88,6 +95,8 @@ public class StartActivity extends Activity{
             db.createTableIfNotExist(CategoryInfo.class);
             db.createTableIfNotExist(CityInfo.class);
             db.createTableIfNotExist(AttentionEntity.class);
+            db.createTableIfNotExist(ParamInfo.class);
+            db.createTableIfNotExist(PhotoEntity.class);
             db.close();
         }catch (DbException e){
             e.printStackTrace();
@@ -155,6 +164,26 @@ public class StartActivity extends Activity{
         });
     }
 
+    private void loadParamInfo(String start,String end){
+        Map<String,Object> requestMap=new HashMap<String,Object>();
+        requestMap.put("start",start);
+        requestMap.put("end", end);
+        HttpUtils http=new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST, URLs.PARAM_LIST_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                L.e("onSuccess() " + responseInfo.result);
+                dataType = 2;
+                parserHttpResponse(responseInfo.result);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                L.i("onFailure() " + s);
+            }
+        });
+    }
+
     public void parserHttpResponse(String result) {
         try{
             if (dataType==0) {
@@ -167,13 +196,23 @@ public class StartActivity extends Activity{
                 }else{
                     loadCityInfo("0","20");
                 }
-            }else{
+            }else if(dataType==1) {
                 CityResp resp=(CityResp)JsonUtil.ObjFromJson(result,CityResp.class);
                 if (resp.getRoot()!=null){
                     addCityInfo(resp.getRoot());
                 }
                 if (resp.getEnd()<resp.getTotal()){
                     loadCityInfo(""+resp.getEnd(),""+(resp.getEnd()+20));
+                }else{
+                   loadParamInfo("0","20");
+                }
+            }else{
+                ParamResp resp=(ParamResp)JsonUtil.ObjFromJson(result,ParamResp.class);
+                if (resp.getRoot()!=null){
+                    addParamInfo(resp.getRoot());
+                }
+                if (resp.getEnd()<resp.getTotal()){
+                    loadParamInfo(""+resp.getEnd(),""+resp.getEnd()+20);
                 }else{
                     mAppContext.setProperty(AppConfig.LOCAL_DATABASE_VERSION,dataVersion);
                     openHome();
@@ -184,11 +223,20 @@ public class StartActivity extends Activity{
         }
     }
 
+    private void addParamInfo(List<ParamInfo> list){
+        try{
+            DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
+            db.saveOrUpdateAll(list);
+            L.e("addParamInfo   save ....record:"+list.size());
+        }catch (DbException e){
+            e.printStackTrace();
+        }
+    }
+
     private void addCityInfo(List<CityInfo> list){
         try{
             DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
             db.saveOrUpdateAll(list);
-//            db.close();
             L.e("addCityInfo  save ....record:"+list.size());
         }catch (DbException e){
             e.printStackTrace();
@@ -197,12 +245,8 @@ public class StartActivity extends Activity{
 
     private void addCategoryInfo(List<CategoryInfo> list){
         try{
-//            for (CategoryInfo categoryInfo :list){
-//                L.e(""+categoryInfo.getId()+"  "+categoryInfo.getCode()+"  "+categoryInfo.getCategory()+"  "+categoryInfo.getType()+"  "+categoryInfo.getParent_code()+"  "+categoryInfo.getTop());
-//            }
             DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
             db.saveOrUpdateAll(list);
-//            db.close();
             L.e("addCategoryInfo  save.... record:"+list.size());
         }catch (DbException e){
             e.printStackTrace();

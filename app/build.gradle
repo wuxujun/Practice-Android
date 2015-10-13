@@ -7,8 +7,8 @@ android {
         applicationId 'com.xujun.app.practice'
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 7
-        versionName "1.0.6"
+        versionCode 8
+        versionName "1.0.8"
     }
     signingConfigs{
         myConfig{
@@ -38,13 +38,13 @@ android {
     }
     productFlavors {
         development {
-            versionCode 7
-            versionName '1.0.6'
+            versionCode 8
+            versionName '1.0.8'
             signingConfig signingConfigs.myConfig
         }
         hiapk {
-            versionCode 7
-            versionName '1.0.6'
+            versionCode 8
+            versionName '1.0.8'
             signingConfig signingConfigs.myConfig
         }
     }
@@ -110,6 +110,8 @@ dependencies {
     compile project(':EdittextValidator')
     compile project(':xUtils')
     compile project(':PullToRefreshListView')
+    compile project(':dialogplus')
+    compile project(':Crouton')
     compile files('libs/gson-2.0.jar')
     compile files('libs/com.umeng.message.lib_v2.0.0.jar')
     compile files('libs/umeng-analytics-v5.4.2.jar')
@@ -125,4 +127,8 @@ dependencies {
     compile files('libs/SocialSDK_WeiXin_1.jar')
     compile files('libs/SocialSDK_WeiXin_2.jar')
     compile files('libs/MapApiLocation_1.3.3.jar')
+    compile files('libs/picasso-2.5.2.jar')
+    compile project(':linkedin')
+    compile project(':rebound-android')
+    compile project(':rebound-core')
 }

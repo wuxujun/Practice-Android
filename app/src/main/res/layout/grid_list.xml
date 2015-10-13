@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:fitsSystemWindows="true">
+    <LinearLayout android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_alignParentTop="true" android:orientation="vertical"></LinearLayout>
+    <GridView android:id="@+id/gridview" android:layout_below="@+id/llHeader" android:layout_marginTop="@dimen/dimen_02"
+        android:numColumns="3" android:gravity="top"
+        android:horizontalSpacing="10dp" android:state_checkable="true"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        android:layout_width="match_parent"  android:choiceMode="singleChoice"
+        android:cacheColorHint="@android:color/transparent"
+        android:layout_height="match_parent" android:listSelector="@color/transparent" android:scrollbars="none"/>
+</RelativeLayout>

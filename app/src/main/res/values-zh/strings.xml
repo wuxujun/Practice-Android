@@ -9,6 +9,7 @@
     <string name="clear">清空</string>
     <string name="share">分享</string>
     <string name="more">更多</string>
+    <string name="btn_cancel">取消</string>
 
     <string name="menu_shake">摇一摇</string>
     <string name="menu_qrcode">扫一扫</string>
@@ -43,8 +44,6 @@
     <!-- Strings related to login -->
     <string name="prompt_email">邮箱</string>
     <string name="prompt_password">密码</string>
-    <string name="action_sign_in">登录或注册</string>
-    <string name="action_sign_in_short">登录</string>
 
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>

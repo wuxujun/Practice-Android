@@ -16,8 +16,10 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xujun.app.model.CityInfo;
+import com.xujun.app.model.Member;
 import com.xujun.app.model.MenuInfo;
 import com.xujun.app.practice.AppConfig;
+import com.xujun.app.practice.LoginActivity;
 import com.xujun.app.practice.R;
 import com.xujun.app.practice.RHonorActivity;
 import com.xujun.app.practice.RInfoActivity;
@@ -27,6 +29,8 @@ import com.xujun.app.practice.RTemplateActivity;
 import com.xujun.app.practice.RWorkActivity;
 import com.xujun.app.widget.CustGridView;
 import com.xujun.app.widget.ResumeHeadView;
+import com.xujun.util.L;
+import com.xujun.util.UIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,37 +51,55 @@ public class ResumeFragment extends BaseFragment{
 
     private ResumeHeadView  mHeadView;
 
+    private int             currentOpenType;
+
     private View.OnClickListener mClickListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.btnResume1:{
-                    Intent intent=new Intent(getActivity(), RInfoActivity.class);
-                    startActivity(intent);
+            switch (view.getId()) {
+                case R.id.btnResume1: {
+                    currentOpenType=1;
+                    if (mMember==null){
+                        openLoginActivity();
+                    }else {
+                        UIHelper.openResumeInfo(getActivity());
+                    }
                     break;
                 }
-                case R.id.btnResume3:{
-
-                    Intent intent=new Intent(getActivity(), RWorkActivity.class);
-                    startActivity(intent);
+                case R.id.btnResume3: {
+                    currentOpenType=3;
+                    if (mMember==null){
+                        openLoginActivity();
+                    }else {
+                       UIHelper.openResumeWork(getActivity());
+                    }
                     break;
                 }
-                case R.id.btnResume4:{
-
-                    Intent intent=new Intent(getActivity(), RPhotoActivity.class);
-                    startActivity(intent);
+                case R.id.btnResume4: {
+                    currentOpenType=4;
+                    if (mMember==null){
+                        openLoginActivity();
+                    }else {
+                        UIHelper.openResumePhoto(getActivity());
+                    }
                     break;
                 }
-                case R.id.btnResume2:{
-
-                    Intent intent=new Intent(getActivity(), RLifeActivity.class);
-                    startActivity(intent);
+                case R.id.btnResume2: {
+                    currentOpenType=2;
+                    if (mMember==null){
+                        openLoginActivity();
+                    }else {
+                        UIHelper.openResumeLife(getActivity());
+                    }
                     break;
                 }
-                case R.id.btnResume5:{
-
-                    Intent intent=new Intent(getActivity(), RHonorActivity.class);
-                    startActivity(intent);
+                case R.id.btnResume5: {
+                    currentOpenType=5;
+                    if (mMember==null){
+                        openLoginActivity();
+                    }else {
+                        UIHelper.openResumeHonor(getActivity());
+                    }
                     break;
                 }
             }
@@ -117,6 +139,13 @@ public class ResumeFragment extends BaseFragment{
         return mContentView;
     }
 
+    private void openLoginActivity(){
+        Intent intent=new Intent(getActivity(), LoginActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putInt(AppConfig.PARAM_LOGIN_SOURCE, AppConfig.LOGIN_TYPE_RESUME);
+        intent.putExtras(bundle);
+        startActivityForResult(intent,AppConfig.REQUEST_RESUME_LOGIN);
+    }
 
     public void onResume(){
         super.onResume();
@@ -127,28 +156,22 @@ public class ResumeFragment extends BaseFragment{
     public void loadData() {
         items.clear();
 
-        MenuInfo    menuInfo=new MenuInfo(1);
-        menuInfo.setTitle("简约直白");
+        MenuInfo    menuInfo=new MenuInfo(1,"简约直白");
         items.add(menuInfo);
 
-        menuInfo=new MenuInfo(2);
-        menuInfo.setTitle("霸气豪爽");
+        menuInfo=new MenuInfo(2,"霸气豪爽");
         items.add(menuInfo);
 
-        menuInfo=new MenuInfo(3);
-        menuInfo.setTitle("清新婉约");
+        menuInfo=new MenuInfo(3,"清新婉约");
         items.add(menuInfo);
 
-        menuInfo=new MenuInfo(4);
-        menuInfo.setTitle("校园型");
+        menuInfo=new MenuInfo(4,"校园型");
         items.add(menuInfo);
 
-        menuInfo=new MenuInfo(5);
-        menuInfo.setTitle("实习型");
+        menuInfo=new MenuInfo(5,"实习型");
         items.add(menuInfo);
 
-        menuInfo=new MenuInfo(6);
-        menuInfo.setTitle("荣誉型");
+        menuInfo=new MenuInfo(6,"荣誉型");
         items.add(menuInfo);
 
        mAdapter.notifyDataSetChanged();
@@ -158,6 +181,33 @@ public class ResumeFragment extends BaseFragment{
     @Override
     public void parserHttpResponse(String result) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data) {
+        if (requestCode==AppConfig.REQUEST_RESUME_LOGIN){
+            if (resultCode==AppConfig.SUCCESS){
+                mMember=(Member)mAppContext.readObject(AppConfig.OBJECT_MEMBER);
+                switch (currentOpenType){
+                    case 1:
+                        UIHelper.openResumeInfo(getActivity());
+                        break;
+                    case 2:
+                        UIHelper.openResumeLife(getActivity());
+                        break;
+                    case 3:
+                        UIHelper.openResumeWork(getActivity());
+                        break;
+                    case 4:
+                        UIHelper.openResumePhoto(getActivity());
+                        break;
+                    case 5:
+                        UIHelper.openResumeHonor(getActivity());
+                        break;
+                }
+            }
+        }
+        super.onActivityResult(requestCode,resultCode,data);
     }
 
     class ItemAdapter extends BaseAdapter{

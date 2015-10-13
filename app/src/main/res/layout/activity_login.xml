@@ -1,41 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center_horizontal"
-    android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin" android:fitsSystemWindows="true"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" tools:context=".LoginActivity">
+    android:orientation="vertical" android:fitsSystemWindows="true">
 
-    <!-- Login progress -->
-    <ProgressBar android:id="@+id/login_progress" style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp" android:visibility="gone" />
-
-    <ScrollView android:id="@+id/login_form" android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
+        <LinearLayout android:layout_width="match_parent" android:layout_alignParentTop="true"
             android:layout_height="wrap_content" android:orientation="vertical">
 
-            <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress" android:maxLines="1"
-                android:singleLine="true" />
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
+                android:layout_height="44dip" android:orientation="horizontal">
+                <TextView android:text="@string/input_mobile_or_email"
+                    android:layout_height="match_parent" style="@style/App_Input_Item_Title"/>
+                <com.andreabaccega.widget.FormEditText android:id="@+id/etMobile" android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:hint="@string/input_mobile_or_email_hint"
+                    android:inputType="textEmailAddress" android:maxLines="1"
+                    android:singleLine="true" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dip" android:layout_margin="@dimen/dimen_10" android:orientation="horizontal">
+                <TextView android:text="@string/input_password"
+                    android:layout_height="match_parent" style="@style/App_Input_Item_Title"/>
 
-            <EditText android:id="@+id/password" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified" android:inputType="textPassword"
-                android:maxLines="1" android:singleLine="true" />
+                <com.andreabaccega.widget.FormEditText android:id="@+id/etPassword" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="@string/input_password_hint"
+                    android:imeOptions="actionUnspecified" android:inputType="textPassword"
+                    android:maxLines="1" android:singleLine="true" />
 
-            <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
+            </LinearLayout>
+            <Button android:id="@+id/btnLogin" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" android:text="@string/action_sign_in_short"
+                android:layout_marginTop="16dp" android:text="@string/action_login"
                 android:textStyle="bold" />
 
+
+
         </LinearLayout>
-    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_margin="@dimen/dimen_20"
+        android:layout_height="44dip" android:layout_alignParentBottom="true">
+        <Button android:id="@+id/btnQQ"
+            android:layout_width="match_parent" android:layout_weight="1"
+            android:layout_height="match_parent" android:text="QQ"/>
+        <Button android:id="@+id/btnWeixin"
+            android:layout_width="match_parent" android:text="微信"
+            android:layout_height="match_parent" android:layout_weight="1"/>
+        <Button android:id="@+id/btnWeibo"
+            android:layout_width="match_parent" android:text="微博"
+            android:layout_height="match_parent" android:layout_weight="1"/>
+        <Button android:id="@+id/btnLinkedin"
+            android:layout_width="match_parent" android:text="领英"
+            android:layout_height="match_parent" android:layout_weight="1"/>
+    </LinearLayout>
 
-</LinearLayout>
-
+</RelativeLayout>

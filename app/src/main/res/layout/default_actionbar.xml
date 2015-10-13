@@ -29,9 +29,9 @@
             <ImageView
             android:layout_width="wrap_content" android:id="@+id/ivHeadSearch"
             android:layout_height="wrap_content" android:layout_marginLeft="@dimen/head_img_offset_top" android:layout_marginStart="@dimen/head_img_offset_top" android:background="@drawable/search_icon_white" android:contentDescription="@string/app_name"/>
-            <EditText android:id="@+id/etHeadSearch"
-            android:layout_width="match_parent" android:textCursorDrawable="@null"
-            android:layout_height="match_parent" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@color/transparent" android:clickable="true" android:focusable="false" android:hint="@string/head_search_hit" android:textColor="@color/white" android:textColorHint="@color/btn_color" android:textSize="14sp"/>
+            <EditText android:id="@+id/etHeadSearch" android:imeOptions="actionSearch"
+            android:layout_width="match_parent" android:textCursorDrawable="@drawable/cursor_bg" android:singleLine="true"
+            android:layout_height="match_parent" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@color/transparent"  android:hint="@string/head_search_hit" android:textColor="@color/white" android:textColorHint="@color/btn_color" android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>
     <Button android:id="@+id/btnHeadRight" android:textColor="#fff"

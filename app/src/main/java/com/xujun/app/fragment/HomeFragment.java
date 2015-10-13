@@ -63,7 +63,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
-        mContentView=inflater.inflate(R.layout.fragment_list,null);
+        mContentView=inflater.inflate(R.layout.activity_list,null);
         ViewUtils.inject(this,mContentView);
         mListView.setVerticalScrollBarEnabled(true);
         mListView.addHeaderView(mHeadView);
@@ -149,8 +149,14 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent=new Intent(getSherlockActivity(), OfficeActivity.class);
-        startActivity(intent);
+        OfficeInfo officeInfo=items.get(i-1);
+        if (officeInfo!=null) {
+            Intent intent = new Intent(getSherlockActivity(), OfficeActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(AppConfig.PARAM_OFFICE_INFO, officeInfo);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     static class ItemView

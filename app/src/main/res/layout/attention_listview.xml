@@ -5,15 +5,13 @@
     <LinearLayout android:layout_alignParentTop="true"
         android:layout_width="match_parent" android:id="@+id/llHeader" android:background="@color/cpb_white"
         android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_vertical">
-        <TextView android:layout_margin="10dp"
+        <TextView android:layout_marginLeft="10dp"
             android:id="@+id/tvTitle" android:textColor="@color/black"
             android:layout_width="match_parent" android:gravity="center_vertical"
-            android:layout_height="wrap_content"  android:text="@string/search_require"/>
-        <LinearLayout android:id="@+id/llAttentionSet"  android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <include layout="@layout/attention_set"/>
-        </LinearLayout>
+            android:layout_height="@dimen/my_text_height"  android:text="@string/search_require"/>
     </LinearLayout>
-    <ListView android:layout_below="@+id/llHeader"
-        android:layout_width="match_parent"
+    <ListView android:layout_below="@+id/llHeader" android:layout_marginTop="@dimen/dimen_02"
+        android:layout_width="match_parent"  android:dividerHeight="@dimen/zero"
+        android:divider="@null"
         android:layout_height="match_parent" android:id="@+id/list"/>
 </RelativeLayout>

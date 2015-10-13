@@ -17,7 +17,11 @@
     <dimen name="pop_city_gridview_height">100dp</dimen>
     <dimen name="home_category_gridview_height">160dp</dimen>
 
+    <dimen name="input_text_height">52.0dip</dimen>
+    <dimen name="my_text_height">52.0dip</dimen>
+
     <dimen name="dimen_0_2">0.2000005dip</dimen>
+    <dimen name="dimen_01">1.0dip</dimen>
     <dimen name="dimen_02">2.0dip</dimen>
     <dimen name="dimen_03">3.0dip</dimen>
     <dimen name="dimen_04">4.0dip</dimen>
@@ -37,6 +41,10 @@
     <dimen name="dimen_18">18.0dip</dimen>
     <dimen name="dimen_19">19.0dip</dimen>
     <dimen name="dimen_20">20.0dip</dimen>
+
+    <dimen name="dimen_50">50.0dip</dimen>
+    <dimen name="dimen_60">60.0dip</dimen>
+    <dimen name="dimen_70">70.0dip</dimen>
 
 
     <dimen name="line_h">0.3000007dip</dimen>
@@ -65,5 +73,9 @@
     <dimen name="font_size_29">29sp</dimen>
     <dimen name="font_size_30">30sp</dimen>
 
+
+    <dimen name="image_size">120dp</dimen>
+    <dimen name="space_size">2dp</dimen>
+    <dimen name="folder_cover_size">72dp</dimen>
 
 </resources>

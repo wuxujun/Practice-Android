@@ -83,7 +83,7 @@ public class AppContext extends  Application{
     private boolean checkSoftStage(){  
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){  //判断是否存在SD卡  
             final String rootPath = Environment.getExternalStorageDirectory().getPath();  //获取SD卡的根目录  
-            homePath = rootPath + "/"+this.getString(R.string.app_name);
+            homePath = rootPath + "/"+this.getString(R.string.app_path);
             File file = new File(homePath);  
             if(!file.exists()){  
                 file.mkdir(); 
@@ -268,6 +268,14 @@ public class AppContext extends  Application{
         }
         return exist;
     }
+
+    public void deleteObject(String fileName){
+        if (isExistDataCache(fileName)){
+            File data=getFileStreamPath(fileName);
+            data.delete();
+        }
+    }
+
     public boolean saveObject(Serializable ser,String fileName){
         FileOutputStream fos=null;
         ObjectOutputStream oss=null;

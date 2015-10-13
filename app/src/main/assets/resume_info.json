@@ -1,0 +1,82 @@
+{
+    "root": [
+        {
+            "id": 1,
+            "title": "姓名",
+            "type": 1,
+            "value": "name"
+        },
+        {
+            "id": 2,
+            "title": "性别",
+            "type": 1,
+            "value": "sex"
+        },
+        {
+            "id": 3,
+            "title": "生源地",
+            "type": 1,
+            "value": "srcPlace"
+        },
+        {
+            "id": 4,
+            "title": "生日",
+            "type": 1,
+            "value": "brithday"
+        },
+        {
+            "id":41,
+            "title":"空行",
+            "type":10,
+            "value":"1"
+        },
+        {
+            "id": 5,
+            "title": "学校",
+            "type": 1,
+            "value": "school"
+        },
+        {
+            "id": 6,
+            "title": "专业",
+            "type": 1,
+            "value": "specialty"
+        },
+        {
+            "id": 7,
+            "title": "毕业年份",
+            "type": 1,
+            "value": "graduation"
+        },
+        {
+            "id": 8,
+            "title": "学历",
+            "type": 1,
+            "value": "educational"
+        },
+        {
+            "id": 9,
+            "title": "绩点",
+            "type": 1,
+            "value": "gradepoint"
+        },
+        {
+          "id":91,
+          "title":"空行",
+          "type":10,
+          "value":"1"
+        },
+        {
+            "id": 10,
+            "title": "手机",
+            "type": 1,
+            "value": "mobile"
+        },
+        {
+            "id": 11,
+            "title": "邮箱",
+            "type": 1,
+            "value": "email"
+        }
+    ]
+}
