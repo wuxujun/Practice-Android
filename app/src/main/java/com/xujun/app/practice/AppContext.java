@@ -62,7 +62,6 @@ public class AppContext extends  Application{
         windowManager.getDefaultDisplay().getMetrics(dm);
         scaledDensity=dm.scaledDensity;
         checkSoftStage();
-
 	}
 
     public String getIMSI(){

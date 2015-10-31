@@ -46,6 +46,12 @@ public class AppConfig {
     public final static String CONF_CURRENT_LATITUDE="conf_current_latitude";
     public final static String CONF_CURRENT_LONGITUDE="conf_current_longitude";
 
+    public final static String CONF_THRID_LOGIN_GENDER="conf_third_login_gender";
+    public final static String CONF_THRID_LOGIN_CITY="conf_third_login_city";
+    public final static String CONF_THRID_LOGIN_USER_TYPE="conf_third_login_user_type";
+    public final static String CONF_THRID_LOGIN_UNIONID="conf_third_login_unionid"; //weixin
+    public final static String CONF_THRID_LOGIN_OPENID="conf_third_login_openid"; //weixin
+
 
     public final static String PARAM_LOGIN_SOURCE="param_login_source";
     public final static String PARAM_CITY_INFO="param_city_info";
@@ -87,6 +93,7 @@ public class AppConfig {
 
     public final static int   LOGIN_TYPE_MY=10;
     public final static int   LOGIN_TYPE_RESUME=20;
+    public final static int   LOGIN_TYPE_OFFICE=30;
 
 
     public final static String DATA_VERSION= "data_version";

@@ -10,7 +10,7 @@
         android:layout_width="48dp" android:layout_alignParentTop="true"
         android:layout_height="48dp" android:layout_margin="@dimen/dimen_03"
         tools:visibility="visible" app:rlv_backgroundColorValue="@color/green"
-        app:rlv_titleColor="@color/white" app:rlv_titleSize="18sp" app:rlv_titleText="MKT"
+        app:rlv_titleColor="@color/white" app:rlv_titleSize="22sp" app:rlv_titleText="MKT"
         />
     <TextView
         android:id="@+id/tvItemTitle" android:layout_below="@+id/rlItemName"

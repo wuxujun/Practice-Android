@@ -21,9 +21,12 @@ public class CategoryCheckBoxAdapter extends BaseAdapter{
 
     private List<CategoryInfo>   items;
 
-    public CategoryCheckBoxAdapter(Context context, List<CategoryInfo> list){
+    private boolean             isCheck;
+
+    public CategoryCheckBoxAdapter(Context context, List<CategoryInfo> list,boolean isCheck){
         this.mContext=context;
         this.items=list;
+        this.isCheck=isCheck;
     }
 
     @Override
@@ -52,6 +55,10 @@ public class CategoryCheckBoxAdapter extends BaseAdapter{
             convertView.setTag(holder);
         }else{
             holder=(ItemView)convertView.getTag();
+        }
+        holder.checkBox.setVisibility(View.GONE);
+        if (isCheck){
+            holder.checkBox.setVisibility(View.VISIBLE);
         }
         CategoryInfo info=items.get(position);
         if (info!=null){

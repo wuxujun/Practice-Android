@@ -21,10 +21,12 @@ public class ParamCheckBoxAdapter extends BaseAdapter{
     private Context mContext;
 
     private List<ParamInfo>   items;
+    private boolean           isCheck;
 
-    public ParamCheckBoxAdapter(Context context, List<ParamInfo> list){
+    public ParamCheckBoxAdapter(Context context, List<ParamInfo> list,boolean isCheck){
         this.mContext=context;
         this.items=list;
+        this.isCheck=isCheck;
     }
 
     @Override
@@ -53,6 +55,10 @@ public class ParamCheckBoxAdapter extends BaseAdapter{
             convertView.setTag(holder);
         }else{
             holder=(ItemView)convertView.getTag();
+        }
+        holder.checkBox.setVisibility(View.GONE);
+        if (isCheck){
+            holder.checkBox.setVisibility(View.VISIBLE);
         }
         ParamInfo info=items.get(position);
         if (info!=null){

@@ -9,8 +9,10 @@ public class OfficeInfo extends BaseResp{
 
     private int         id;
     private int         companyId;
+    private String      category;
     private String      name;
     private String      dept;
+    private String      posts;
     private String      prop;
     private String      week;
     private String      rate;
@@ -18,10 +20,13 @@ public class OfficeInfo extends BaseResp{
     private String      address;
     private String      email;
     private String      edu;
+    private String      workExp;
+    private String      ratained;
     private String      content;
     private String      remark;
     private String      beginDate;
     private String      endData;
+    private int         tops;
 
     public int getId() {
         return id;
@@ -141,5 +146,45 @@ public class OfficeInfo extends BaseResp{
 
     public void setEndData(String endData) {
         this.endData = endData;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getPosts() {
+        return posts;
+    }
+
+    public void setPosts(String posts) {
+        this.posts = posts;
+    }
+
+    public String getWorkExp() {
+        return workExp;
+    }
+
+    public void setWorkExp(String workExp) {
+        this.workExp = workExp;
+    }
+
+    public String getRatained() {
+        return ratained;
+    }
+
+    public void setRatained(String ratained) {
+        this.ratained = ratained;
+    }
+
+    public int getTops() {
+        return tops;
+    }
+
+    public void setTops(int tops) {
+        this.tops = tops;
     }
 }

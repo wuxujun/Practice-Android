@@ -191,7 +191,7 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
                     categoryInfos.clear();
                     categoryInfos.addAll(categoryInfoList);
                 }
-                mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos));
+                mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos,true));
                 mCategoryPopupWindow.getListView().setOnItemClickListener(mCategoryItemListener);
             }else if(item.getType()==0){
                 List<ParamInfo>  paramInfoList=db.findAll(Selector.from(ParamInfo.class).where("type","=",item.getParamValue()));
@@ -199,7 +199,7 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
                     paramInfos.clear();
                     paramInfos.addAll(paramInfoList);
                 }
-                mCategoryPopupWindow.getListView().setAdapter(new ParamCheckBoxAdapter(this,paramInfos));
+                mCategoryPopupWindow.getListView().setAdapter(new ParamCheckBoxAdapter(this,paramInfos,true));
                 mCategoryPopupWindow.getListView().setOnItemClickListener(mParamItemListener);
             }
 

@@ -9,7 +9,7 @@
             android:layout_width="match_parent" android:gravity="center_horizontal"
             android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal">
             <TextView android:id="@+id/tvDataOrder1" style="@style/App_ListView_Category_Head"
-                android:layout_width="wrap_content" android:text="@string/data_order_1"
+                android:layout_width="wrap_content" android:text="@string/data_order_2"
                 android:layout_height="wrap_content"  />
             <ImageView android:id="@+id/ivDataOrder1"
                 android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
             android:layout_width="match_parent" android:gravity="center_horizontal"
             android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal">
             <TextView android:id="@+id/tvDataOrder2" style="@style/App_ListView_Category_Head"
-                android:layout_width="wrap_content" android:text="@string/data_order_2"
+                android:layout_width="wrap_content" android:text="@string/data_order_3"
                 android:layout_height="wrap_content"  />
             <ImageView android:id="@+id/ivDataOrder2"
                 android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent" android:gravity="center_horizontal"
             android:layout_height="wrap_content" android:layout_weight="1" android:orientation="horizontal">
             <TextView android:id="@+id/tvDataOrder3" style="@style/App_ListView_Category_Head"
-                android:layout_width="wrap_content" android:text="@string/data_order_3"
+                android:layout_width="wrap_content" android:text="@string/data_order_7"
                 android:layout_height="wrap_content"  />
             <ImageView android:id="@+id/ivDataOrder3"
                 android:layout_width="wrap_content"

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Practice</string>
     <string name="app_path" translatable="false">Practice</string>
-    <string name="exit_tips">再按一次退出应用</string>
+    <string name="exit_tips" translatable="false">再按一次退出应用</string>
 
     <string name="tab_home">Home</string>
     <string name="tab_category">Category</string>
@@ -23,20 +23,30 @@
 
     <string name="head_search_hit">AI 实习</string>
     <string name="head_tab_category_1">行业</string>
-    <string name="head_tab_category_2">职业</string>
-    <string name="head_tab_category_3">职位</string>
+    <string name="head_tab_category_2">专业</string>
+    <string name="head_tab_category_3">职业</string>
     <string name="category_head_1" translatable="false">理科</string>
     <string name="category_head_2" translatable="false">工科</string>
     <string name="category_head_3" translatable="false">文科</string>
     <string name="category_head_4" translatable="false">商科</string>
+    <string name="category_head_5" translatable="false">部门</string>
+    <string name="category_head_6" translatable="false">职位</string>
 
     <string name="data_order_0">职业</string>
     <string name="data_order_1">行业</string>
     <string name="data_order_2">距离</string>
-    <string name="data_order_3">工资</string>
-    <string name="data_order_4">排序</string>
-    <string name="data_order_5">学历</string>
-    <string name="data_order_6">工作经验</string>
+    <string name="data_order_3">报酬</string>
+    <string name="data_order_4" translatable="false">排序</string>
+    <string name="data_order_5" translatable="false">学历</string>
+    <string name="data_order_6" translatable="false">工作经验</string>
+    <string name="data_order_7" translatable="false">时间</string>
+
+    <string name="reward_hour">时薪</string>
+    <string name="reward_day">日薪</string>
+    <string name="reward_month">月薪</string>
+    <string name="distance_nearby">附近</string>
+    <string name="distance_area">行政区域</string>
+    <string name="distance_subway">地铁沿线</string>
 
     <string name="resume_head_1">基本信息</string>
     <string name="resume_head_2">实习/工作经历</string>
@@ -133,7 +143,7 @@
 
 
 
-    <string name="folder_all">所有照片</string>
+    <string name="folder_all" translatable="false">所有照片</string>
     <string name="preview">预览</string>
     <string name="msg_no_camera">没有系统相机</string>
     <string name="msg_amount_limit">已经达到最高选择数量</string>

@@ -1,14 +1,18 @@
 package com.xujun.app.practice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -25,6 +29,8 @@ import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
 import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
+import com.xujun.app.model.Member;
+import com.xujun.util.UIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +42,35 @@ public class OfficeActivity extends BaseActivity implements View.OnClickListener
 
     private List<String> items=new ArrayList<String>();
 
+    @ViewInject(R.id.list)
+    private ListView            mListView;
+
+    @ViewInject(R.id.btnSubmit)
+    private Button              mSubmitBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_office);
+
+        ViewUtils.inject(this);
+
         mHeadTitle.setText(getText(R.string.office_detail));
         initHeadBackView();
         hideSearchEditView();
 
         mHeadBtnRight.setText(getText(R.string.share));
         mHeadBtnRight.setOnClickListener(this);
-        mListView=(ListView)findViewById(R.id.list);
+
+        mSubmitBtn.setOnClickListener(this);
+    }
+
+    private void openLoginActivity(){
+        Intent intent=new Intent(OfficeActivity.this, LoginActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putInt(AppConfig.PARAM_LOGIN_SOURCE, AppConfig.LOGIN_TYPE_OFFICE);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, AppConfig.REQUEST_RESUME_LOGIN);
     }
 
     @Override
@@ -56,12 +80,36 @@ public class OfficeActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             }
+            case R.id.btnSubmit:{
+                if (mMember==null){
+                    openLoginActivity();
+                }else {
+                    sendRequest();
+                }
+                break;
+            }
             case R.id.btnHeadRight:{
                 mController.getConfig().setPlatforms(SHARE_MEDIA.SINA,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE,SHARE_MEDIA.SMS,SHARE_MEDIA.EMAIL);
                 mController.openShare(OfficeActivity.this,false);
                 break;
             }
         }
+    }
+
+
+    private void sendRequest(){
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data) {
+        if (requestCode==AppConfig.REQUEST_RESUME_LOGIN){
+            if (resultCode==AppConfig.SUCCESS){
+                mMember=(Member)mAppContext.readObject(AppConfig.OBJECT_MEMBER);
+                sendRequest();
+            }
+        }
+        super.onActivityResult(requestCode,resultCode,data);
     }
 
     @Override

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">实习</string>
+    <string name="app_name">够格</string>
 
     <string name="tab_home">首页</string>
     <string name="tab_category">分类</string>
@@ -22,15 +22,13 @@
 
     <string name="head_search_hit">AI 实习</string>
     <string name="head_tab_category_1">行业</string>
-    <string name="head_tab_category_2">职业</string>
-    <string name="head_tab_category_3">职位</string>
+    <string name="head_tab_category_2">专业</string>
+    <string name="head_tab_category_3">职业</string>
 
-    <string name="data_order_0">职业</string>
-    <string name="data_order_1">行业</string>
+    <string name="data_order_0">部门</string>
+    <string name="data_order_1">职位</string>
     <string name="data_order_2">距离</string>
-    <string name="data_order_3">工资</string>
-    <string name="data_order_4">排序</string>
-
+    <string name="data_order_3">报酬</string>
 
     <string name="office_detail">职位详情</string>
     <string name="office_submit">申请职位</string>

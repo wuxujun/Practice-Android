@@ -56,6 +56,7 @@ public class HomeCateAdapter extends BaseAdapter {
         CategoryInfo info=items.get(position);
         if (info!=null){
             holder.title.setText(info.getCategory());
+            holder.name.setTitleText(info.getCategory().substring(0, 1));
         }
         return convertView;
     }

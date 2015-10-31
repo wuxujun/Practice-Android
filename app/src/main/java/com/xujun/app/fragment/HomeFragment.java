@@ -13,16 +13,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.db.sqlite.WhereBuilder;
 import com.lidroid.xutils.exception.DbException;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xujun.app.adapter.HomeCateAdapter;
 import com.xujun.app.adapter.NetworkImageHolderView;
 import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.OfficeInfo;
+import com.xujun.app.model.OfficeResp;
 import com.xujun.app.practice.AppConfig;
 import com.xujun.app.practice.CategoryActivity;
 import com.xujun.app.practice.OfficeActivity;
@@ -31,9 +37,14 @@ import com.xujun.app.widget.HeadBannerView;
 import com.xujun.app.widget.HomeHeadView;
 import com.xujun.banner.BViewHolderCreator;
 import com.xujun.banner.Banner;
+import com.xujun.util.JsonUtil;
+import com.xujun.util.L;
+import com.xujun.util.URLs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xujunwu on 15/8/1.
@@ -91,29 +102,37 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         reloadGridViewData();
 
         items.clear();
-        OfficeInfo info=new OfficeInfo();
-        info.setId(1);
-        info.setName("测试工程师");
-        items.add(info);
-        info=new OfficeInfo();
-        info.setId(2);
-        info.setName("销售人员");
-        items.add(info);
+        Map<String,Object> requestMap=new HashMap<String,Object>();
+        requestMap.put("start", "0");
+        requestMap.put("end", "20");
+        HttpUtils http=new HttpUtils();
+        L.e(TAG,URLs.OFFICES_LIST_URL);
+        http.send(HttpRequest.HttpMethod.POST, URLs.OFFICES_LIST_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                L.e("onSuccess() " + responseInfo.result);
+                parserHttpResponse(responseInfo.result);
+            }
 
-        info=new OfficeInfo();
-        info.setId(3);
-        info.setName("文秘");
-        items.add(info);
-        info=new OfficeInfo();
-        info.setId(4);
-        info.setName("UI设计");
-        items.add(info);
-        mAdapter.notifyDataSetChanged();
+            @Override
+            public void onFailure(HttpException e, String s) {
+                L.i("onFailure() " + s);
+            }
+        });
     }
 
     @Override
     public void parserHttpResponse(String result) {
-
+        L.e(TAG,"......."+result);
+        try{
+            OfficeResp resp=(OfficeResp) JsonUtil.ObjFromJson(result,OfficeResp.class);
+            if (resp.getSuccess()==1){
+                items.addAll(resp.getRoot());
+            }
+            mAdapter.notifyDataSetChanged();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void reloadBannerData(List<String>  images){

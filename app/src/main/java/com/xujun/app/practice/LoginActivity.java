@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,6 +23,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andreabaccega.formedittextvalidator.EmptyValidator;
 import com.andreabaccega.formedittextvalidator.OrValidator;
@@ -33,11 +35,28 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.linkedin.platform.LISession;
+import com.linkedin.platform.LISessionManager;
+import com.linkedin.platform.errors.LIAuthError;
+import com.linkedin.platform.listeners.AuthListener;
+import com.linkedin.platform.utils.Scope;
+import com.umeng.message.UmengRegistrar;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.controller.listener.SocializeListeners;
+import com.umeng.socialize.exception.SocializeException;
+import com.umeng.socialize.sso.SinaSsoHandler;
+import com.umeng.socialize.sso.UMQQSsoHandler;
+import com.umeng.socialize.sso.UMSsoHandler;
+import com.umeng.socialize.weixin.controller.UMWXHandler;
 import com.xujun.app.model.LoginResp;
 import com.xujun.util.JsonUtil;
 import com.xujun.util.L;
 import com.xujun.util.StringUtil;
 import com.xujun.util.URLs;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,6 +86,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private Button          linkedinBtn;
 
     private int             sourceType=10;
+
+
+    private UMSocialService mController= UMServiceFactory.getUMSocialService("com.umeng.login");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +123,25 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         if (!StringUtil.isEmpty(password)){
             passwordET.setText(password);
         }
+        initPlatforms();
+    }
+
+    private void initPlatforms()
+    {
+        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(LoginActivity.this, AppConfig.QQ_APPID,
+                AppConfig.QQ_APPSECRET);
+        qqSsoHandler.addToSocialSDK();
+
+        UMWXHandler wxHandler = new UMWXHandler(LoginActivity.this,AppConfig.WEIXIN_APPID,AppConfig.WEIXIN_APPSECRET);
+        wxHandler.addToSocialSDK();
+
+        mController.getConfig().setSsoHandler(new SinaSsoHandler());
+
+
+    }
+
+    private static Scope buildScope(){
+        return Scope.build(Scope.R_BASICPROFILE,Scope.W_SHARE);
     }
 
     @Override
@@ -116,19 +157,31 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 break;
             }
             case R.id.btnQQ:{
-
+                qqLogin();
                 break;
             }
             case R.id.btnWeixin:{
-                showCroutonMessage("微信登录开发中");
+                weixinLogin();
                 break;
             }
             case R.id.btnWeibo:{
-
+                weiboLogin();
                 break;
             }
             case R.id.btnLinkedin:{
-                showCroutonMessage("LinkedIn登录开发中");
+
+                LISessionManager.getInstance(getApplicationContext()).init(this, buildScope(), new AuthListener() {
+                    @Override
+                    public void onAuthSuccess() {
+                        L.e("Success");
+                    }
+
+                    @Override
+                    public void onAuthError(LIAuthError error) {
+                        L.e("Failed "+error.toString());
+                    }
+                }, true);
+
                 break;
             }
             default:
@@ -196,5 +249,161 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**使用SSO授权必须添加如下代码 */
+        UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode);
+        if(ssoHandler != null){
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+
+        LISessionManager.getInstance(mContext).onActivityResult(this,requestCode,resultCode,data);
+    }
+
+
+    private void weixinLogin(){
+        mController.doOauthVerify(LoginActivity.this, SHARE_MEDIA.WEIXIN, new SocializeListeners.UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA share_media) {
+                Toast.makeText(LoginActivity.this, "微信登录请求中...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete(Bundle bundle, SHARE_MEDIA share_media) {
+                mController.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.WEIXIN, new SocializeListeners.UMDataListener() {
+                    @Override
+                    public void onStart() {
+                        Toast.makeText(LoginActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete(int status, Map<String, Object> info) {
+                        if (status == 200 && info != null) {
+                            L.e("weixin OnCompelte() " + info.toString() + "");
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_GENDER, info.get("sex").toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_CITY, info.get("city").toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_USER_TYPE, "1");
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_UNIONID, info.get("unionid").toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_OPENID, info.get("openid").toString());
+                            requestLogin("1", info.get("openid").toString(), info.get("nickname").toString(), info.get("headimgurl").toString());
+                        } else {
+                            Toast.makeText(LoginActivity.this, "发生错误", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onError(SocializeException e, SHARE_MEDIA share_media) {
+                L.e("Weibo Login onError " + e.getMessage());
+                Toast.makeText(LoginActivity.this, "微信登录发生错误..." + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media) {
+                L.e("Weibo Login onCancel " + share_media.toString());
+                Toast.makeText(LoginActivity.this, "微信登录已取消", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    private void qqLogin(){
+        mController.doOauthVerify(LoginActivity.this,SHARE_MEDIA.QQ,new SocializeListeners.UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA share_media) {
+                L.e("QQ onStart().....");
+                Toast.makeText(LoginActivity.this,"QQ登录请求中...",Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onComplete(Bundle bundle, SHARE_MEDIA share_media) {
+                mController.getPlatformInfo(LoginActivity.this,SHARE_MEDIA.QQ,new SocializeListeners.UMDataListener() {
+                    @Override
+                    public void onStart() {
+                        Toast.makeText(LoginActivity.this,"获取平台数据开始...",Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete(int status, Map<String, Object> info) {
+                        if (status==200&&info!=null){
+                            L.e("onComplete() " + info.toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_GENDER, info.get("gender").toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_CITY, info.get("city").toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_USER_TYPE, "2");
+                            requestLogin("2","qq123456", info.get("screen_name").toString(), info.get("profile_image_url").toString());
+                        }else{
+                            Toast.makeText(LoginActivity.this,"发生错误",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onError(SocializeException e, SHARE_MEDIA share_media) {
+                Toast.makeText(LoginActivity.this,"授权失败",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media) {
+                Toast.makeText(LoginActivity.this,"QQ登录已取消",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void weiboLogin(){
+        mController.doOauthVerify(LoginActivity.this, SHARE_MEDIA.SINA,new SocializeListeners.UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA share_media) {
+                L.e("Weibo login start...");
+                Toast.makeText(LoginActivity.this,"微博登录请求中...",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete(Bundle bundle, SHARE_MEDIA share_media) {
+                mController.getPlatformInfo(LoginActivity.this,SHARE_MEDIA.SINA,new SocializeListeners.UMDataListener() {
+                    @Override
+                    public void onStart() {
+                        Toast.makeText(LoginActivity.this,"获取平台数据开始...",Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onComplete(int status, Map<String, Object> info) {
+                        if (status==200&&info!=null){
+                            L.e("..."+info.toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_GENDER, info.get("gender").toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_CITY, info.get("location").toString());
+                            mAppContext.setProperty(AppConfig.CONF_THRID_LOGIN_USER_TYPE, "3");
+                            requestLogin("3",info.get("uid").toString(), info.get("screen_name").toString(), info.get("profile_image_url").toString());
+                        }else{
+                            L.e("发生错误." + status);
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onError(SocializeException e, SHARE_MEDIA share_media) {
+                Toast.makeText(LoginActivity.this,"微博登录发生错误..."+e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media) {
+                Toast.makeText(LoginActivity.this,"微博登录已取消",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void requestLogin(String userType,String openid,String nick,String avatar){
+
+        Map<String,String> sb=new HashMap<String, String>();
+        sb.put("imei",mAppContext.getIMSI());
+        sb.put("umengToken", UmengRegistrar.getRegistrationId(mContext));
+        sb.put("userNick",nick);
+        sb.put("openid",openid);
+        sb.put("avatar",avatar);
+        sb.put("userType", userType);
+        sb.put("mobile", "");
+
+    }
 }
 

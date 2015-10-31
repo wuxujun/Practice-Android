@@ -65,7 +65,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     private TopAdapter      topAdapter;
 
     private String          mHeadTabType="10";
-    private String          mHeadCategory="1010";
+    private String          mHeadCategory="30";
 
     @ViewInject(R.id.list)
     private ListView      mListView;
@@ -84,9 +84,9 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     private View.OnClickListener  mHeadClickListener=new View.OnClickListener(){
         @Override
         public void onClick(View view) {
-           if (mHeadTabType.equals("10")){
+           if (mHeadTabType.equals("20")){
                selectHeadView(view);
-           }else if(mHeadTabType.equals("20")){
+           }else if(mHeadTabType.equals("10")){
                switch (view.getId()){
                    case R.id.btnCategory1:{
                        showCategoryPopupWindow(1);
@@ -106,20 +106,21 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
                    }
                }
            }else if(mHeadTabType.equals("30")){
+               headView.getCategory1().setTextColor(getResources().getColor(R.color.btn_color));
+               headView.getCategory2().setTextColor(getResources().getColor(R.color.btn_color));
                switch (view.getId()){
                    case R.id.btnCategory1:{
-                       showCategoryPopupWindow(5);
+                       headView.getCategory1().setTextColor(getResources().getColor(R.color.black));
+                       mHeadCategory="2010";
                        break;
                    }
                    case R.id.btnCategory2:{
-                       showCategoryPopupWindow(6);
-                       break;
-                   }
-                   case R.id.btnCategory3:{
-                       showCategoryPopupWindow(7);
+                       headView.getCategory2().setTextColor(getResources().getColor(R.color.black));
+                       mHeadCategory="2020";
                        break;
                    }
                }
+               loadData();
            }
         }
     };
@@ -172,7 +173,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle saveinstanceState){
         mContentView=inflater.inflate(R.layout.fragment_list,null);
-        ViewUtils.inject(this,mContentView);
+        ViewUtils.inject(this, mContentView);
         headView=new CategoryHeadView(mContext,mHeadClickListener);
         LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 0, 0, 0);
@@ -182,7 +183,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         footView.getListView().setOnItemClickListener(onTopItemClickListener);
         resetHeadView();
         mListView.addFooterView(footView);
-
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
         return mContentView;
@@ -193,6 +193,10 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         headView.getCategory2().setTextColor(getResources().getColor(R.color.btn_color));
         headView.getCategory3().setTextColor(getResources().getColor(R.color.btn_color));
         headView.getCategory4().setTextColor(getResources().getColor(R.color.btn_color));
+        mHeadLinearLayout.setVisibility(View.VISIBLE);
+        if (mHeadTabType.equals("10")){
+            mHeadLinearLayout.setVisibility(View.GONE);
+        }
     }
 
     public void reloadData(String type){
@@ -207,77 +211,44 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         headView.getArrow3().setVisibility(View.GONE);
         headView.getArrow4().setVisibility(View.GONE);
         headView.getLine3().setVisibility(View.VISIBLE);
-        if (mHeadTabType.equals("10")){
+        if (mHeadTabType.equals("20")){
             headView.getCategory1().setText(R.string.category_head_1);
             headView.getCategory2().setText(R.string.category_head_2);
             headView.getCategory3().setText(R.string.category_head_3);
             headView.getCategory4().setText(R.string.category_head_4);
             mListView.setAdapter(mAdapter);
-
-
+            mHeadCategory="1010";
             loadData();
-        }else if(mHeadTabType.equals("20")){
-            headView.getCategory1().setText(R.string.data_order_0);
-            headView.getCategory2().setText(R.string.data_order_2);
-            headView.getCategory3().setText(R.string.data_order_3);
-            headView.getCategory4().setText(R.string.data_order_4);
-            headView.getArrow1().setVisibility(View.VISIBLE);
-            headView.getArrow2().setVisibility(View.VISIBLE);
-            headView.getArrow3().setVisibility(View.VISIBLE);
-            headView.getArrow4().setVisibility(View.VISIBLE);
-            OfficeInfo info=new OfficeInfo();
-            info.setId(1);
-            info.setName("测试工程师");
-            officeInfos.add(info);
-            info=new OfficeInfo();
-            info.setId(2);
-            info.setName("销售人员");
-            officeInfos.add(info);
-            mListView.setAdapter(officeAdapter);
-            officeAdapter.notifyDataSetChanged();
-
-            topAdapter.notifyDataSetChanged();
-
+        }else if(mHeadTabType.equals("10")){
+            mHeadCategory="30";
+            loadData();
         }else{
-            headView.getCategory1().setText(R.string.head_tab_category_3);
-            headView.getCategory2().setText(R.string.data_order_5);
-            headView.getCategory3().setText(R.string.data_order_6);
+            headView.getCategory1().setText(R.string.category_head_5);
+            headView.getCategory2().setText(R.string.category_head_6);
+            headView.getLinearLayout3().setVisibility(View.GONE);
             headView.getLinearLayout4().setVisibility(View.GONE);
+            headView.getLine2().setVisibility(View.GONE);
             headView.getLine3().setVisibility(View.GONE);
-            headView.getArrow1().setVisibility(View.VISIBLE);
-            headView.getArrow2().setVisibility(View.VISIBLE);
-            headView.getArrow3().setVisibility(View.VISIBLE);
-
-            OfficeInfo info=new OfficeInfo();
-            info.setId(1);
-            info.setName("测试工程师");
-            officeInfos.add(info);
-            info=new OfficeInfo();
-            info.setId(2);
-            info.setName("销售人员");
-            officeInfos.add(info);
-
-            mListView.setAdapter(officeAdapter);
-            officeAdapter.notifyDataSetChanged();
-
-            topAdapter.notifyDataSetChanged();
+            mListView.setAdapter(mAdapter);
+            mHeadCategory="2010";
+            loadData();
         }
     }
 
     public void loadData(){
         items.clear();
-        try{
-            DbUtils db=DbUtils.create(mContext, AppConfig.DB_NAME);
-            List<CategoryInfo> categoryInfoList=db.findAll(Selector.from(CategoryInfo.class).where("parent_code","=",mHeadCategory));
-            if (categoryInfoList!=null&&categoryInfoList.size()>0){
+        try {
+            DbUtils db = DbUtils.create(mContext, AppConfig.DB_NAME);
+            List<CategoryInfo> categoryInfoList = db.findAll(Selector.from(CategoryInfo.class).where("parent_code", "=", mHeadCategory));
+            if (categoryInfoList != null && categoryInfoList.size() > 0) {
                 items.addAll(categoryInfoList);
             }
             mAdapter.notifyDataSetChanged();
-        }catch (DbException e){
+        } catch (DbException e) {
             e.printStackTrace();
         }
-        topInfos.clear();
 
+        topInfos.clear();
         OfficeInfo info=new OfficeInfo();
         info.setId(1);
         info.setName("测试工程师");
@@ -305,20 +276,11 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (mHeadTabType.equals("10")) {
-            CategoryInfo categoryInfo = items.get(i);
-            if (categoryInfo != null) {
-                Intent intent = new Intent(getSherlockActivity(), CategoryActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(AppConfig.PARAM_CATEGORY_INFO, categoryInfo);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        }else{
-            OfficeInfo officeInfo=officeInfos.get(i);
-            Intent intent = new Intent(getSherlockActivity(), OfficeActivity.class);
+        CategoryInfo categoryInfo = items.get(i);
+        if (categoryInfo != null) {
+            Intent intent = new Intent(getSherlockActivity(), CategoryActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(AppConfig.PARAM_OFFICE_INFO, officeInfo);
+            bundle.putSerializable(AppConfig.PARAM_CATEGORY_INFO, categoryInfo);
             intent.putExtras(bundle);
             startActivity(intent);
         }
@@ -432,7 +394,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         }catch (DbException e){
             e.printStackTrace();
         }
-        mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(getActivity(), categoryInfos));
+        mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(getActivity(), categoryInfos,true));
         mCategoryPopupWindow.getListView().setOnItemClickListener(mCategoryItemListener);
     }
 

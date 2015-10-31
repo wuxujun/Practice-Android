@@ -88,6 +88,7 @@ public class SettingActivity extends BaseActivity{
         @Override
         public void onClick(View view) {
             mAppContext.deleteObject(AppConfig.OBJECT_MEMBER);
+            mAppContext.setProperty(AppConfig.CONF_LOGIN_FLAG,"0");
             Intent intent=new Intent();
             Bundle bundle=new Bundle();
             intent.putExtra(AppConfig.PARAM_LOGOUT_RESULT,"1");

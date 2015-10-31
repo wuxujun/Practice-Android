@@ -53,7 +53,6 @@ public abstract class BaseFragment extends SherlockFragment{
         loadData();
     }
 
-
     public RequestParams  getRequestParams(Map<String,Object> maps){
         RequestParams params=new RequestParams();
         maps.put("imei",mAppContext.getIMSI());
