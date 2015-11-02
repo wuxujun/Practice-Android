@@ -4,6 +4,12 @@
 /.idea/libraries
 .DS_Store
 /build
+/Crouton
+/dialogplus
+/linkedin
+/multi-image-selector
+/rebound-android
+/rebound-core
 /captures
 /app/practice.jks
 /app/release
