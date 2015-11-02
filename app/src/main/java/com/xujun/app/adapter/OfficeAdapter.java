@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xujun.app.model.OfficeInfo;
+import com.xujun.app.practice.AppConfig;
+import com.xujun.app.practice.DataUtils;
 import com.xujun.app.practice.R;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class OfficeAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<OfficeInfo> items=new ArrayList<OfficeInfo>();
+    private DataUtils           dataUtils;
 
     public void addAll(List<OfficeInfo> list){
         items.clear();
@@ -28,8 +31,14 @@ public class OfficeAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void add(List<OfficeInfo> list){
+        items.addAll(list);
+        notifyDataSetChanged();
+    }
+
     public OfficeAdapter(Context context){
         this.mContext=context;
+        dataUtils=new DataUtils(context);
     }
 
     @Override
@@ -48,19 +57,22 @@ public class OfficeAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
         ItemView        holder;
         if (convertView==null){
             convertView= LayoutInflater.from(mContext).inflate(R.layout.home_listview_item,null);
             holder=new ItemView();
-            holder.title=(TextView)convertView.findViewById(R.id.tvItemTitle);
+            holder.company=(TextView)convertView.findViewById(R.id.tvItemCompany);
+            holder.office=(TextView)convertView.findViewById(R.id.tvItemOffice);
+            holder.content=(TextView)convertView.findViewById(R.id.tvItemContent);
             convertView.setTag(holder);
         }else{
             holder=(ItemView)convertView.getTag();
         }
-        OfficeInfo info=items.get(i);
+        OfficeInfo info=items.get(position);
         if (info!=null){
-            holder.title.setText(info.getName());
+            holder.office.setText(info.getName());
+            dataUtils.displayText(holder.company, AppConfig.DATA_TYPE_COMPANY,String.valueOf(info.getCompanyId()));
         }
         return convertView;
     }
@@ -69,6 +81,9 @@ public class OfficeAdapter extends BaseAdapter {
     static class ItemView
     {
         public ImageView icon;
-        public TextView title;
+        public TextView company;
+        public TextView office;
+        public TextView content;
     }
+
 }

@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +25,7 @@ import com.xujun.util.SystemBarTintManager;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EncodingUtils;
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -40,7 +38,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * Created by xujunwu on 15/7/31.
  */
-public abstract class BaseActivity extends SherlockActivity implements View.OnClickListener{
+public abstract class BaseTActivity extends SherlockActivity implements View.OnClickListener{
 
     protected AppContext    mAppContext;
     protected Context       mContext;
@@ -51,7 +49,18 @@ public abstract class BaseActivity extends SherlockActivity implements View.OnCl
     protected LinearLayout      mHeadBtnLeft;
     protected Button            mHeadBtnRight;
     protected EditText mHeadEditText;
+
     protected LinearLayout      mHeadSearch;
+
+    protected LinearLayout        mHeadCategory;
+    protected LinearLayout        mHeadTab1;
+    protected LinearLayout        mHeadTab2;
+    protected LinearLayout        mHeadTab3;
+
+    protected TextView mHeadTabText1;
+    protected TextView mHeadTabText2;
+    protected TextView mHeadTabText3;
+
 
     protected ListView      mListView;
 
@@ -78,19 +87,30 @@ public abstract class BaseActivity extends SherlockActivity implements View.OnCl
         getActionBar().setDisplayShowTitleEnabled(false);
         getActionBar().setDisplayShowCustomEnabled(true);
 
-        View actionbarLayout= LayoutInflater.from(this).inflate(R.layout.default_actionbar,null);
+        View actionbarLayout= LayoutInflater.from(this).inflate(R.layout.custom_actionbar,null);
         mHeadTitle=(TextView)actionbarLayout.findViewById(R.id.tvHeadTitle);
         mHeadBack=(ImageButton)actionbarLayout.findViewById(R.id.ibHeadBack);
-        mHeadBack.setOnClickListener(this);
+        mHeadBack.setVisibility(View.VISIBLE);
+        actionbarLayout.findViewById(R.id.tvHeadCity).setVisibility(View.GONE);
+        actionbarLayout.findViewById(R.id.ivHeadArrow).setVisibility(View.GONE);
         mHeadBtnLeft=(LinearLayout)actionbarLayout.findViewById(R.id.btnHeadLeft);
         mHeadBtnRight=(Button)actionbarLayout.findViewById(R.id.btnHeadRight);
         mHeadSearch=(LinearLayout)actionbarLayout.findViewById(R.id.llHeadSearch);
         mHeadEditText=(EditText)actionbarLayout.findViewById(R.id.etHeadSearch);
+        mHeadCategory=(LinearLayout)actionbarLayout.findViewById(R.id.llHeadCategory);
+        mHeadTab1=(LinearLayout)actionbarLayout.findViewById(R.id.btnCategoryTab1);
+        mHeadTab2=(LinearLayout)actionbarLayout.findViewById(R.id.btnCategoryTab2);
+        mHeadTab3=(LinearLayout)actionbarLayout.findViewById(R.id.btnCategoryTab3);
+
+        mHeadTabText1=(TextView)actionbarLayout.findViewById(R.id.tvCategoryTab1);
+        mHeadTabText2=(TextView)actionbarLayout.findViewById(R.id.tvCategoryTab2);
+        mHeadTabText3=(TextView)actionbarLayout.findViewById(R.id.tvCategoryTab3);
+
         getActionBar().setCustomView(actionbarLayout);
     }
 
-
     public void initHeadBackView(){
+
         mHeadBack.setOnClickListener(this);
     }
 
@@ -103,6 +123,7 @@ public abstract class BaseActivity extends SherlockActivity implements View.OnCl
         mHeadTitle.setVisibility(View.VISIBLE);
         mHeadSearch.setVisibility(View.GONE);
     }
+
 
     public boolean dispatchKeyEvent(KeyEvent event){
         int keyCode=event.getKeyCode();

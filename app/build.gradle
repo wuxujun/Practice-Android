@@ -7,8 +7,8 @@ android {
         applicationId 'com.xujun.app.practice'
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 8
-        versionName "1.0.8"
+        versionCode 9
+        versionName "1.0.9"
     }
     signingConfigs{
         myConfig{
@@ -38,13 +38,13 @@ android {
     }
     productFlavors {
         development {
-            versionCode 8
-            versionName '1.0.8'
+            versionCode 9
+            versionName '1.0.9'
             signingConfig signingConfigs.myConfig
         }
         hiapk {
-            versionCode 8
-            versionName '1.0.8'
+            versionCode 9
+            versionName '1.0.9'
             signingConfig signingConfigs.myConfig
         }
     }

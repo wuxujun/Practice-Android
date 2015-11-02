@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_marginTop="@dimen/dimen_05" android:layout_marginBottom="@dimen/dimen_05"
+        android:layout_height="wrap_content" android:orientation="vertical" android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:id="@+id/tvTitle" android:textColor="@color/black" android:textSize="@dimen/font_size_18" android:textStyle="bold"
+                android:layout_width="match_parent" android:text="职位描述" android:gravity="left|center_vertical" android:layout_marginTop="@dimen/dimen_10"
+                android:layout_height="wrap_content"  android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"/>
+            <View
+                android:layout_width="76dp " android:layout_marginLeft="@dimen/dimen_10" android:layout_marginTop="@dimen/dimen_05"
+                android:layout_height="@dimen/line_h" android:background="@color/gray_disabled"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvContent" android:textColor="@color/gray_color" android:textSize="@dimen/font_size_14"
+        android:layout_width="match_parent" android:text="123" android:gravity="left|center_vertical"
+        android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_10"/>
+    </LinearLayout>
+</LinearLayout>

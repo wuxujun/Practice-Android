@@ -14,8 +14,8 @@ public class CityInfo extends BaseEntity{
     private String    cityId;
     @Column(column = "type")
     private int       type;  //0 省 1地市 2 县区
-    @Column(column = "pId")
-    private String  pId;
+    @Column(column = "pid")
+    private String  pid;
 
     @Column(column = "cityName")
     private String    cityName;
@@ -38,12 +38,12 @@ public class CityInfo extends BaseEntity{
         this.type = type;
     }
 
-    public String getpId() {
-        return pId;
+    public String getPid() {
+        return pid;
     }
 
-    public void setpId(String pId) {
-        this.pId = pId;
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getCityName() {

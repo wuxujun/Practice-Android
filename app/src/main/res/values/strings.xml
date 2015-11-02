@@ -48,6 +48,10 @@
     <string name="distance_area">行政区域</string>
     <string name="distance_subway">地铁沿线</string>
 
+    <string name="office_action_1">投递</string>
+    <string name="office_action_2">收藏</string>
+    <string name="office_action_3">关注</string>
+
     <string name="resume_head_1">基本信息</string>
     <string name="resume_head_2">实习/工作经历</string>
     <string name="resume_head_3">照片</string>
@@ -98,6 +102,7 @@
     <string name="btn_upload">上传</string>
     <string name="btn_save">保存</string>
     <string name="btn_ok">确认</string>
+    <string name="btn_search">搜索</string>
     <string name="btn_logout">注销用户</string>
 
     <string name="office_detail">Office Detail</string>

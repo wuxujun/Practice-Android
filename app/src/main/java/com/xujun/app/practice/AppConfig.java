@@ -117,6 +117,11 @@ public class AppConfig {
 
     public final static String  OBJECT_MEMBER="file_member";
 
+    public final static int     DATA_TYPE_COMPANY=1;
+    public final static int     DATA_TYPE_COMPANY_LOGO=2;
+    public final static int     DATA_TYPE_CATEGORY=3;
+
+
 
     private Context mContext;
     private static AppConfig    appConfig;

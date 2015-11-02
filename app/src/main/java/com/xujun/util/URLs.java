@@ -37,7 +37,11 @@ public class URLs implements Serializable {
     public final static String CITY_LIST_URL = URL_API_HOST+"index.php?/ums/city";
 	public final static String PARAM_LIST_URL = URL_API_HOST+"index.php?/ums/params";
 	public final static String OFFICES_LIST_URL = URL_API_HOST+"index.php?/ums/offices";
-
+	public final static String OFFICE_ACTION_URL = URL_API_HOST+"index.php?/ums/officeAction";
+	public final static String MY_OFFICE_REQ_URL = URL_API_HOST+"index.php?/ums/myOfficeReq";
+	public final static String MY_COLLECT_URL = URL_API_HOST+"index.php?/ums/myCollect";
+	public final static String COMPANY_LIST_URL=URL_API_HOST+"index.php?/ums/company";
+	public final static String SEARCH_LIST_URL=URL_API_HOST+"index.php?/ums/search";
 
 	public final static String RESUME_INFO_ADD = URL_API_HOST+"index.php?/ums/addResume";
 	public final static String RESUME_WORK_ADD = URL_API_HOST+"index.php?/ums/addMemberWork";

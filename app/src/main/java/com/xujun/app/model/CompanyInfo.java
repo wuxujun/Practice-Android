@@ -1,38 +1,56 @@
 package com.xujun.app.model;
 
+import com.lidroid.xutils.db.annotation.Column;
+import com.lidroid.xutils.db.annotation.Table;
+
 /**
  * Created by xujunwu on 15/8/7.
  */
-public class CompanyInfo extends BaseResp{
-    private int id;
-    private String  areaCode;
+@Table(name="t_company")
+public class CompanyInfo extends BaseEntity{
+
+    @Column(column = "cityId")
+    private String  cityId;
+    @Column(column = "name")
     private String  name;
+    @Column(column = "title")
     private String  title;
+    @Column(column = "logo")
     private String  logo;
+
+    @Column(column = "image")
     private String  image;
+
+    @Column(column = "content")
     private String  content;
+
+    @Column(column = "remark")
     private String  remark;
+
+    @Column(column = "logo")
     private String  address;
+
+    @Column(column = "tel")
     private String  tel;
+
+    @Column(column = "contact")
     private String  contact;
+
+    @Column(column = "logo")
     private String  category;
+
+    @Column(column = "website")
     private String  website;
+
+    @Column(column = "scale")
     private String  scale;
 
-    public int getId() {
-        return id;
+    public String getCityId() {
+        return cityId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAreaCode() {
-        return areaCode;
-    }
-
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 
     public String getName() {

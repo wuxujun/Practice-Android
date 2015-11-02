@@ -3,6 +3,7 @@ package com.xujun.util;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.xujun.app.practice.MRequestActivity;
 import com.xujun.app.practice.MyActivity;
 import com.xujun.app.practice.RHonorActivity;
 import com.xujun.app.practice.RInfoActivity;
@@ -46,6 +47,11 @@ public class UIHelper {
 
     public static void openMy(Activity activity){
         Intent intent=new Intent(activity, MyActivity.class);
+        activity.startActivity(intent);
+    }
+
+    public static void openMyRequest(Activity activity){
+        Intent intent=new Intent(activity, MRequestActivity.class);
         activity.startActivity(intent);
     }
 }

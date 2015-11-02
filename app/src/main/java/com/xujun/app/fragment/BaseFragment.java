@@ -60,12 +60,14 @@ public abstract class BaseFragment extends SherlockFragment{
         try{
             String json= JsonUtil.toJson(maps);
             L.i("getRequestParams() "+json);
-            params.setBodyEntity(new StringEntity(json));
+            params.addBodyParameter("content",json);
+//            params.setBodyEntity(new StringEntity(json));
         }catch (JSONException e){
             e.printStackTrace();
-        }catch (UnsupportedEncodingException e){
-            e.printStackTrace();
         }
+//        catch (UnsupportedEncodingException e){
+//            e.printStackTrace();
+//        }
         return  params;
     }
 

@@ -13,7 +13,7 @@
     <color name="item_background">#2F2F2F</color>
     <color name="target_header_bg_color">#45c979</color>
     <color name="target_header_weight_color">#45C979</color>
-    <color name="action_bar_bg_color">#303030</color>
+    <color name="action_bar_bg_color">#f7f8f9</color>
     <color name="action_bar_line_color">#ffffffff</color>
     <color name="action_bar_txt_color">@color/main_black_color</color>
     <color name="main_bg_color">#2A2A2A</color>

@@ -25,6 +25,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xujun.app.adapter.HomeCateAdapter;
 import com.xujun.app.adapter.NetworkImageHolderView;
+import com.xujun.app.adapter.OfficeAdapter;
 import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.OfficeInfo;
@@ -56,7 +57,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     List<OfficeInfo> items=new ArrayList<OfficeInfo>();
     List<CategoryInfo> categoryInfos=new ArrayList<CategoryInfo>();
 
-    private ItemAdapter     mAdapter;
+    private OfficeAdapter  mAdapter;
 
     private HomeHeadView    mHeadView;
 
@@ -69,7 +70,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
         mHeadView=new HomeHeadView(mContext);
-        mAdapter=new ItemAdapter();
+        mAdapter=new OfficeAdapter(mContext);
     }
 
     @Override
@@ -129,7 +130,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             if (resp.getSuccess()==1){
                 items.addAll(resp.getRoot());
             }
-            mAdapter.notifyDataSetChanged();
+            mAdapter.addAll(items);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -178,46 +179,4 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         }
     }
 
-    static class ItemView
-    {
-        public ImageView icon;
-        public TextView title;
-    }
-
-    class ItemAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View convertView, ViewGroup viewGroup) {
-            ItemView        holder;
-            if (convertView==null){
-               convertView= LayoutInflater.from(mContext).inflate(R.layout.home_listview_item,null);
-                holder=new ItemView();
-                holder.title=(TextView)convertView.findViewById(R.id.tvItemTitle);
-                convertView.setTag(holder);
-            }else{
-                holder=(ItemView)convertView.getTag();
-            }
-            OfficeInfo info=items.get(i);
-            if (info!=null){
-                holder.title.setText(info.getName());
-            }
-
-            return convertView;
-        }
-    }
 }

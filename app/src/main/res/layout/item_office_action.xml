@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout android:gravity="center_horizontal|center_vertical"
+        android:layout_width="match_parent" android:layout_marginTop="@dimen/dimen_05" android:layout_marginBottom="@dimen/dimen_05"
+        android:layout_height="80dp" android:orientation="horizontal" android:background="@color/white">
+        <LinearLayout android:gravity="center_vertical|center_horizontal"
+            android:layout_width="match_parent" android:orientation="vertical"
+            android:layout_height="wrap_content" android:layout_weight="2">
+            <TextView android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="简历匹配"/>
+            <TextView android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="简历修改"/>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_vertical"
+            android:layout_width="match_parent" android:orientation="horizontal"
+            android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginRight="@dimen/dimen_10">
+            <LinearLayout android:id="@+id/btnSubmit" android:gravity="center_vertical"
+                android:layout_width="match_parent" android:layout_weight="1"
+                android:layout_height="wrap_content" android:orientation="horizontal">
+                <ImageView  android:src="@drawable/ic_launcher"
+                    android:layout_width="32dp"  android:gravity="center_vertical|right"
+                    android:layout_height="32dp" android:layout_margin="@dimen/dimen_05"/>
+
+                <TextView  android:textColor="@color/black" android:textSize="@dimen/font_size_16"
+                    android:layout_width="match_parent" android:layout_weight="1" android:text="@string/office_action_1" android:gravity="center_vertical|left"
+                    android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_05"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/btnCollection" android:gravity="center_vertical"
+                android:layout_width="match_parent" android:layout_weight="1"
+                android:layout_height="wrap_content" android:orientation="horizontal">
+                <ImageView  android:src="@drawable/ic_launcher"
+                    android:layout_width="32dp"  android:gravity="center_vertical|right"
+                    android:layout_height="32dp" android:layout_margin="@dimen/dimen_05"/>
+
+                <TextView  android:textColor="@color/black" android:textSize="@dimen/font_size_16"
+                    android:layout_width="match_parent" android:layout_weight="1" android:text="@string/office_action_2" android:gravity="center_vertical|left"
+                    android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_05"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/btnAttention" android:gravity="center_vertical"
+                android:layout_width="match_parent" android:layout_weight="1"
+                android:layout_height="wrap_content" android:orientation="horizontal">
+                <ImageView android:src="@drawable/ic_launcher"
+                    android:layout_width="32dp"  android:gravity="center_vertical|right"
+                    android:layout_height="32dp" android:layout_margin="@dimen/dimen_05"/>
+
+                <TextView  android:textColor="@color/black" android:textSize="@dimen/font_size_16"
+                    android:layout_width="match_parent" android:layout_weight="1" android:text="@string/office_action_3" android:gravity="center_vertical|left"
+                    android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_05"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

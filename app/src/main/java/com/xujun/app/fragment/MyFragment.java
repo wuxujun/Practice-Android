@@ -111,6 +111,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                 Member  member=(Member)data.getSerializableExtra(AppConfig.PARAM_MEMBER);
                 mHeadView.getActionLayout().setVisibility(View.INVISIBLE);
                 if (member!=null) {
+                    mMember=member;
                     mHeadView.getUserName().setText(member.getMobile());
                 }
             }
@@ -119,6 +120,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                 Member  member=(Member)data.getSerializableExtra(AppConfig.PARAM_MEMBER);
                 mHeadView.getActionLayout().setVisibility(View.INVISIBLE);
                 if (member!=null) {
+                    mMember=member;
                     mHeadView.getUserName().setText(member.getMobile());
                 }
             }
@@ -149,6 +151,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                 mHeadView.getActionLayout().setVisibility(View.INVISIBLE);
                 Member member=(Member)mAppContext.readObject(AppConfig.OBJECT_MEMBER);
                 if (member!=null){
+                    mMember=member;
                     L.e("--------->"+member.getMobile());
                     mHeadView.getUserName().setText(member.getMobile());
                 }
@@ -174,6 +177,12 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                 break;
             }
             case 2:{
+                if (mMember!=null) {
+                    UIHelper.openMyRequest(getActivity());
+                }else {
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, AppConfig.REQUEST_MY_LOGIN);
+                }
                 break;
             }
             case 4:{
@@ -248,10 +257,15 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
     private View.OnClickListener mMyClickListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            if (mMember==null){
+                Intent intent=new Intent(getActivity(), LoginActivity.class);
+                startActivityForResult(intent, AppConfig.REQUEST_MY_LOGIN);
+                return;
+            }
             switch (view.getId()){
                 case R.id.tv_my_btn_0:{
-                    Intent intent=new Intent(getActivity(), MInternshipActivity.class);
-                    startActivity(intent);
+                    Intent intent=new Intent(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, AppConfig.REQUEST_MY_LOGIN);
                     break;
                 }
                 case R.id.tv_my_btn_1:{

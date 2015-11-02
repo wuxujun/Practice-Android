@@ -24,10 +24,12 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xujun.app.adapter.CategoryCheckBoxAdapter;
+import com.xujun.app.adapter.OfficeAdapter;
 import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CategoryResp;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.OfficeInfo;
+import com.xujun.app.model.OfficeResp;
 import com.xujun.app.practice.AppConfig;
 import com.xujun.app.practice.CategoryActivity;
 import com.xujun.app.practice.OfficeActivity;
@@ -61,8 +63,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     private List<OfficeInfo>    topInfos=new ArrayList<OfficeInfo>();
 
     private ItemAdapter     mAdapter;
-    private OfficeAdapter       officeAdapter;
-    private TopAdapter      topAdapter;
+    private OfficeAdapter   mOfficeAdapter;
 
     private String          mHeadTabType="10";
     private String          mHeadCategory="30";
@@ -128,7 +129,14 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     private AdapterView.OnItemClickListener onTopItemClickListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            OfficeInfo officeInfo=topInfos.get(i);
+            if (officeInfo!=null) {
+                Intent intent = new Intent(getActivity(), OfficeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(AppConfig.PARAM_OFFICE_INFO, officeInfo);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
         }
     };
 
@@ -166,8 +174,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
         mAdapter=new ItemAdapter();
-        officeAdapter=new OfficeAdapter();
-        topAdapter=new TopAdapter();
+        mOfficeAdapter=new OfficeAdapter(mContext);
     }
 
     @Override
@@ -179,7 +186,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         lp.setMargins(0, 0, 0, 0);
         mHeadLinearLayout.addView(headView, lp);
         footView=new CategoryFootView(mContext);
-        footView.getListView().setAdapter(topAdapter);
+        footView.getListView().setAdapter(mOfficeAdapter);
         footView.getListView().setOnItemClickListener(onTopItemClickListener);
         resetHeadView();
         mListView.addFooterView(footView);
@@ -249,24 +256,35 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         }
 
         topInfos.clear();
-        OfficeInfo info=new OfficeInfo();
-        info.setId(1);
-        info.setName("测试工程师");
-        topInfos.add(info);
-        info=new OfficeInfo();
-        info.setId(2);
-        info.setName("销售人员");
-        topInfos.add(info);
-        info=new OfficeInfo();
-        info.setId(3);
-        info.setName("销售人员");
-        topInfos.add(info);
-        topAdapter.notifyDataSetChanged();
+        Map<String,Object> requestMap=new HashMap<String,Object>();
+        requestMap.put("start", "0");
+        requestMap.put("end", "5");
+        HttpUtils http=new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST, URLs.OFFICES_LIST_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                L.e("onSuccess() " + responseInfo.result);
+                parserHttpResponse(responseInfo.result);
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                L.i("onFailure() " + s);
+            }
+        });
     }
 
     @Override
     public void parserHttpResponse(String result) {
-
+        try{
+            OfficeResp resp=(OfficeResp) JsonUtil.ObjFromJson(result,OfficeResp.class);
+            if (resp.getSuccess()==1){
+                topInfos.addAll(resp.getRoot());
+            }
+            mOfficeAdapter.addAll(topInfos);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -449,70 +467,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             if (info != null) {
                 holder.title.setText(info.getCategory());
                 holder.icon.setTitleText(info.getCategory().substring(0, 1));
-            }
-            return convertView;
-        }
-    }
-
-    class OfficeAdapter extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return officeInfos.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View convertView, ViewGroup viewGroup) {
-            ItemView        holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.home_listview_item, null);
-                holder = new ItemView();
-                holder.title = (TextView) convertView.findViewById(R.id.tvItemTitle);
-                convertView.setTag(holder);
-            } else {
-                holder = (ItemView) convertView.getTag();
-            }
-            return convertView;
-        }
-    }
-
-    class TopAdapter extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return topInfos.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return topInfos.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View convertView, ViewGroup viewGroup) {
-            ItemView        holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.home_listview_item, null);
-                holder = new ItemView();
-                holder.title = (TextView) convertView.findViewById(R.id.tvItemTitle);
-                convertView.setTag(holder);
-            } else {
-                holder = (ItemView) convertView.getTag();
             }
             return convertView;
         }

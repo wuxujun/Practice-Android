@@ -1,8 +1,13 @@
 package com.xujun.app.practice;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -24,19 +29,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 我的收藏
+ * 已申请的
  * Created by xujunwu on 15/9/6.
  */
-public class MCollectionActivity extends BaseActivity{
-
+public class MRequestActivity extends BaseActivity{
 
     private List<OfficeInfo>        items=new ArrayList<OfficeInfo>();
 
-    private OfficeAdapter           mAdapter;
-
-
     @ViewInject(R.id.list)
-    private ListView                mListView;
+    private ListView        mListView;
+
+    private OfficeAdapter    mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +47,12 @@ public class MCollectionActivity extends BaseActivity{
         setContentView(R.layout.fragment_list);
         ViewUtils.inject(this);
 
-        mHeadTitle.setText(getText(R.string.my_item_1));
+        mHeadTitle.setText("已申请的");
         initHeadBackView();
         hideSearchEditView();
         initView();
     }
+
 
     private void initView(){
         mAdapter=new OfficeAdapter(this);
@@ -63,9 +67,8 @@ public class MCollectionActivity extends BaseActivity{
         Map<String,Object> requestMap=new HashMap<String,Object>();
         requestMap.put("start", "0");
         requestMap.put("end", "20");
-        L.e(""+URLs.MY_COLLECT_URL);
         HttpUtils http=new HttpUtils();
-        http.send(HttpRequest.HttpMethod.POST, URLs.MY_COLLECT_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
+        http.send(HttpRequest.HttpMethod.POST, URLs.MY_OFFICE_REQ_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 L.e("onSuccess() " + responseInfo.result);
@@ -91,4 +94,5 @@ public class MCollectionActivity extends BaseActivity{
             e.printStackTrace();
         }
     }
+
 }

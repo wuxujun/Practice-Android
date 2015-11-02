@@ -1,5 +1,6 @@
 package com.xujun.app.practice;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -200,7 +201,7 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
             if (resp.getSuccess()==1){
                 items.addAll(resp.getRoot());
             }
-            mAdapter.notifyDataSetChanged();
+            mAdapter.addAll(items);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -369,6 +370,13 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        OfficeInfo officeInfo=items.get(i);
+        if (officeInfo!=null) {
+            Intent intent = new Intent(CategoryActivity.this, OfficeActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(AppConfig.PARAM_OFFICE_INFO, officeInfo);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 }

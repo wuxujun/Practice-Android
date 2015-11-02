@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="#000"
+        android:background="@color/action_bar_bg_color"
         android:orientation="horizontal" >
         <LinearLayout
             android:id="@+id/ll_tab_home"
@@ -28,13 +28,13 @@
                 android:background="#00000000"
                 android:clickable="false"
                 android:src="@drawable/ic_tab_home" />
-
             <TextView
                 android:id="@+id/tv_tab_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_home"
-                android:textColor="#ffffff" />
+                android:layout_marginTop="-5dp"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,14 +51,15 @@
                 android:layout_height="32dp"
                 android:background="#00000000"
                 android:clickable="false"
-                android:src="@drawable/ic_tab_home" />
+                android:src="@drawable/ic_tab_category" />
 
             <TextView
                 android:id="@+id/tv_tab_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_category"
-                android:textColor="#ffffff" />
+                android:layout_marginTop="-5dp"
+                android:textColor="@color/black" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/ll_tab_attention"
@@ -74,13 +75,14 @@
                 android:layout_height="32dp"
                 android:background="#00000000"
                 android:clickable="false"
-                android:src="@drawable/ic_tab_home" />
+                android:src="@drawable/ic_tab_attent" />
 
             <TextView
                 android:id="@+id/tv_tab_attention"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_attention"
+                android:layout_marginTop="-5dp"
                 android:textColor="#ffffff" />
         </LinearLayout>
         <LinearLayout
@@ -97,13 +99,14 @@
                 android:layout_height="32dp"
                 android:background="#00000000"
                 android:clickable="false"
-                android:src="@drawable/ic_tab_home" />
+                android:src="@drawable/ic_tab_resume" />
 
             <TextView
                 android:id="@+id/tv_tab_resume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_resume"
+                android:layout_marginTop="-5dp"
                 android:textColor="#ffffff" />
         </LinearLayout>
         <LinearLayout
@@ -127,6 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_my"
+                android:layout_marginTop="-5dp"
                 android:textColor="#ffffff" />
         </LinearLayout>
 

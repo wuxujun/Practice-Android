@@ -11,13 +11,13 @@
         <LinearLayout
             android:layout_width="match_parent" android:layout_gravity="center_vertical"
             android:layout_height="wrap_content" android:orientation="vertical">
-            <TextView android:id="@+id/tvItemTitle"  android:textSize="16sp"
+            <TextView android:id="@+id/tvItemCompany"  android:textSize="18sp"
                 android:layout_width="match_parent" android:text="[上海美国商会]企业社会实习"
                 android:layout_height="match_parent" android:textColor="@color/black" />
-                <TextView android:id="@+id/tvItemWorkTime" android:text="工作时间:秋/冬季,至少工作3个月"
-                    android:layout_width="match_parent"  android:textColor="@color/btn_color"
-                    android:layout_height="match_parent" android:textSize="12sp"/>
-                <TextView android:id="@+id/tvItemMoney" android:text="工资:200/天,超过800元/月扣税"
+            <TextView android:id="@+id/tvItemOffice" android:text="工作时间:秋/冬季,至少工作3个月"
+                    android:layout_width="match_parent"  android:textColor="@color/black"
+                    android:layout_height="match_parent" android:textSize="16sp"/>
+            <TextView android:id="@+id/tvItemContent" android:text="工资:200/天,超过800元/月扣税"
                     android:layout_width="match_parent" android:textColor="@color/btn_color"
                     android:layout_height="match_parent" android:textSize="12sp" />
 

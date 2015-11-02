@@ -25,6 +25,7 @@ import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CategoryResp;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.CityResp;
+import com.xujun.app.model.CompanyInfo;
 import com.xujun.app.model.ParamInfo;
 import com.xujun.app.model.ParamResp;
 import com.xujun.app.model.PhotoEntity;
@@ -77,6 +78,7 @@ public class StartActivity extends Activity{
                 db.createTableIfNotExist(AttentionEntity.class);
                 db.createTableIfNotExist(ParamInfo.class);
                 db.createTableIfNotExist(PhotoEntity.class);
+                db.createTableIfNotExist(CompanyInfo.class);
             }catch (DbException e){
                 e.printStackTrace();
             }
@@ -97,6 +99,7 @@ public class StartActivity extends Activity{
             db.createTableIfNotExist(AttentionEntity.class);
             db.createTableIfNotExist(ParamInfo.class);
             db.createTableIfNotExist(PhotoEntity.class);
+            db.createTableIfNotExist(CompanyInfo.class);
             db.close();
         }catch (DbException e){
             e.printStackTrace();
@@ -109,13 +112,17 @@ public class StartActivity extends Activity{
             L.e("..........LocalDatabaseVersion "+localDataVirsion+"  Server version:"+dataVersion);
             loadCategoryInfo("0","20");
         }else {
-            L.e("......... No updated .....");
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    openHome();
-                }
-            }, 1);
+            if (queryCategoryInfo()==0){
+                loadCategoryInfo("0","20");
+            }else {
+                L.e("......... No updated .....");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        openHome();
+                    }
+                }, 1);
+            }
         }
     }
 
@@ -253,6 +260,19 @@ public class StartActivity extends Activity{
         }
     }
 
+    private int queryCategoryInfo(){
+        try{
+            DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
+           List<CategoryInfo> categoryInfoList=db.findAll(CategoryInfo.class);
+            if (categoryInfoList!=null&&categoryInfoList.size()>0){
+                return categoryInfoList.size();
+            }
+        }catch (DbException e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     @Override
     protected void onResume(){
         super.onResume();
@@ -296,10 +316,9 @@ public class StartActivity extends Activity{
         maps.put("umeng_token", UmengRegistrar.getRegistrationId(mContext));
         try{
             String json= JsonUtil.toJson(maps);
-            params.setBodyEntity(new StringEntity(json));
+            L.e(""+json);
+            params.addBodyParameter("content", json);
         }catch (JSONException e){
-            e.printStackTrace();
-        }catch (UnsupportedEncodingException e){
             e.printStackTrace();
         }
         return  params;

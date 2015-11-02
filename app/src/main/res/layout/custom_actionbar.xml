@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/actionBar"
-    android:orientation="vertical" android:layout_width="match_parent" android:background="@color/action_bar_color"
+    android:orientation="vertical" android:layout_width="match_parent" android:background="@color/action_bar_bg_color"
     android:layout_height="match_parent" android:gravity="center_vertical">
     <LinearLayout android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -8,13 +8,13 @@
         <ImageButton android:id="@+id/ibHeadBack"  android:layout_marginLeft="@dimen/head_edit_offset"
             android:layout_width="48dp" android:layout_marginBottom="3dp" android:layout_marginTop="3dp"
             android:layout_height="match_parent" android:layout_alignParentLeft="true" android:layout_centerVertical="true"
-            android:background="@null" android:src="@drawable/ic_launcher" android:visibility="gone"/>
+            android:background="@null" android:src="@drawable/back" android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvHeadCity"  android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset" android:text="上海" android:textColor="@color/white" android:textSize="@dimen/head_img_size_des"/>
+            android:layout_height="wrap_content" android:id="@+id/tvHeadCity"  android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset" android:text="上海" android:textColor="@color/black" android:textSize="@dimen/head_img_size_des"/>
         <ImageView android:id="@+id/ivHeadArrow"
             android:layout_width="@dimen/head_edit_offset"
-            android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white" android:contentDescription="@string/app_name"/>
+            android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/ic_arrow_down" android:contentDescription="@string/app_name"/>
     </LinearLayout>
     <LinearLayout android:id="@+id/llCenter" android:layout_toRightOf="@+id/btnHeadLeft" android:layout_toLeftOf="@+id/btnHeadRight"
         android:layout_width="match_parent"  android:layout_centerVertical="true" android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset"
@@ -28,7 +28,7 @@
             android:layout_height="match_parent" android:orientation="horizontal">
             <ImageView
             android:layout_width="wrap_content" android:id="@+id/ivHeadSearch"
-            android:layout_height="wrap_content" android:layout_marginLeft="@dimen/head_img_offset_top" android:layout_marginStart="@dimen/head_img_offset_top" android:background="@drawable/search_icon_white" android:contentDescription="@string/app_name"/>
+            android:layout_height="wrap_content" android:layout_marginLeft="@dimen/head_img_offset_top" android:layout_marginStart="@dimen/head_img_offset_top" android:background="@drawable/ic_search" android:contentDescription="@string/app_name"/>
             <EditText android:id="@+id/etHeadSearch"
             android:layout_width="wrap_content" android:textCursorDrawable="@null" android:gravity="center_vertical|center_horizontal"
             android:layout_height="match_parent" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@color/transparent" android:clickable="true" android:focusable="false" android:hint="@string/head_search_hit" android:textColor="@color/white" android:textColorHint="@color/btn_color" android:textSize="14sp"/>
@@ -39,7 +39,7 @@
             <LinearLayout android:id="@+id/btnCategoryTab1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical">
-                <TextView
+                <TextView android:id="@+id/tvCategoryTab1"
                     android:layout_width="match_parent" style="@style/App_Head_Tab" android:layout_weight="1"
                     android:layout_height="match_parent" android:text="@string/head_tab_category_1"/>
                 <View android:id="@+id/lineTab1" android:visibility="visible"
@@ -48,7 +48,7 @@
             <LinearLayout android:id="@+id/btnCategoryTab2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical">
-                <TextView
+                <TextView android:id="@+id/tvCategoryTab2"
                     android:layout_width="match_parent" style="@style/App_Head_Tab" android:layout_weight="1"
                     android:layout_height="match_parent" android:text="@string/head_tab_category_2"/>
                 <View android:id="@+id/lineTab2" android:visibility="invisible"
@@ -57,7 +57,7 @@
             <LinearLayout android:id="@+id/btnCategoryTab3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical">
-                <TextView
+                <TextView android:id="@+id/tvCategoryTab3"
                     android:layout_width="match_parent" style="@style/App_Head_Tab" android:layout_weight="1"
                     android:layout_height="match_parent" android:text="@string/head_tab_category_3"/>
                 <View android:id="@+id/lineTab3" android:visibility="invisible"

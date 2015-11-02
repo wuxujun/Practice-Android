@@ -248,7 +248,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }
                 mHeadTitle.setVisibility(View.GONE);
                 mHeadSearch.setVisibility(View.VISIBLE);
-                mTvHome.setTextColor(getResources().getColor(R.color.white));
+                mTvHome.setTextColor(getResources().getColor(R.color.black));
                 mImgHome.setImageResource(R.drawable.ic_tab_home);
                 break;
             }
@@ -262,8 +262,8 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }
                 mHeadCategory.setVisibility(View.VISIBLE);
                 mHeadTitle.setVisibility(View.GONE);
-                mTvCategory.setTextColor(getResources().getColor(R.color.white));
-                mImgCategory.setImageResource(R.drawable.ic_tab_home);
+                mTvCategory.setTextColor(getResources().getColor(R.color.black));
+                mImgCategory.setImageResource(R.drawable.ic_tab_category);
                 break;
             }
             case 2:{
@@ -275,8 +275,8 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                     transaction.attach(mTab03);
                 }
                 mHeadTitle.setText(getText(R.string.tab_attention));
-                mTvAttention.setTextColor(getResources().getColor(R.color.white));
-                mImgAttention.setImageResource(R.drawable.ic_tab_home);
+                mTvAttention.setTextColor(getResources().getColor(R.color.black));
+                mImgAttention.setImageResource(R.drawable.ic_tab_attent);
                 break;
             }
             case 3:{
@@ -287,8 +287,8 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                     transaction.attach(mTab04);
                 }
                 mHeadTitle.setText(getText(R.string.tab_resume));
-                mTvResume.setTextColor(getResources().getColor(R.color.white));
-                mImgResume.setImageResource(R.drawable.ic_tab_my);
+                mTvResume.setTextColor(getResources().getColor(R.color.black));
+                mImgResume.setImageResource(R.drawable.ic_tab_resume);
                 break;
             }
             case 4:{
@@ -299,7 +299,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                     transaction.attach(mTab05);
                 }
                 mHeadTitle.setText(getText(R.string.tab_my));
-                mTvMy.setTextColor(getResources().getColor(R.color.white));
+                mTvMy.setTextColor(getResources().getColor(R.color.black));
                 mImgMy.setImageResource(R.drawable.ic_tab_my);
                 break;
             }
@@ -309,9 +309,9 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
 
     private void resetTabImg(){
         mImgHome.setImageResource(R.drawable.ic_tab_home);
-        mImgCategory.setImageResource(R.drawable.ic_tab_home);
-        mImgAttention.setImageResource(R.drawable.ic_tab_home);
-        mImgResume.setImageResource(R.drawable.ic_tab_home);
+        mImgCategory.setImageResource(R.drawable.ic_tab_category);
+        mImgAttention.setImageResource(R.drawable.ic_tab_attent);
+        mImgResume.setImageResource(R.drawable.ic_tab_resume);
         mImgMy.setImageResource(R.drawable.ic_tab_my);
 
         mTvHome.setTextColor(getResources().getColor(R.color.app_listtab_off));
