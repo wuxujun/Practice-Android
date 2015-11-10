@@ -29,6 +29,7 @@ import com.xujun.app.model.CompanyInfo;
 import com.xujun.app.model.ParamInfo;
 import com.xujun.app.model.ParamResp;
 import com.xujun.app.model.PhotoEntity;
+import com.xujun.app.model.SearchHisEntity;
 import com.xujun.util.JsonUtil;
 import com.xujun.util.L;
 import com.xujun.util.StringUtil;
@@ -79,6 +80,7 @@ public class StartActivity extends Activity{
                 db.createTableIfNotExist(ParamInfo.class);
                 db.createTableIfNotExist(PhotoEntity.class);
                 db.createTableIfNotExist(CompanyInfo.class);
+                db.createTableIfNotExist(SearchHisEntity.class);
             }catch (DbException e){
                 e.printStackTrace();
             }
@@ -100,6 +102,7 @@ public class StartActivity extends Activity{
             db.createTableIfNotExist(ParamInfo.class);
             db.createTableIfNotExist(PhotoEntity.class);
             db.createTableIfNotExist(CompanyInfo.class);
+            db.createTableIfNotExist(SearchHisEntity.class);
             db.close();
         }catch (DbException e){
             e.printStackTrace();

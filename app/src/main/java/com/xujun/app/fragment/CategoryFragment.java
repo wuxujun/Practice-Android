@@ -429,8 +429,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
 
     static class ItemView
     {
-        public RoundedLetterView icon;
-
         public TextView title;
     }
 
@@ -457,7 +455,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.category_listview_item, null);
                 holder = new ItemView();
-                holder.icon = (RoundedLetterView) convertView.findViewById(R.id.rlName);
                 holder.title = (TextView) convertView.findViewById(R.id.tvItemTitle);
                 convertView.setTag(holder);
             } else {
@@ -466,7 +463,6 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             CategoryInfo info = items.get(i);
             if (info != null) {
                 holder.title.setText(info.getCategory());
-                holder.icon.setTitleText(info.getCategory().substring(0, 1));
             }
             return convertView;
         }

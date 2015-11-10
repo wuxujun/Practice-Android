@@ -60,6 +60,7 @@ public class AppConfig {
     public final static String PARAM_OFFICE_INFO="param_office_info";
     public final static String PARAM_MEMBER="param_member";
     public final static String PARAM_LOGOUT_RESULT="param_logout_result";
+    public final static String PARAM_SEARCH_HIS="param_search_his";
 
     public final static String EXTRA_DATA_HEIGHT="com.xujun.yoca.EXTRA_DATA_HEIGHT";
     public final static String EXTRA_DATA_AGE="com.xujun.yoca.EXTRA_DATA_AGE";

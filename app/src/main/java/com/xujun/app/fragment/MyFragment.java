@@ -27,6 +27,7 @@ import com.xujun.app.practice.LoginActivity;
 import com.xujun.app.practice.MCollectionActivity;
 import com.xujun.app.practice.MEvaluationActivity;
 import com.xujun.app.practice.MInternshipActivity;
+import com.xujun.app.practice.MRequestActivity;
 import com.xujun.app.practice.MessageActivity;
 import com.xujun.app.practice.R;
 import com.xujun.app.practice.RegisterActivity;
@@ -155,6 +156,9 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                     L.e("--------->"+member.getMobile());
                     mHeadView.getUserName().setText(member.getMobile());
                 }
+            }else{
+                mHeadView.getActionLayout().setVisibility(View.VISIBLE);
+                mHeadView.getUserName().setText("未登录");
             }
         }
     }
@@ -177,6 +181,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                 break;
             }
             case 2:{
+                mMember=(Member)mAppContext.readObject(AppConfig.OBJECT_MEMBER);
                 if (mMember!=null) {
                     UIHelper.openMyRequest(getActivity());
                 }else {
@@ -237,6 +242,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                 holder.head=(LinearLayout)convertView.findViewById(R.id.llHead);
                 holder.item=(LinearLayout)convertView.findViewById(R.id.llItem);
                 holder.title=(TextView)convertView.findViewById(R.id.tvItemTitle);
+                holder.icon=(ImageView)convertView.findViewById(R.id.ivIcon);
                 convertView.setTag(holder);
             }else{
                 holder=(ItemView)convertView.getTag();
@@ -248,6 +254,17 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
                 holder.head.findViewById(R.id.tv_my_btn_2).setOnClickListener(mMyClickListener);
             }else {
                 holder.head.setVisibility(View.GONE);
+                if (items.get(position).equals("消息通知")) {
+                    holder.icon.setImageResource(R.drawable.ic_my_message);
+                }else if (items.get(position).equals("设置")) {
+                    holder.icon.setImageResource(R.drawable.ic_my_setting);
+                }else if (items.get(position).equals("关于我们")) {
+                    holder.icon.setImageResource(R.drawable.ic_my_about);
+                }else if (items.get(position).equals("发现更多")) {
+                    holder.icon.setImageResource(R.drawable.ic_my_more);
+                }else if (items.get(position).equals("已申请的")) {
+                    holder.icon.setImageResource(R.drawable.ic_my_resume);
+                }
                 holder.title.setText(items.get(position));
             }
             return convertView;
@@ -264,8 +281,8 @@ public class MyFragment extends BaseFragment implements View.OnClickListener,Ada
             }
             switch (view.getId()){
                 case R.id.tv_my_btn_0:{
-                    Intent intent=new Intent(getActivity(), LoginActivity.class);
-                    startActivityForResult(intent, AppConfig.REQUEST_MY_LOGIN);
+                    Intent intent=new Intent(getActivity(), MInternshipActivity.class);
+                    startActivity(intent);
                     break;
                 }
                 case R.id.tv_my_btn_1:{

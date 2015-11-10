@@ -18,6 +18,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.umeng.message.UmengRegistrar;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.Member;
+import com.xujun.multiimage.bean.Image;
 import com.xujun.util.JsonUtil;
 import com.xujun.util.L;
 import com.xujun.util.SystemBarTintManager;
@@ -47,7 +48,7 @@ public abstract class BaseTActivity extends SherlockActivity implements View.OnC
     protected TextView          mHeadTitle;
     protected ImageButton       mHeadBack;
     protected LinearLayout      mHeadBtnLeft;
-    protected Button            mHeadBtnRight;
+    protected ImageButton            mHeadBtnRight;
     protected EditText mHeadEditText;
 
     protected LinearLayout      mHeadSearch;
@@ -60,6 +61,10 @@ public abstract class BaseTActivity extends SherlockActivity implements View.OnC
     protected TextView mHeadTabText1;
     protected TextView mHeadTabText2;
     protected TextView mHeadTabText3;
+
+    protected View     mHeadTabLine1;
+    protected View     mHeadTabLine2;
+    protected View     mHeadTabLine3;
 
 
     protected ListView      mListView;
@@ -94,7 +99,7 @@ public abstract class BaseTActivity extends SherlockActivity implements View.OnC
         actionbarLayout.findViewById(R.id.tvHeadCity).setVisibility(View.GONE);
         actionbarLayout.findViewById(R.id.ivHeadArrow).setVisibility(View.GONE);
         mHeadBtnLeft=(LinearLayout)actionbarLayout.findViewById(R.id.btnHeadLeft);
-        mHeadBtnRight=(Button)actionbarLayout.findViewById(R.id.btnHeadRight);
+        mHeadBtnRight=(ImageButton)actionbarLayout.findViewById(R.id.btnHeadRight);
         mHeadSearch=(LinearLayout)actionbarLayout.findViewById(R.id.llHeadSearch);
         mHeadEditText=(EditText)actionbarLayout.findViewById(R.id.etHeadSearch);
         mHeadCategory=(LinearLayout)actionbarLayout.findViewById(R.id.llHeadCategory);
@@ -105,6 +110,10 @@ public abstract class BaseTActivity extends SherlockActivity implements View.OnC
         mHeadTabText1=(TextView)actionbarLayout.findViewById(R.id.tvCategoryTab1);
         mHeadTabText2=(TextView)actionbarLayout.findViewById(R.id.tvCategoryTab2);
         mHeadTabText3=(TextView)actionbarLayout.findViewById(R.id.tvCategoryTab3);
+
+        mHeadTabLine1=(View)actionbarLayout.findViewById(R.id.lineTab1);
+        mHeadTabLine2=(View)actionbarLayout.findViewById(R.id.lineTab2);
+        mHeadTabLine3=(View)actionbarLayout.findViewById(R.id.lineTab3);
 
         getActionBar().setCustomView(actionbarLayout);
     }

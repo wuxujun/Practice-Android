@@ -6,21 +6,31 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.xujun.app.adapter.OfficeAdapter;
+import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.CityInfo;
+import com.xujun.app.model.InputInfo;
 import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.model.OfficeResp;
+import com.xujun.app.model.SearchHisEntity;
 import com.xujun.util.JsonUtil;
 import com.xujun.util.L;
 import com.xujun.util.StringUtil;
@@ -40,14 +50,20 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     @ViewInject(R.id.list)
     private ListView        mListView;
 
-    private List<OfficeInfo>    items=new ArrayList<OfficeInfo>();
+    @ViewInject(R.id.gridview)
+    private GridView        mGridView;
 
-    private OfficeAdapter   mAdapter;
+    @ViewInject(R.id.btnClear)
+    private Button          mClearBtn;
+
+    private List<SearchHisEntity>    items=new ArrayList<SearchHisEntity>();
+
+    private ItemAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_list);
+        setContentView(R.layout.activity_search);
 
         mCurrentCityInfo=(CityInfo)getIntent().getSerializableExtra(AppConfig.PARAM_CITY_INFO);
         ViewUtils.inject(this);
@@ -95,67 +111,81 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
             }
         });
 
-        mHeadBtnRight.setText(R.string.btn_search);
+        mHeadBtnRight.setText(R.string.btn_cancel);
         mHeadBtnRight.setOnClickListener(this);
 
         initView();
     }
 
     private void initView(){
-        mAdapter=new OfficeAdapter(this);
+        mAdapter=new ItemAdapter();
         if (mListView!=null){
             mListView.setAdapter(mAdapter);
             mListView.setOnItemClickListener(onItemClickListener);
         }
+
+        mClearBtn.setOnClickListener(this);
     }
 
     public void search(String key){
-        Map<String,Object> requestMap=new HashMap<String,Object>();
-        requestMap.put("start",0);
-        requestMap.put("end", "20");
-        requestMap.put("keyword",key);
-        HttpUtils http=new HttpUtils();
-        http.send(HttpRequest.HttpMethod.POST, URLs.SEARCH_LIST_URL, getRequestParams(requestMap), new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                parserHttpResponse(responseInfo.result);
-            }
+        try{
+            DbUtils db = DbUtils.create(this, AppConfig.DB_NAME);
+            SearchHisEntity entity=new SearchHisEntity();
+            entity.setTitle(key);
+            entity.setAddtime(System.currentTimeMillis());
+            db.saveOrUpdate(entity);
 
-            @Override
-            public void onFailure(HttpException e, String s) {
-                L.i("onFailure() " + s);
-            }
-        });
+
+            Intent intent=new Intent(SearchActivity.this,SearchResultActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(AppConfig.PARAM_SEARCH_HIS, entity);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }catch (DbException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void loadData() {
-
+        try {
+            DbUtils db = DbUtils.create(this, AppConfig.DB_NAME);
+            List<SearchHisEntity> searchHisEntityList = db.findAll(SearchHisEntity.class);
+            if (searchHisEntityList != null && searchHisEntityList.size() > 0) {
+                items.clear();
+                items.addAll(searchHisEntityList);
+            }
+            mAdapter.notifyDataSetChanged();
+        }catch (DbException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void parserHttpResponse(String result) {
-        try{
-            OfficeResp resp=(OfficeResp) JsonUtil.ObjFromJson(result, OfficeResp.class);
-            if (resp.getSuccess()==1){
-                items.addAll(resp.getRoot());
-            }
-            mAdapter.addAll(items);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        try{
+//            OfficeResp resp=(OfficeResp) JsonUtil.ObjFromJson(result, OfficeResp.class);
+//            if (resp.getSuccess()==1){
+//                items
+//            }
+//            mAdapter.addAll(items);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnHeadRight:{
-                String key=mHeadEditText.getText().toString();
-                if (StringUtil.isEmpty(key)){
-                    showCroutonMessage("请输入搜索关键字");
-                    return;
-                }
-                search(key);
+                finish();
+//                String key=mHeadEditText.getText().toString();
+//                if (StringUtil.isEmpty(key)){
+//                    showCroutonMessage("请输入搜索关键字");
+//                    return;
+//                }
+//                search(key);
                 break;
             }
             default:
@@ -167,14 +197,56 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private AdapterView.OnItemClickListener onItemClickListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            OfficeInfo officeInfo=items.get(i);
-            if (officeInfo!=null) {
-                Intent intent = new Intent(SearchActivity.this, OfficeActivity.class);
+            SearchHisEntity entity=items.get(i);
+            if (entity!=null) {
+                Intent intent = new Intent(SearchActivity.this, SearchResultActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(AppConfig.PARAM_OFFICE_INFO, officeInfo);
+                bundle.putSerializable(AppConfig.PARAM_SEARCH_HIS, entity);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         }
     };
+
+
+    private class ItemAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return items.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return items.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+            ItemView    holder;
+            if (convertView==null){
+                holder=new ItemView();
+                convertView=View.inflate(mContext,R.layout.item_search_his,null);
+                holder.title=(TextView)convertView.findViewById(R.id.tvTitle);
+                convertView.setTag(holder);
+            }else{
+                holder=(ItemView)convertView.getTag();
+            }
+            SearchHisEntity item=items.get(position);
+            if (item!=null){
+                holder.title.setText(item.getTitle());
+            }
+            return convertView;
+        }
+    }
+
+    class ItemView{
+        public TextView     title;
+
+    }
 }

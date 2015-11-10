@@ -5,59 +5,88 @@
 
     <ScrollView android:id="@+id/register_form" android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent"
+        <LinearLayout android:layout_width="match_parent" android:layout_marginTop="@dimen/dimen_10"
             android:layout_height="wrap_content" android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
-                android:layout_height="44dip" android:orientation="horizontal">
+                android:layout_width="match_parent" android:background="@color/white" android:padding="@dimen/dimen_05"
+                android:layout_height="64dip" android:orientation="horizontal">
                 <TextView android:text="@string/input_mobile"
                     android:layout_height="match_parent" style="@style/App_Input_Item_Title"/>
-                <com.andreabaccega.widget.FormEditText android:id="@+id/etMobile" android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical" android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_height="match_parent" android:layout_weight="1">
+                    <com.andreabaccega.widget.FormEditText android:id="@+id/etMobile" android:layout_width="match_parent"
                 android:layout_height="match_parent" android:hint="@string/input_mobile_hint"
-                android:inputType="textEmailAddress" android:maxLines="1"
-                android:singleLine="true" />
+                android:inputType="textEmailAddress" android:maxLines="1" android:layout_weight="1"
+                android:singleLine="true"  android:background="@color/transparent"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+                    </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="44dip" android:layout_margin="@dimen/dimen_10" android:orientation="horizontal">
+                android:layout_width="match_parent" android:padding="@dimen/dimen_10" android:background="@color/white"
+                android:layout_height="64dip" android:orientation="horizontal">
                 <TextView android:text="@string/input_email"
                     android:layout_height="match_parent" style="@style/App_Input_Item_Title"/>
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical" android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_height="match_parent" android:layout_weight="1">
 
                 <com.andreabaccega.widget.FormEditText android:id="@+id/etEmail" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/input_email_hint"
-                android:inputType="textEmailAddress" android:maxLines="1"
-                android:singleLine="true" />
-
+                android:inputType="textEmailAddress" android:maxLines="1" android:layout_weight="1"
+                android:singleLine="true"  android:background="@color/transparent"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dip" android:layout_margin="@dimen/dimen_10" android:orientation="horizontal">
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent" android:padding="@dimen/dimen_10" android:background="@color/white"
+            android:layout_height="64dip" android:orientation="horizontal">
             <TextView android:text="@string/input_password"
                 android:layout_height="match_parent" style="@style/App_Input_Item_Title"/>
+                <LinearLayout
+                    android:layout_width="match_parent" android:orientation="vertical" android:layout_marginRight="@dimen/dimen_10"
+                    android:layout_height="match_parent" android:layout_weight="1">
 
-            <com.andreabaccega.widget.FormEditText android:id="@+id/etPassword" android:layout_width="match_parent"
+                <com.andreabaccega.widget.FormEditText android:id="@+id/etPassword" android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:hint="@string/input_password_hint"
-                android:imeOptions="actionUnspecified" android:inputType="textPassword"
-                android:maxLines="1" android:singleLine="true" />
-
+                android:imeOptions="actionUnspecified" android:inputType="textPassword" android:layout_weight="1"
+                android:maxLines="1" android:singleLine="true" android:background="@color/transparent"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+                </LinearLayout>
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="44dip" android:layout_margin="@dimen/dimen_10" android:orientation="horizontal">
+
+            <LinearLayout
+            android:layout_width="match_parent" android:padding="@dimen/dimen_10" android:background="@color/white"
+            android:layout_height="64dip" android:orientation="horizontal">
             <TextView
                  android:text="@string/input_password2"
                 android:layout_height="match_parent" style="@style/App_Input_Item_Title"/>
-
+            <LinearLayout
+                android:layout_width="match_parent" android:orientation="vertical" android:layout_marginRight="@dimen/dimen_10"
+                android:layout_height="match_parent" android:layout_weight="1">
             <com.andreabaccega.widget.FormEditText android:id="@+id/etPassword2" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/input_password2_hint"
-                android:imeOptions="actionUnspecified" android:inputType="textPassword"
-                android:maxLines="1" android:singleLine="true" />
+                android:layout_height="match_parent" android:hint="@string/input_password2_hint"
+                android:imeOptions="actionUnspecified" android:inputType="textPassword" android:layout_weight="1"
+                android:maxLines="1" android:singleLine="true"  android:background="@color/transparent"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+            </LinearLayout>
         </LinearLayout>
-            <Button android:id="@+id/btnRegister" style="?android:textAppearanceSmall"
-                android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="16dp" android:text="@string/action_register"
-                android:textStyle="bold" />
+
+            <Button android:id="@+id/btnRegister" style="?android:textAppearanceSmall" android:textSize="@dimen/dimen_18"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_20"
+                android:layout_marginTop="16dp" android:text="@string/action_register" android:textColor="@color/white"
+                android:textStyle="bold"  android:background="@drawable/btn_bg"/>
 
         </LinearLayout>
     </ScrollView>

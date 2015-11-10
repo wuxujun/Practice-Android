@@ -40,7 +40,7 @@
     <color name="cpb_white">@android:color/white</color>
 
     <color name="head_bg_color">#ff808080</color>
-    <color name="all_line">#ffd9d9d9</color>
+    <color name="all_line">#aaaaaa</color>
 
     <color name="d_gray">#ffdddddd</color>
     <color name="gary">#ff898989</color>
@@ -58,6 +58,11 @@
     <color name="gray_frame">#ffeff1f3</color>
     <color name="gray_lite">#ffc5c5c5</color>
     <color name="gray_white">#ffe8e8e8</color>
+    <color name="app_blue">#1f497d</color>
+    <color name="app_sel_blue">#1f327d</color>
+    <color name="app_title_2">#808080</color>
+    <color name="app_title_3">#bfbfbf</color>
+    <color name="app_item_sel">#e8e8e8</color>
 
     <color name="font_black">#ff000000</color>
     <color name="font_c00">#ff000000</color>

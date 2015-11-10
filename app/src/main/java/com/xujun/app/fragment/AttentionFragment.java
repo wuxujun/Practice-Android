@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +22,12 @@ import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.xujun.app.adapter.CategoryCheckBoxAdapter;
+import com.xujun.app.adapter.OfficeAdapter;
 import com.xujun.app.model.CategoryInfo;
 import com.xujun.app.model.OfficeInfo;
 import com.xujun.app.practice.AppConfig;
 import com.xujun.app.practice.AttentionSetActivity;
+import com.xujun.app.practice.OfficeActivity;
 import com.xujun.app.practice.R;
 import com.xujun.app.widget.CategoryPopupWindow;
 import com.xujun.util.L;
@@ -40,7 +43,7 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
 
     List<OfficeInfo> items=new ArrayList<OfficeInfo>();
 
-    private ItemAdapter     mAdapter;
+    private OfficeAdapter mAdapter;
 
     @ViewInject(R.id.tvTitle)
     private TextView        mSetTextView;
@@ -51,7 +54,7 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
-        mAdapter=new ItemAdapter();
+        mAdapter=new OfficeAdapter(getActivity());
     }
 
     @Override
@@ -61,6 +64,19 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
 
         mSetTextView.setOnClickListener(this);
         mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                OfficeInfo officeInfo=items.get(i);
+                if (officeInfo!=null) {
+                    Intent intent = new Intent(getSherlockActivity(), OfficeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(AppConfig.PARAM_OFFICE_INFO, officeInfo);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            }
+        });
         return mContentView;
     }
 
@@ -114,7 +130,7 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
         info.setName("销售人员");
         items.add(info);
 
-        mAdapter.notifyDataSetChanged();
+        mAdapter.addAll(items);
     }
 
     @Override
@@ -122,41 +138,5 @@ public class AttentionFragment extends BaseFragment implements View.OnClickListe
 
     }
 
-    static class ItemView
-    {
-        public ImageView icon;
-        public TextView title;
-    }
 
-    class ItemAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return items.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View convertView, ViewGroup viewGroup) {
-            ItemView        holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(mContext).inflate(R.layout.home_listview_item, null);
-                holder = new ItemView();
-                holder.title = (TextView) convertView.findViewById(R.id.tvItemTitle);
-                convertView.setTag(holder);
-            } else {
-                holder = (ItemView) convertView.getTag();
-            }
-            return convertView;
-        }
-    }
 }

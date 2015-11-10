@@ -11,7 +11,7 @@
             android:background="@null" android:src="@drawable/back" android:visibility="gone"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tvHeadCity"  android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset" android:text="上海" android:textColor="@color/black" android:textSize="@dimen/head_img_size_des"/>
+            android:layout_height="wrap_content" android:id="@+id/tvHeadCity"  android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset" android:text="上海" android:textColor="@color/app_blue" android:textSize="@dimen/head_img_size_des"/>
         <ImageView android:id="@+id/ivHeadArrow"
             android:layout_width="@dimen/head_edit_offset"
             android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/ic_arrow_down" android:contentDescription="@string/app_name"/>
@@ -20,18 +20,22 @@
         android:layout_width="match_parent"  android:layout_centerVertical="true" android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset"
         android:layout_height="match_parent" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="@dimen/head_center_offset" android:layout_marginBottom="@dimen/head_center_offset">
 
-        <TextView android:visibility="gone" android:gravity="center"
+        <TextView android:visibility="gone" android:gravity="center" android:layout_marginRight="@dimen/dimen_10"
             android:layout_width="match_parent" android:id="@+id/tvHeadTitle" android:singleLine="true" android:ellipsize="marquee"
-            android:layout_height="wrap_content"  android:textColor="#ffffff" android:textSize="18sp" android:text="Home"/>
+            android:layout_height="wrap_content"  android:textColor="@color/black" android:textSize="18sp" android:text="Home"/>
         <LinearLayout android:id="@+id/llHeadSearch" android:visibility="visible" android:clickable="true"
             android:layout_width="match_parent" android:gravity="center_vertical|center_horizontal" android:background="@color/transparent"
             android:layout_height="match_parent" android:orientation="horizontal">
+            <LinearLayout android:gravity="center_horizontal|center_vertical"
+                android:layout_width="match_parent" android:layout_marginRight="@dimen/dimen_10"
+                android:layout_height="match_parent" android:background="@drawable/search_bg" android:orientation="horizontal">
             <ImageView
             android:layout_width="wrap_content" android:id="@+id/ivHeadSearch"
             android:layout_height="wrap_content" android:layout_marginLeft="@dimen/head_img_offset_top" android:layout_marginStart="@dimen/head_img_offset_top" android:background="@drawable/ic_search" android:contentDescription="@string/app_name"/>
             <EditText android:id="@+id/etHeadSearch"
             android:layout_width="wrap_content" android:textCursorDrawable="@null" android:gravity="center_vertical|center_horizontal"
-            android:layout_height="match_parent" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@color/transparent" android:clickable="true" android:focusable="false" android:hint="@string/head_search_hit" android:textColor="@color/white" android:textColorHint="@color/btn_color" android:textSize="14sp"/>
+            android:layout_height="match_parent" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@color/transparent" android:clickable="true" android:focusable="false" android:hint="@string/head_search_hit" android:textColor="@color/black" android:textColorHint="@color/btn_color" android:textSize="14sp"/>
+                </LinearLayout>
         </LinearLayout>
         <LinearLayout android:id="@+id/llHeadCategory" android:visibility="gone"
             android:layout_width="match_parent" android:gravity="center_vertical" android:background="@color/transparent"
@@ -65,7 +69,7 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <Button android:id="@+id/btnHeadRight" android:textColor="#fff"
-        android:layout_width="wrap_content" android:textSize="@dimen/head_img_size_des"
-        android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:background="@null"/>
+    <ImageButton android:id="@+id/btnHeadRight"
+        android:layout_width="wrap_content"  android:layout_marginRight="@dimen/dimen_10"
+        android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:background="@drawable/ic_head_menu"/>
 </RelativeLayout>

@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/district_item_layout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <com.xujun.app.widget.RoundedLetterView
-        android:id="@+id/rlItemName" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
-        android:layout_width="48dp" android:layout_alignParentTop="true"
-        android:layout_height="48dp" android:layout_margin="@dimen/dimen_03"
-        tools:visibility="visible" app:rlv_backgroundColorValue="@color/green"
-        app:rlv_titleColor="@color/white" app:rlv_titleSize="22sp" app:rlv_titleText="MKT"
-        />
-    <TextView
-        android:id="@+id/tvItemTitle" android:layout_below="@+id/rlItemName"
-        android:layout_width="wrap_content" android:textColor="@color/black"
-        android:layout_height="wrap_content" android:text="@string/menu_shake"
-        android:layout_centerInParent="true"/>
-</RelativeLayout>
+    android:layout_height="wrap_content" android:orientation="horizontal">
+    <View android:id="@+id/horLine"
+        android:layout_width="@dimen/line_w" android:layout_marginTop="@dimen/dimen_05" android:layout_marginBottom="@dimen/dimen_05"
+        android:layout_height="match_parent" android:background="@color/all_line"/>
+    <LinearLayout android:layout_weight="1"
+        android:layout_width="match_parent" android:gravity="center_vertical|center_horizontal"
+        android:layout_height="wrap_content" android:orientation="vertical">
+        <View android:id="@+id/verLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+        <LinearLayout android:layout_weight="1" android:background="@drawable/listitem_bg"
+            android:layout_width="match_parent" android:gravity="center_vertical|center_horizontal"
+            android:layout_height="wrap_content" android:orientation="vertical">
+        <ImageView
+            android:layout_width="48dp "
+            android:layout_height="48dp" android:id="@+id/ivIcon" android:src="@drawable/ic_launcher"  android:layout_margin="@dimen/dimen_03"/>
+        <TextView
+            android:id="@+id/tvItemTitle" android:layout_marginBottom="@dimen/dimen_10"
+            android:layout_width="wrap_content" android:textColor="@color/black"
+            android:layout_height="wrap_content" android:text="@string/menu_shake"/>
+            </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,8 +37,10 @@ import com.umeng.socialize.weixin.controller.UMWXHandler;
 import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 import com.xujun.app.model.BaseResp;
+import com.xujun.app.model.CompanyInfo;
 import com.xujun.app.model.Member;
 import com.xujun.app.model.OfficeInfo;
+import com.xujun.app.widget.CompanyHeadView;
 import com.xujun.app.widget.OfficeHeadView;
 import com.xujun.util.JsonUtil;
 import com.xujun.util.L;
@@ -57,12 +60,26 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
 
     private List<String> items=new ArrayList<String>();
 
+    @ViewInject(R.id.llOffice)
+    private LinearLayout        llOffice;
+    @ViewInject(R.id.llCompany)
+    private LinearLayout        llCompany;
+
+    @ViewInject(R.id.listCompany)
+    private ListView            mCompanyListView;
+
     @ViewInject(R.id.list)
     private ListView            mListView;
+
+    @ViewInject(R.id.btnSubmit)
+    private Button              mSubmit;
 
     private ItemAdapter             mAdapter;
     private OfficeHeadView          headView;
     private OfficeInfo              officeInfo;
+    private CompanyHeadView         companyHeadView;
+    private CompanyInfo             companyInfo;
+    private InfoAdapter             mInfoAdapter;
 
     private int                     actionType;
 
@@ -72,27 +89,23 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
         public void onClick(View view) {
 
             switch (view.getId()){
-                case R.id.btnSubmit:{
-                    actionType=1;
+                case R.id.btnResumeSel:{
+
                     break;
                 }
                 case R.id.btnCollection:{
                     actionType=2;
-                    break;
-                }
-                case R.id.btnAttention:{
-                    actionType=3;
+                    sendRequest();
                     break;
                 }
             }
-            sendRequest();
         }
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_office);
 
         officeInfo=(OfficeInfo)getIntent().getSerializableExtra(AppConfig.PARAM_OFFICE_INFO);
         ViewUtils.inject(this);
@@ -106,7 +119,6 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
         mHeadTab1.setOnClickListener(this);
         mHeadTab2.setOnClickListener(this);
         mHeadTab3.setVisibility(View.GONE);
-        mHeadBtnRight.setText(getText(R.string.share));
         mHeadBtnRight.setOnClickListener(this);
         initView();
     }
@@ -118,6 +130,7 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
             mListView.addHeaderView(headView);
             mListView.setAdapter(mAdapter);
         }
+        mSubmit.setOnClickListener(this);
         if (officeInfo!=null){
             headView.setOfficeInfo(officeInfo);
             if (!StringUtil.isEmpty(officeInfo.getContent())){
@@ -128,7 +141,16 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
             }
             mAdapter.notifyDataSetChanged();
         }
+        mInfoAdapter=new InfoAdapter();
+        companyHeadView=new CompanyHeadView(this,onClickListener);
+        if (mCompanyListView!=null){
+            mCompanyListView.addHeaderView(companyHeadView);
+            mCompanyListView.setAdapter(mInfoAdapter);
+        }
 
+        if (companyInfo!=null){
+            companyHeadView.setCompany(companyInfo);
+        }
     }
 
     private void openLoginActivity(){
@@ -149,6 +171,25 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
             case R.id.btnHeadRight:{
                 mController.getConfig().setPlatforms(SHARE_MEDIA.SINA,SHARE_MEDIA.WEIXIN_CIRCLE,SHARE_MEDIA.WEIXIN,SHARE_MEDIA.QQ,SHARE_MEDIA.QZONE,SHARE_MEDIA.SMS,SHARE_MEDIA.EMAIL);
                 mController.openShare(OfficeActivity.this,false);
+                break;
+            }
+            case R.id.btnSubmit:{
+                actionType=1;
+                sendRequest();
+                break;
+            }
+            case R.id.btnCategoryTab1:{
+                llOffice.setVisibility(View.VISIBLE);
+                llCompany.setVisibility(View.GONE);
+                mHeadTabLine1.setVisibility(View.VISIBLE);
+                mHeadTabLine2.setVisibility(View.INVISIBLE);
+                break;
+            }
+            case R.id.btnCategoryTab2:{
+                llOffice.setVisibility(View.GONE);
+                llCompany.setVisibility(View.VISIBLE);
+                mHeadTabLine1.setVisibility(View.INVISIBLE);
+                mHeadTabLine2.setVisibility(View.VISIBLE);
                 break;
             }
         }
@@ -251,6 +292,48 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
                 holder.title.setText("职位描述");
             }else{
                 holder.title.setText("职位要求");
+            }
+            return convertView;
+        }
+    }
+
+    /**
+     * 企业信息
+     */
+    class InfoAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return 1;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup viewGroup) {
+            ItemView        holder;
+            if (convertView==null){
+                convertView= LayoutInflater.from(mContext).inflate(R.layout.item_office_desc,null);
+                holder=new ItemView();
+                holder.title=(TextView)convertView.findViewById(R.id.tvTitle);
+                holder.content=(TextView)convertView.findViewById(R.id.tvContent);
+                convertView.setTag(holder);
+            }else{
+                holder=(ItemView)convertView.getTag();
+            }
+            if (position==0){
+                holder.title.setText("公司介绍");
+            }
+            if (companyInfo!=null&&!StringUtil.isEmpty(companyInfo.getContent())){
+                holder.content.setText(companyInfo.getContent());
             }
             return convertView;
         }

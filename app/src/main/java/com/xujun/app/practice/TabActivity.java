@@ -110,7 +110,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
     private LinearLayout    mHeadBtnLeft;
     private TextView        mHeadBtnLeftTxt;
     private ImageView       mHeadBtnLeftImg;
-    private Button          mHeadBtnRight;
+    private ImageButton     mHeadBtnRight;
     private EditText        mHeadEditText;
     private LinearLayout    mHeadSearch;
     private LinearLayout    mHeadCategory;
@@ -160,8 +160,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         actionbarLayout.findViewById(R.id.btnCategoryTab2).setOnClickListener(this);
         actionbarLayout.findViewById(R.id.btnCategoryTab3).setOnClickListener(this);
 
-        mHeadBtnRight=(Button)actionbarLayout.findViewById(R.id.btnHeadRight);
-        mHeadBtnRight.setText("菜单");
+        mHeadBtnRight=(ImageButton)actionbarLayout.findViewById(R.id.btnHeadRight);
         mHeadBtnRight.setOnClickListener(this);
         getActionBar().setCustomView(actionbarLayout);
 

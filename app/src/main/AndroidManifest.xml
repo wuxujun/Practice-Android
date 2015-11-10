@@ -47,6 +47,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity"/>
+        <activity android:name=".SearchResultActivity"/>
         <activity android:name=".CityActivity"/>
         <activity android:name=".TabActivity"/>
         <activity android:name=".CategoryActivity"/>

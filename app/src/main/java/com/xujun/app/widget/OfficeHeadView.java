@@ -35,9 +35,8 @@ public class OfficeHeadView  extends LinearLayout{
         lp.setMargins(0,0,0,0);
         addView(mContentView,lp);
 
-        mContentView.findViewById(R.id.btnSubmit).setOnClickListener(clickListener);
         mContentView.findViewById(R.id.btnCollection).setOnClickListener(clickListener);
-        mContentView.findViewById(R.id.btnAttention).setOnClickListener(clickListener);
+        mContentView.findViewById(R.id.btnResumeSel).setOnClickListener(clickListener);
 
     }
 

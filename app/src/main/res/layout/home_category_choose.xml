@@ -9,16 +9,15 @@
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_category_gridview_height"
-        android:layout_margin="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginBottom="@dimen/dimen_10"
         android:background="@color/white"
         android:choiceMode="singleChoice"
         android:gravity="center"
-        android:horizontalSpacing="12dp"
         android:listSelector="@android:color/transparent"
         android:numColumns="4"
         android:state_checkable="true"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="12dp" >
+        android:stretchMode="columnWidth" >
     </com.xujun.app.widget.CustGridView>
     <LinearLayout
         android:layout_width="match_parent" android:background="@color/transparent"

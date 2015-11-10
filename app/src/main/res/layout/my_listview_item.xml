@@ -3,13 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout android:id="@+id/llHead"
-        android:background="#66000000"
+        android:background="@color/white"
         android:layout_width="match_parent" android:padding="@dimen/dimen_10"
         android:layout_height="wrap_content" android:orientation="vertical">
         <LinearLayout
             android:id="@+id/ll_action_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="44dip"
             android:showDividers="middle"
             android:dividerPadding="16dp">
             <TextView
@@ -21,7 +21,10 @@
                 android:textSize="18sp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:textColor="#ffffff" />
+                android:textColor="@color/black" />
+            <View
+                android:layout_width="@dimen/line_w"
+                android:layout_height="match_parent" android:background="@color/all_line"/>
 
             <TextView
                 android:id="@+id/tv_my_btn_1"
@@ -32,7 +35,11 @@
                 android:textSize="18sp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:textColor="#ffffff" />
+                android:textColor="@color/black" />
+            <View
+                android:layout_width="@dimen/line_w"
+                android:layout_height="match_parent" android:background="@color/all_line"/>
+
             <TextView
                 android:id="@+id/tv_my_btn_2"
                 android:layout_width="match_parent"
@@ -42,21 +49,36 @@
                 android:textSize="18sp"
                 android:gravity="center"
                 android:layout_gravity="center"
-                android:textColor="#ffffff" />
+                android:textColor="@color/black" />
         </LinearLayout>
+        <View
+            android:layout_width="match_parent" android:layout_marginTop="@dimen/dimen_05"
+            android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
     </LinearLayout>
 
     <LinearLayout android:id="@+id/llItem" android:background="@drawable/listitem_bg"
         android:layout_width="match_parent" android:gravity="center_vertical"
-        android:layout_height="52dp" android:orientation="horizontal">
-    <TextView android:id="@+id/tvItemTitle" android:layout_margin="10dp" android:textColor="@color/black"
+        android:layout_height="54dp" android:orientation="horizontal">
+        <ImageView android:id="@+id/ivIcon"
+            android:layout_width="26dp" android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_height="26dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_weight="1" android:gravity="center_vertical"
+                android:layout_height="match_parent" android:orientation="horizontal">
+        <TextView android:id="@+id/tvItemTitle" android:layout_marginLeft="@dimen/dimen_05" android:layout_marginTop="5dp" android:layout_marginBottom="@dimen/dimen_05"  android:textColor="@color/black"
         android:layout_width="match_parent" android:gravity="center_vertical" android:layout_weight="1"
         android:layout_height="match_parent" android:text="123"/>
         <ImageView
             android:layout_width="wrap_content" android:layout_marginRight="10dp"
             android:layout_height="wrap_content" android:background="@drawable/enter"/>
+                </LinearLayout>
+            <View
+                android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"
+                android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+            </LinearLayout>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"
-        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+
 </LinearLayout>

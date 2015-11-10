@@ -41,6 +41,10 @@
     <string name="data_order_6" translatable="false">工作经验</string>
     <string name="data_order_7" translatable="false">时间</string>
 
+    <string name="search_his">历史搜索</string>
+    <string name="search_hot">热门搜索</string>
+
+    
     <string name="reward_hour">时薪</string>
     <string name="reward_day">日薪</string>
     <string name="reward_month">月薪</string>
@@ -52,11 +56,12 @@
     <string name="office_action_2">收藏</string>
     <string name="office_action_3">关注</string>
 
-    <string name="resume_head_1">基本信息</string>
-    <string name="resume_head_2">实习/工作经历</string>
-    <string name="resume_head_3">照片</string>
-    <string name="resume_head_4">校园生活</string>
-    <string name="resume_head_5">所获荣誉</string>
+    <string name="resume_head_1">基本\n信息</string>
+    <string name="resume_head_2">简历\n照片</string>
+    <string name="resume_head_3">实习\n工作</string>
+    <string name="resume_head_4">语言\n技能</string>
+    <string name="resume_head_5">所获\n荣誉</string>
+    <string name="resume_head_6">校园\n生活</string>
 
     <string name="resume_info_name">姓名</string>
     <string name="resume_info_sex">性别</string>
@@ -118,7 +123,8 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_login">登录</string>
-    <string name="action_register">注册</string>
+    <string name="action_register">注册帐号</string>
+    <string name="action_forget_passwd">忘记密码</string>
 
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>

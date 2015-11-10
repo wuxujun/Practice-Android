@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="wrap_content" android:background="@color/all_line">
+    android:layout_height="wrap_content">
     <com.xujun.app.widget.CustListView android:id="@+id/list" android:layout_marginTop="@dimen/dimen_10"
-        android:layout_width="match_parent"
+        android:layout_width="match_parent"  android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
         android:layout_height="305dp" android:layout_marginBottom="@dimen/dimen_10"/>
 </LinearLayout>

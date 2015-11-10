@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,14 +77,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     @ViewInject(R.id.btnLogin)
     private Button          loginBtn;
 
+    @ViewInject(R.id.btnRegister)
+    private Button          regBtn;
+
+    @ViewInject(R.id.btnForgetPasswd)
+    private Button          forgetPwdBtn;
+
     @ViewInject(R.id.btnQQ)
-    private Button          qqBtn;
+    private LinearLayout     qqBtn;
     @ViewInject(R.id.btnWeixin)
-    private Button          weixinBtn;
+    private LinearLayout          weixinBtn;
     @ViewInject(R.id.btnWeibo)
-    private Button          weiboBtn;
+    private LinearLayout          weiboBtn;
     @ViewInject(R.id.btnLinkedin)
-    private Button          linkedinBtn;
+    private LinearLayout          linkedinBtn;
 
     private int             sourceType=10;
 
@@ -97,8 +104,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         sourceType=getIntent().getIntExtra(AppConfig.PARAM_LOGIN_SOURCE,AppConfig.LOGIN_TYPE_MY);
         ViewUtils.inject(this);
         mHeadTitle.setText(getText(R.string.login));
-        mHeadBtnRight.setText(getText(R.string.register));
-        mHeadBtnRight.setOnClickListener(this);
+        mHeadBtnRight.setVisibility(View.INVISIBLE);
         hideSearchEditView();
         initHeadBackView();
 
@@ -109,6 +115,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         mobileET.addValidator(new EmptyValidator(null));
         passwordET.addValidator(new EmptyValidator(null));
         loginBtn.setOnClickListener(this);
+        regBtn.setOnClickListener(this);
+        forgetPwdBtn.setOnClickListener(this);
 
         qqBtn.setOnClickListener(this);
         weixinBtn.setOnClickListener(this);
@@ -147,9 +155,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnHeadRight:{
+            case R.id.btnRegister:{
                 Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
+                break;
+            }
+            case R.id.btnForgetPasswd:{
+
                 break;
             }
             case R.id.btnLogin:{
