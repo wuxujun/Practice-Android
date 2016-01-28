@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="wrap_content" android:background="@color/all_line">
+    android:layout_height="wrap_content" android:background="@color/app_item_bg">
     <LinearLayout android:layout_alignParentTop="true" android:id="@+id/llHeader"
         android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
         android:layout_height="wrap_content" android:orientation="vertical">
@@ -14,5 +14,8 @@
         android:layout_height="wrap_content"/>
     <Button android:layout_alignParentBottom="true" android:id="@+id/btnDone"
         android:layout_width="match_parent" android:text="@string/btn_done"
+        android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"/>
+    <Button android:layout_alignParentBottom="true" android:id="@+id/btnCancel"
+        android:layout_width="match_parent" android:text="@string/btn_done" android:visibility="gone"
         android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"/>
 </RelativeLayout>

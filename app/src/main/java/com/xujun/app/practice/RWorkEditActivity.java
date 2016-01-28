@@ -95,7 +95,7 @@ public class RWorkEditActivity extends BaseActivity{
         setContentView(R.layout.fragment_list);
         ViewUtils.inject(this);
 
-        mHeadTitle.setText("添加" + getText(R.string.resume_head_2));
+        mHeadTitle.setText("添加" + getText(R.string.resume_head_title_2));
         initHeadBackView();
         hideSearchEditView();
 

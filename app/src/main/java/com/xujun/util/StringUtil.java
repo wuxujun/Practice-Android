@@ -45,6 +45,11 @@ public class StringUtil {
 		DecimalFormat valueDF = new DecimalFormat("##0.00");
 		return valueDF.format(v);
 	}
+
+    public static String doubleToString6(double v){
+        DecimalFormat valueDF = new DecimalFormat("##0.000000");
+        return valueDF.format(v);
+    }
 	
 	public static String getUrlFileName(String url){
 		String fileName= url.substring(url.lastIndexOf("/")+1); 

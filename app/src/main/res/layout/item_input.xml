@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
     <View android:id="@+id/empty" android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_20" android:background="@color/white"/>
+        android:layout_height="@dimen/dimen_20" android:background="@color/app_item_bg"/>
     <LinearLayout style="@style/App_My_Info_LinearLayout" android:layout_height="110dp" android:id="@+id/avatar" android:visibility="gone"
         android:layout_width="match_parent" android:orientation="horizontal" android:gravity="center_vertical">
         <ImageView android:background="@drawable/ic_launcher"

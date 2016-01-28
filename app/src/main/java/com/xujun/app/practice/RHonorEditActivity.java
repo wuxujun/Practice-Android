@@ -68,7 +68,7 @@ public class RHonorEditActivity extends BaseActivity{
         setContentView(R.layout.edit_r_honor);
         ViewUtils.inject(this);
 
-        mHeadTitle.setText("添加" + getText(R.string.resume_head_5));
+        mHeadTitle.setText("添加" + getText(R.string.resume_head_title_5));
         initHeadBackView();
         hideSearchEditView();
 

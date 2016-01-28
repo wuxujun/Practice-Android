@@ -18,7 +18,7 @@
         android:layout_width="match_parent" style="@style/App_Resume_Info_LinearLayout">
         <TextView
             android:layout_width="wrap_content" style="@style/App_Resume_Info_Title" android:text="@string/resume_honor_time"/>
-        <TextView android:id="@+id/tvHonorTime"
+        <TextView android:id="@+id/tvHonorTime" android:gravity="center_vertical"
             android:layout_width="match_parent" style="@style/App_Input_Item_Edit"
             android:layout_height="match_parent" android:layout_weight="1"/>
     </LinearLayout>

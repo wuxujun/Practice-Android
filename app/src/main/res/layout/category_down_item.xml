@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@drawable/listitem_bg">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView android:id="@+id/tvTitle" style="@style/App_ListView_Category_Head"
+            android:layout_width="match_parent" android:layout_weight="1" android:paddingLeft="@dimen/dimen_15"
+            android:layout_height="wrap_content" android:paddingBottom="@dimen/dimen_05" android:paddingTop="@dimen/dimen_05"/>
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

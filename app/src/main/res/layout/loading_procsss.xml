@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:background="@drawable/loading_bg">
+    <LinearLayout android:gravity="center_horizontal"
+        android:layout_width="match_parent" android:padding="30dp"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+    <ProgressBar
+        android:layout_width="wrap_content" android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content" android:id="@+id/progressBar"/>
+        <TextView android:layout_margin="@dimen/dimen_20" android:id="@+id/tvProgress"
+            android:layout_width="wrap_content" android:gravity="center_vertical" android:textColor="@color/black"
+            android:layout_height="wrap_content" android:text="职位申请中..."/>
+    </LinearLayout>
+</LinearLayout>

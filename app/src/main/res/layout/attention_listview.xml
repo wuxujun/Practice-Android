@@ -11,7 +11,10 @@
             android:layout_height="@dimen/my_text_height"  android:text="@string/search_require"/>
     </LinearLayout>
     <ListView android:layout_below="@+id/llHeader" android:layout_marginTop="@dimen/dimen_02"
-        android:layout_width="match_parent"  android:dividerHeight="@dimen/zero"
+        android:layout_width="match_parent"
+        android:dividerHeight="@dimen/zero"
         android:divider="@null"
+        android:listSelector="@android:color/transparent"
+        android:cacheColorHint="@android:color/transparent"
         android:layout_height="match_parent" android:id="@+id/list"/>
 </RelativeLayout>

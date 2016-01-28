@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,9 @@ import com.xujun.app.widget.MenuPopupWindow;
 import com.xujun.util.L;
 import com.xujun.util.StringUtil;
 import com.xujun.util.SystemBarTintManager;
+import com.xujun.util.UIHelper;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +62,7 @@ import java.util.List;
 /**
  * Created by xujunwu on 15/8/1.
  */
-public class TabActivity extends SherlockFragmentActivity implements View.OnClickListener,AMapLocationListener{
+public class  TabActivity extends SherlockFragmentActivity implements View.OnClickListener{
 
     private static final String TAG="TabActivity";
 
@@ -123,8 +127,6 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
 
     private CityInfo        currentCity;
 
-    private LocationManagerProxy    mLocationManagerProxy;
-
     @Override
     protected void onCreate(Bundle bundle){
         super.onCreate(bundle);
@@ -183,16 +185,9 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         Intent  notify=new Intent(this,NotifyService.class);
         startService(notify);
 
-        initMapLocation();
         setSelect(0);
     }
 
-    private void initMapLocation(){
-        mLocationManagerProxy=LocationManagerProxy.getInstance(this);
-        mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork, 60 * 1000, 15, this);
-        mLocationManagerProxy.setGpsEnable(false);
-
-    }
 
     @Override
     protected void onResume(){
@@ -245,10 +240,13 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }else{
                     transaction.attach(mTab01);
                 }
+                mHeadBtnRight.setVisibility(View.VISIBLE);
+                mHeadBtnRight.setImageResource(R.drawable.ic_head_menu);
+                mHeadBtnLeft.setVisibility(View.VISIBLE);
                 mHeadTitle.setVisibility(View.GONE);
                 mHeadSearch.setVisibility(View.VISIBLE);
-                mTvHome.setTextColor(getResources().getColor(R.color.black));
-                mImgHome.setImageResource(R.drawable.ic_tab_home);
+                mTvHome.setTextColor(getResources().getColor(R.color.app_blue));
+                mImgHome.setImageResource(R.drawable.ic_tab_home_s);
                 break;
             }
             case 1:{
@@ -259,10 +257,13 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }else{
                     transaction.attach(mTab02);
                 }
+                mHeadBtnRight.setVisibility(View.VISIBLE);
+                mHeadBtnRight.setImageResource(R.drawable.ic_head_search);
+                mHeadBtnLeft.setVisibility(View.INVISIBLE);
                 mHeadCategory.setVisibility(View.VISIBLE);
                 mHeadTitle.setVisibility(View.GONE);
-                mTvCategory.setTextColor(getResources().getColor(R.color.black));
-                mImgCategory.setImageResource(R.drawable.ic_tab_category);
+                mTvCategory.setTextColor(getResources().getColor(R.color.app_blue));
+                mImgCategory.setImageResource(R.drawable.ic_tab_category_s);
                 break;
             }
             case 2:{
@@ -273,9 +274,12 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }else{
                     transaction.attach(mTab03);
                 }
+                mHeadBtnRight.setVisibility(View.VISIBLE);
+                mHeadBtnRight.setImageResource(R.drawable.ic_head_search);
+                mHeadBtnLeft.setVisibility(View.INVISIBLE);
                 mHeadTitle.setText(getText(R.string.tab_attention));
-                mTvAttention.setTextColor(getResources().getColor(R.color.black));
-                mImgAttention.setImageResource(R.drawable.ic_tab_attent);
+                mTvAttention.setTextColor(getResources().getColor(R.color.app_blue));
+                mImgAttention.setImageResource(R.drawable.ic_tab_attent_s);
                 break;
             }
             case 3:{
@@ -285,9 +289,11 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }else{
                     transaction.attach(mTab04);
                 }
+                mHeadBtnRight.setVisibility(View.INVISIBLE);
+                mHeadBtnLeft.setVisibility(View.INVISIBLE);
                 mHeadTitle.setText(getText(R.string.tab_resume));
-                mTvResume.setTextColor(getResources().getColor(R.color.black));
-                mImgResume.setImageResource(R.drawable.ic_tab_resume);
+                mTvResume.setTextColor(getResources().getColor(R.color.app_blue));
+                mImgResume.setImageResource(R.drawable.ic_tab_resume_s);
                 break;
             }
             case 4:{
@@ -297,9 +303,12 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 }else{
                     transaction.attach(mTab05);
                 }
+                mHeadBtnRight.setVisibility(View.VISIBLE);
+                mHeadBtnRight.setImageResource(R.drawable.ic_head_menu);
+                mHeadBtnLeft.setVisibility(View.INVISIBLE);
                 mHeadTitle.setText(getText(R.string.tab_my));
-                mTvMy.setTextColor(getResources().getColor(R.color.black));
-                mImgMy.setImageResource(R.drawable.ic_tab_my);
+                mTvMy.setTextColor(getResources().getColor(R.color.app_blue));
+                mImgMy.setImageResource(R.drawable.ic_tab_my_s);
                 break;
             }
         }
@@ -380,6 +389,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 break;
             }
             case R.id.btnCategoryTab1:{
+                setHeadCateTextColor(0);
                 actionbarLayout.findViewById(R.id.lineTab1).setVisibility(View.VISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab2).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab3).setVisibility(View.INVISIBLE);
@@ -387,6 +397,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 break;
             }
             case R.id.btnCategoryTab2:{
+                setHeadCateTextColor(1);
                 actionbarLayout.findViewById(R.id.lineTab1).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab2).setVisibility(View.VISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab3).setVisibility(View.INVISIBLE);
@@ -394,6 +405,7 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
                 break;
             }
             case R.id.btnCategoryTab3:{
+                setHeadCateTextColor(2);
                 actionbarLayout.findViewById(R.id.lineTab1).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab2).setVisibility(View.INVISIBLE);
                 actionbarLayout.findViewById(R.id.lineTab3).setVisibility(View.VISIBLE);
@@ -403,14 +415,37 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
         }
     }
 
+    private void setHeadCateTextColor(int idx){
+        ((TextView)actionbarLayout.findViewById(R.id.tvCategoryTab1)).setTextColor(getResources().getColor(R.color.black));
+        ((TextView)actionbarLayout.findViewById(R.id.tvCategoryTab2)).setTextColor(getResources().getColor(R.color.black));
+        ((TextView)actionbarLayout.findViewById(R.id.tvCategoryTab3)).setTextColor(getResources().getColor(R.color.black));
+        switch (idx){
+            case 0:
+                ((TextView)actionbarLayout.findViewById(R.id.tvCategoryTab1)).setTextColor(getResources().getColor(R.color.app_blue));
+                break;
+            case 1:
+                ((TextView)actionbarLayout.findViewById(R.id.tvCategoryTab2)).setTextColor(getResources().getColor(R.color.app_blue));
+                break;
+            case 2:
+                ((TextView)actionbarLayout.findViewById(R.id.tvCategoryTab3)).setTextColor(getResources().getColor(R.color.app_blue));
+                break;
+        }
+    }
+
     private void showCityPopupWindow(){
-        mHeadBtnLeftImg.setBackgroundResource(R.drawable.arrow_up_white);
+        mHeadBtnLeftImg.setBackgroundResource(R.drawable.ic_arrow_up_s);
         mCityPopupWindow=new CityPopupWindow(this,mMoreCityClickListener);
+        WindowManager.LayoutParams lp=getWindow().getAttributes();
+        lp.alpha = 0.4f;
+        getWindow().setAttributes(lp);
         mCityPopupWindow.showAsDropDown(mHeadBtnLeft);
         mCityPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                mHeadBtnLeftImg.setBackgroundResource(R.drawable.arrow_down_white);
+                mHeadBtnLeftImg.setBackgroundResource(R.drawable.ic_arrow_down_s);
+                WindowManager.LayoutParams lp=getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                getWindow().setAttributes(lp);
             }
         });
         updateCityPopupData();
@@ -439,9 +474,20 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
 
     private void showMenuPopupWindow(){
         mMenuPopupWindow=new MenuPopupWindow(this);
+        WindowManager.LayoutParams lp=getWindow().getAttributes();
+        lp.alpha = 0.4f;
+        getWindow().setAttributes(lp);
         mMenuPopupWindow.showAsDropDown(mHeadBtnRight);
         mMenuPopupWindow.getListView().setAdapter(new MenuItemAdapter(mContext, mAppConfig.getHeadMenu()));
         mMenuPopupWindow.getListView().setOnItemClickListener(mMenuItemListener);
+        mMenuPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp=getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                getWindow().setAttributes(lp);
+            }
+        });
     }
 
 
@@ -477,45 +523,15 @@ public class TabActivity extends SherlockFragmentActivity implements View.OnClic
     private AdapterView.OnItemClickListener mMenuItemListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            switch (i){
+                case 0:{
+                    UIHelper.openShake(TabActivity.this);
+                    break;
+                }
+            }
+            mMenuPopupWindow.dismiss();
         }
     };
-
-    /****
-     * 定位信息
-     * @param aMapLocation
-     */
-    @Override
-    public void onLocationChanged(AMapLocation aMapLocation) {
-        if (aMapLocation!=null&&aMapLocation.getAMapException().getErrorCode()==0){
-            Double geoLat=aMapLocation.getLatitude();
-            Double geoLng=aMapLocation.getLongitude();
-            mAppContext.setProperty(AppConfig.CONF_CURRENT_LATITUDE,StringUtil.doubleToString(geoLat));
-            mAppContext.setProperty(AppConfig.CONF_CURRENT_LONGITUDE,StringUtil.doubleToString(geoLng));
-
-            L.e(""+aMapLocation.getCityCode()+"  "+aMapLocation.getCity()+"  "+aMapLocation.getAdCode()+"  "+aMapLocation.getCountry());
-        }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-
-    }
 
     private long exitTime=0;
     public boolean dispatchKeyEvent(KeyEvent event){

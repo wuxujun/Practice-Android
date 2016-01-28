@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:orientation="vertical">
+    <TextView style="@style/App_Resume_Info_Title" android:layout_height="wrap_content" android:id="@+id/tvTitle"
+        android:layout_width="wrap_content" android:layout_margin="@dimen/dimen_10" android:text="@string/input_select_sex"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <RadioGroup
+            android:id="@+id/rbSex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_10"
+            android:orientation="horizontal" android:gravity="center_horizontal"
+            android:layout_x="3px"
+            >
+            <RadioButton android:layout_marginRight="@dimen/dimen_20"
+                android:id="@+id/rbSexFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="@dimen/font_size_18"
+                android:text="@string/my_sex_female"
+                />
+            <RadioButton android:layout_marginLeft="@dimen/dimen_20"
+                android:id="@+id/rbSexMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="@dimen/font_size_18"
+                android:text="@string/my_sex_male"
+                />
+        </RadioGroup>
+
+    </LinearLayout>
+</LinearLayout>

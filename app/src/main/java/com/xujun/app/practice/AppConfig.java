@@ -89,6 +89,7 @@ public class AppConfig {
     public final static int   REQUEST_RESUME_WORK_ADD=10;
     public final static int   REQUEST_RESUME_LIFE_ADD=11;
     public final static int   REQUEST_RESUME_HONOR_ADD=12;
+    public final static int   REQUEST_RESUME_LANG_ADD=13;
 
     public final static int   REQUEST_IMAGE=20;
 
@@ -117,6 +118,9 @@ public class AppConfig {
     public final static String CONF_LOGIN_FLAG="conf_login_flag";
 
     public final static String  OBJECT_MEMBER="file_member";
+    public final static String  OBJECT_MEMBER_INFO="file_member_info";
+    public final static String  OBJECT_RESUME_INFO="file_resume_info";
+
 
     public final static int     DATA_TYPE_COMPANY=1;
     public final static int     DATA_TYPE_COMPANY_LOGO=2;
@@ -208,11 +212,11 @@ public class AppConfig {
 
     public List<MenuInfo> getHeadMenu(){
         List<MenuInfo> list=new ArrayList<MenuInfo>();
-        list.add(new MenuInfo(1,"摇一摇"));
-        list.add(new MenuInfo(2,"扫一扫"));
-        list.add(new MenuInfo(3,"消息中心"));
-        list.add(new MenuInfo(4,"邀请好友"));
-        list.add(new MenuInfo(5, "分享"));
+        list.add(new MenuInfo(1,"摇一摇",R.drawable.ic_menu_yy));
+        list.add(new MenuInfo(2,"扫一扫",R.drawable.ic_menu_qrcode));
+        list.add(new MenuInfo(3,"消息中心",R.drawable.ic_menu_message));
+        list.add(new MenuInfo(4,"邀请好友",R.drawable.ic_menu_invi));
+        list.add(new MenuInfo(5, "分享",R.drawable.ic_menu_share));
         return list;
     }
 

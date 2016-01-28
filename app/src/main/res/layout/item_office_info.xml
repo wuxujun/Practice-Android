@@ -24,14 +24,17 @@
         android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_05"/>
         <LinearLayout
             android:layout_width="match_parent" android:layout_marginBottom="@dimen/dimen_10"
-            android:layout_height="wrap_content" android:orientation="horizontal">
-            <TextView android:id="@+id/tvOffice" android:textColor="@color/black" android:textSize="@dimen/font_size_14"
+            android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView android:id="@+id/tvOffice" android:textColor="@color/black" android:textSize="@dimen/font_size_18" android:textStyle="bold"
                 android:layout_width="match_parent" android:layout_weight="1" android:text="123" android:gravity="center_vertical|right"
                 android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_05"/>
-
-            <TextView android:id="@+id/tvOfficeType" android:textColor="@color/blue" android:textSize="@dimen/font_size_14"
-                android:layout_width="match_parent" android:layout_weight="1" android:text="实习" android:gravity="center_vertical|left"
-                android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_05"/>
+            <LinearLayout android:layout_marginLeft="@dimen/dimen_10"
+                android:layout_width="match_parent" android:layout_weight="1"
+                android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:id="@+id/tvOfficeType" android:textColor="@color/white" android:textSize="@dimen/font_size_10" android:background="@drawable/btn_bg"
+                android:layout_width="wrap_content" android:text="实习"  android:gravity="center_vertical|left"
+                android:layout_height="wrap_content"/>
+                </LinearLayout>
         </LinearLayout>
     </LinearLayout>
     <View
@@ -84,11 +87,20 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent" android:background="@color/white"
-        android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="@dimen/dimen_10">
+        android:layout_width="match_parent" android:background="@color/app_item_bg"
+        android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="@dimen/dimen_05">
         <Button android:id="@+id/btnResumeSel"
             android:layout_width="match_parent" android:background="@drawable/listitem_bg"
             android:layout_height="wrap_content" android:text="简历匹配" android:textColor="@color/app_blue"/>
-
+        <LinearLayout android:gravity="center_horizontal" android:id="@+id/llResult"
+            android:layout_width="match_parent" android:visibility="gone"
+            android:layout_height="match_parent" android:orientation="horizontal">
+            <ProgressBar
+                android:layout_width="wrap_content" android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content" android:id="@+id/progressBar"/>
+            <TextView android:id="@+id/tvResult" android:textSize="@dimen/font_size_16"
+                android:layout_width="wrap_content" android:gravity="center_vertical"
+                android:layout_height="match_parent" android:text="正在匹配中..."/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

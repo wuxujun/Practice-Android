@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:layout_width="match_parent" android:layout_gravity="center_vertical" android:layout_marginTop="@dimen/dimen_05" android:layout_marginBottom="@dimen/dimen_05"
+        android:layout_width="match_parent" android:layout_gravity="center_vertical" android:layout_marginTop="@dimen/dimen_10"
         android:layout_height="100dip" android:orientation="horizontal" android:background="@drawable/listitem_bg">
     <ImageView android:layout_margin="10dp" android:background="@drawable/icon_box_bg"
         android:layout_width="56dp" android:id="@+id/ivImg" android:layout_gravity="center_vertical|center_horizontal"

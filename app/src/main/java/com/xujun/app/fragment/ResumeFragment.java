@@ -43,8 +43,8 @@ public class ResumeFragment extends BaseFragment{
     @ViewInject(R.id.llHeader)
     private LinearLayout    mHeadLinearLayout;
 
-    @ViewInject(R.id.gridview)
-    private CustGridView mListView;
+    @ViewInject(R.id.list)
+    private ListView mListView;
 
     private ItemAdapter     mAdapter;
     private List<MenuInfo> items=new ArrayList<MenuInfo>();
@@ -66,6 +66,15 @@ public class ResumeFragment extends BaseFragment{
                     }
                     break;
                 }
+                case R.id.btnResume2: {
+                    currentOpenType=2;
+                    if (mMember==null){
+                        openLoginActivity();
+                    }else {
+                        UIHelper.openResumePhoto(getActivity());
+                    }
+                    break;
+                }
                 case R.id.btnResume3: {
                     currentOpenType=3;
                     if (mMember==null){
@@ -80,16 +89,7 @@ public class ResumeFragment extends BaseFragment{
                     if (mMember==null){
                         openLoginActivity();
                     }else {
-                        UIHelper.openResumePhoto(getActivity());
-                    }
-                    break;
-                }
-                case R.id.btnResume2: {
-                    currentOpenType=2;
-                    if (mMember==null){
-                        openLoginActivity();
-                    }else {
-                        UIHelper.openResumeLife(getActivity());
+                        UIHelper.openResumeLang(getActivity());
                     }
                     break;
                 }
@@ -99,6 +99,15 @@ public class ResumeFragment extends BaseFragment{
                         openLoginActivity();
                     }else {
                         UIHelper.openResumeHonor(getActivity());
+                    }
+                    break;
+                }
+                case R.id.btnResume6: {
+                    currentOpenType=6;
+                    if (mMember==null){
+                        openLoginActivity();
+                    }else {
+                        UIHelper.openResumeLife(getActivity());
                     }
                     break;
                 }
@@ -193,16 +202,19 @@ public class ResumeFragment extends BaseFragment{
                         UIHelper.openResumeInfo(getActivity());
                         break;
                     case 2:
-                        UIHelper.openResumeLife(getActivity());
+                        UIHelper.openResumePhoto(getActivity());
                         break;
                     case 3:
                         UIHelper.openResumeWork(getActivity());
                         break;
                     case 4:
-                        UIHelper.openResumePhoto(getActivity());
+                        UIHelper.openResumeLang(getActivity());
                         break;
                     case 5:
                         UIHelper.openResumeHonor(getActivity());
+                        break;
+                    case 6:
+                        UIHelper.openResumeLife(getActivity());
                         break;
                 }
             }

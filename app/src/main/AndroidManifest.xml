@@ -46,7 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity"/>
+        <activity android:name=".SearchActivity" android:windowSoftInputMode="stateHidden|adjustResize|adjustPan"/>
         <activity android:name=".SearchResultActivity"/>
         <activity android:name=".CityActivity"/>
         <activity android:name=".TabActivity"/>
@@ -62,6 +62,8 @@
         <activity android:name=".RPhotoActivity"/>
         <activity android:name=".RLifeActivity"/>
         <activity android:name=".RLifeEditActivity"/>
+        <activity android:name=".RLangActivity"/>
+        <activity android:name=".RLangEditActivity"/>
         <activity android:name=".RHonorActivity"/>
         <activity android:name=".RHonorEditActivity"/>
         <activity android:name=".MyActivity"/>
@@ -73,7 +75,7 @@
         <activity android:name=".SettingActivity"/>
         <activity android:name=".AboutActivity"/>
         <activity android:name=".ImageMSelectActivity"/>
-
+        <activity android:name=".ShakeActivity"/>
         <service android:name=".NotifyService"/>
         <receiver android:name=".AlarmReceiver">
             <intent-filter>
@@ -182,7 +184,7 @@
         <activity android:name="com.umeng.update.UpdateDialogActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <service android:name="com.umeng.update.net.DownloadingService" android:process=":DownloadingService"/>
 
-        <meta-data android:name="com.amap.api.v2.apkey" android:value="7bfd3f4d9039f314e49cddf3fefa2a78"/>
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="7bfd3f4d9039f314e49cddf3fefa2a78"/>
     </application>
 
 </manifest>

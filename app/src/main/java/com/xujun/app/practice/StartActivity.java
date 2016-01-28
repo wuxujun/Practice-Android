@@ -26,6 +26,8 @@ import com.xujun.app.model.CategoryResp;
 import com.xujun.app.model.CityInfo;
 import com.xujun.app.model.CityResp;
 import com.xujun.app.model.CompanyInfo;
+import com.xujun.app.model.EduEntity;
+import com.xujun.app.model.NearbyEntity;
 import com.xujun.app.model.ParamInfo;
 import com.xujun.app.model.ParamResp;
 import com.xujun.app.model.PhotoEntity;
@@ -81,6 +83,8 @@ public class StartActivity extends Activity{
                 db.createTableIfNotExist(PhotoEntity.class);
                 db.createTableIfNotExist(CompanyInfo.class);
                 db.createTableIfNotExist(SearchHisEntity.class);
+                db.createTableIfNotExist(EduEntity.class);
+                db.createTableIfNotExist(NearbyEntity.class);
             }catch (DbException e){
                 e.printStackTrace();
             }
@@ -103,6 +107,8 @@ public class StartActivity extends Activity{
             db.createTableIfNotExist(PhotoEntity.class);
             db.createTableIfNotExist(CompanyInfo.class);
             db.createTableIfNotExist(SearchHisEntity.class);
+            db.createTableIfNotExist(EduEntity.class);
+            db.createTableIfNotExist(NearbyEntity.class);
             db.close();
         }catch (DbException e){
             e.printStackTrace();

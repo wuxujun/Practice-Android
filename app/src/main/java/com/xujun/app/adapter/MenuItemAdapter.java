@@ -56,6 +56,7 @@ public class MenuItemAdapter extends BaseAdapter{
         MenuInfo info=items.get(position);
         if (info!=null){
             holder.title.setText(info.getTitle());
+            holder.icon.setImageResource(info.getResid());
         }
         return convertView;
     }

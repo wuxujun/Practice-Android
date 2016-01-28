@@ -2,6 +2,8 @@ package com.xujun.app.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.lidroid.xutils.HttpUtils;
@@ -20,6 +23,9 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnClickListener;
+import com.orhanobut.dialogplus.ViewHolder;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -83,6 +89,14 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
 
     private int                     actionType;
 
+
+    private Handler                 handler = new Handler();
+    private ViewHolder              mLoadingHolder;
+    private DialogPlus              mLoadingDialog;
+
+    private ProgressBar             mProgressBar;
+    private TextView                mProgressText;
+
     private View.OnClickListener onClickListener=new View.OnClickListener(){
 
         @Override
@@ -90,7 +104,8 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
 
             switch (view.getId()){
                 case R.id.btnResumeSel:{
-
+                    headView.showLoadingView();
+                    handler.postDelayed(runnable,3000);
                     break;
                 }
                 case R.id.btnCollection:{
@@ -99,6 +114,19 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
                     break;
                 }
             }
+        }
+    };
+
+
+    private Runnable runnable = new Runnable() {
+        public void run () {
+            headView.showResult("简历匹配  90%");
+        }
+    };
+    private Runnable runnable_close=new Runnable() {
+        @Override
+        public void run() {
+            mLoadingDialog.dismiss();
         }
     };
 
@@ -151,6 +179,23 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
         if (companyInfo!=null){
             companyHeadView.setCompany(companyInfo);
         }
+
+        View view=getLayoutInflater().inflate(R.layout.loading_procsss,null);
+        mLoadingHolder=new ViewHolder(view);
+        mProgressBar=(ProgressBar)view.findViewById(R.id.progressBar);
+        mProgressText=(TextView)view.findViewById(R.id.tvProgress);
+    }
+
+    private void showLoading(){
+        mLoadingDialog=DialogPlus.newDialog(this).setContentHolder(mLoadingHolder).setCancelable(false)
+                .setGravity(Gravity.CENTER).setContentWidth(800).setContentHeight(600).create();
+        mLoadingDialog.show();
+    }
+    
+    private void showResult(String result){
+        mProgressBar.setVisibility(View.GONE);
+        mProgressText.setText(result);
+        handler.postDelayed(runnable_close,1500);
     }
 
     private void openLoginActivity(){
@@ -201,6 +246,7 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
             openLoginActivity();
             return;
         }
+        showLoading();
         Map<String,Object> requestMap=new HashMap<String,Object>();
         requestMap.put("companyId",officeInfo.getCompanyId());
         requestMap.put("officeId", officeInfo.getId());
@@ -212,7 +258,6 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
                 L.e("onSuccess() " + responseInfo.result);
                 parserHttpResponse(responseInfo.result);
             }
-
             @Override
             public void onFailure(HttpException e, String s) {
                 L.i("onFailure() " + s);
@@ -241,7 +286,12 @@ public class OfficeActivity extends BaseTActivity implements View.OnClickListene
         try{
             BaseResp resp=(BaseResp) JsonUtil.ObjFromJson(result,BaseResp.class);
             if (resp.getSuccess()==1){
-                showCroutonMessage(resp.getErrorMsg());
+                if(actionType==2){
+                    showCroutonMessage(resp.getErrorMsg());
+                    headView.setCollectionStatus(true);
+                }else{
+                    showResult(resp.getErrorMsg());
+                }
             }else{
                 showCroutonMessage("请求失败,请重试!");
             }

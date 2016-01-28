@@ -25,6 +25,7 @@ public class ResumeHeadView extends LinearLayout{
         mContentView.findViewById(R.id.btnResume3).setOnClickListener(clickListener);
         mContentView.findViewById(R.id.btnResume4).setOnClickListener(clickListener);
         mContentView.findViewById(R.id.btnResume5).setOnClickListener(clickListener);
+        mContentView.findViewById(R.id.btnResume6).setOnClickListener(clickListener);
 
         LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0,0,0,0);

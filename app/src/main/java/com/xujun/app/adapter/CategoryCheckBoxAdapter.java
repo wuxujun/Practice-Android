@@ -22,11 +22,13 @@ public class CategoryCheckBoxAdapter extends BaseAdapter{
     private List<CategoryInfo>   items;
 
     private boolean             isCheck;
+    private int                 resid;
 
-    public CategoryCheckBoxAdapter(Context context, List<CategoryInfo> list,boolean isCheck){
+    public CategoryCheckBoxAdapter(Context context, List<CategoryInfo> list,boolean isCheck,int resId){
         this.mContext=context;
         this.items=list;
         this.isCheck=isCheck;
+        this.resid=resId;
     }
 
     @Override
@@ -49,7 +51,7 @@ public class CategoryCheckBoxAdapter extends BaseAdapter{
         ItemView    holder;
         if (convertView==null){
             holder=new ItemView();
-            convertView=View.inflate(mContext, R.layout.category_check_box_item,null);
+            convertView=View.inflate(mContext, resid,null);
             holder.title=(TextView)convertView.findViewById(R.id.tvTitle);
             holder.checkBox=(CheckBox)convertView.findViewById(R.id.checkBox);
             convertView.setTag(holder);

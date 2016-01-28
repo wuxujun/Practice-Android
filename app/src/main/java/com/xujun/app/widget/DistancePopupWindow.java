@@ -3,9 +3,11 @@ package com.xujun.app.widget;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -20,9 +22,9 @@ import com.xujun.app.practice.R;
 public class DistancePopupWindow extends PopupWindow {
 
     private ListView mListView;
-    private Button mNearbyButton;
-    private Button mAreaButton;
-    private Button  mSubwayButton;
+    private TextView mNearbyButton;
+    private TextView mAreaButton;
+    private TextView  mSubwayButton;
 
     public DistancePopupWindow(Context context,View.OnClickListener clickListener){
         super(context);
@@ -32,15 +34,15 @@ public class DistancePopupWindow extends PopupWindow {
         setContentView(interalView);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        setFocusable(true);
 
+        setFocusable(true);
         setTouchable(true);
         setOutsideTouchable(true);
         setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
         mListView=(ListView)interalView.findViewById(R.id.list);
-        mNearbyButton=(Button)interalView.findViewById(R.id.btnDistanceNearby);
-        mAreaButton=(Button)interalView.findViewById(R.id.btnDistanceArea);
-        mSubwayButton=(Button)interalView.findViewById(R.id.btnDistanceSubway);
+        mNearbyButton=(TextView)interalView.findViewById(R.id.btnDistanceNearby);
+        mAreaButton=(TextView)interalView.findViewById(R.id.btnDistanceArea);
+        mSubwayButton=(TextView)interalView.findViewById(R.id.btnDistanceSubway);
         mNearbyButton.setOnClickListener(clickListener);
         mAreaButton.setOnClickListener(clickListener);
         mSubwayButton.setOnClickListener(clickListener);
@@ -50,15 +52,15 @@ public class DistancePopupWindow extends PopupWindow {
         return mListView;
     }
 
-    public Button getNearbyButton() {
+    public TextView getNearbyButton() {
         return mNearbyButton;
     }
 
-    public Button getAreaButton() {
+    public TextView getAreaButton() {
         return mAreaButton;
     }
 
-    public Button getSubwayButton() {
+    public TextView getSubwayButton() {
         return mSubwayButton;
     }
 }

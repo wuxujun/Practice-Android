@@ -3,23 +3,23 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout android:id="@+id/llHead"
-        android:background="@color/white"
-        android:layout_width="match_parent" android:padding="@dimen/dimen_10"
+        android:background="@color/app_item_bg"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
         <LinearLayout
             android:id="@+id/ll_action_button"
             android:layout_width="match_parent"
             android:layout_height="44dip"
-            android:showDividers="middle"
-            android:dividerPadding="16dp">
+            android:showDividers="middle">
             <TextView
                 android:id="@+id/tv_my_btn_0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/my_item_0"
                 android:layout_weight="1"
                 android:textSize="18sp"
                 android:gravity="center"
+                android:background="@drawable/listitem_bg"
                 android:layout_gravity="center"
                 android:textColor="@color/black" />
             <View
@@ -29,11 +29,12 @@
             <TextView
                 android:id="@+id/tv_my_btn_1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/my_item_1"
                 android:layout_weight="1"
                 android:textSize="18sp"
                 android:gravity="center"
+                android:background="@drawable/listitem_bg"
                 android:layout_gravity="center"
                 android:textColor="@color/black" />
             <View
@@ -43,16 +44,17 @@
             <TextView
                 android:id="@+id/tv_my_btn_2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/my_item_2"
                 android:layout_weight="1"
                 android:textSize="18sp"
                 android:gravity="center"
+                android:background="@drawable/listitem_bg"
                 android:layout_gravity="center"
                 android:textColor="@color/black" />
         </LinearLayout>
         <View
-            android:layout_width="match_parent" android:layout_marginTop="@dimen/dimen_05"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
     </LinearLayout>
 
@@ -76,7 +78,7 @@
             android:layout_height="wrap_content" android:background="@drawable/enter"/>
                 </LinearLayout>
             <View
-                android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"
+                android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10" android:layout_marginBottom="0dp"
                 android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
             </LinearLayout>
     </LinearLayout>

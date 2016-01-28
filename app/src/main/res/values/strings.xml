@@ -45,9 +45,9 @@
     <string name="search_hot">热门搜索</string>
 
     
-    <string name="reward_hour">时薪</string>
-    <string name="reward_day">日薪</string>
-    <string name="reward_month">月薪</string>
+    <string name="reward_hour"> 时薪 </string>
+    <string name="reward_day"> 日薪 </string>
+    <string name="reward_month"> 月薪 </string>
     <string name="distance_nearby">附近</string>
     <string name="distance_area">行政区域</string>
     <string name="distance_subway">地铁沿线</string>
@@ -62,6 +62,14 @@
     <string name="resume_head_4">语言\n技能</string>
     <string name="resume_head_5">所获\n荣誉</string>
     <string name="resume_head_6">校园\n生活</string>
+
+
+    <string name="resume_head_title_1">基本信息</string>
+    <string name="resume_head_title_2">简历照片</string>
+    <string name="resume_head_title_3">实习工作</string>
+    <string name="resume_head_title_4">语言技能</string>
+    <string name="resume_head_title_5">所获荣誉</string>
+    <string name="resume_head_title_6">校园生活</string>
 
     <string name="resume_info_name">姓名</string>
     <string name="resume_info_sex">性别</string>
@@ -87,6 +95,11 @@
     <string name="resume_time_begin">开始时间</string>
     <string name="resume_time_end">截止时间</string>
 
+    <string name="resume_lang_name">语言名称</string>
+    <string name="resume_lang_time">获取时间</string>
+    <string name="resume_lang_content">技能详情</string>
+
+
     <string name="my_update_avatar">修改头像</string>
     <string name="my_nick_name">昵称</string>
     <string name="my_mobile">手机号</string>
@@ -98,6 +111,8 @@
     <string name="my_school">就读大学</string>
     <string name="my_specialty">就读专业</string>
     <string name="my_grade">年级</string>
+    <string name="my_sex_male">男</string>
+    <string name="my_sex_female">女</string>
 
     <string name="btn_edit">编辑</string>
     <string name="btn_done">完成</string>
@@ -140,6 +155,7 @@
     <string name="input_password_hint">请输入密码</string>
     <string name="input_password2">确认密码</string>
     <string name="input_password2_hint">请输入确认密码</string>
+    <string name="input_select_sex">请选择性别</string>
 
     <string name="input_mobile_or_email">登录名</string>
     <string name="input_mobile_or_email_hint">请输入手机号/Email</string>

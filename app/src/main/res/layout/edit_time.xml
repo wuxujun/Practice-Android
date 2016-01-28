@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView style="@style/App_Resume_Info_Title" android:id="@+id/tvTitle" android:layout_height="wrap_content" android:gravity="center_horizontal"
+        android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10" android:text="@string/resume_time_select"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+    <LinearLayout
+        android:layout_width="match_parent" style="@style/App_Resume_Info_LinearLayout" android:layout_height="150dip">
+        <DatePicker android:id="@+id/dpDate"
+            android:layout_width="match_parent" android:calendarViewShown="false"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        style="@style/App_Resume_Info_LinearLayout">
+        <Button android:id="@+id/btnDateDone" android:background="@color/transparent"
+            android:layout_width="match_parent" android:layout_weight="1"
+            android:layout_height="wrap_content" android:text="@string/btn_ok"/>
+    </LinearLayout>
+</LinearLayout>

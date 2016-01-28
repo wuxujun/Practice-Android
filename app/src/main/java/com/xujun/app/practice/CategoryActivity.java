@@ -2,10 +2,12 @@ package com.xujun.app.practice;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -57,10 +59,22 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
     @ViewInject(R.id.list)
     private ListView            mListView;
 
+    @ViewInject(R.id.llMask)
+    private LinearLayout        mMaskView;
+
     private SequenceHeadView    headView;
+    /**
+     * 分类
+     */
     private CategoryPopupWindow mCategoryPopupWindow;
 
+    /**
+     * 报酬
+     */
     private RewardPopupWindow   mRewardPopupWindow;
+    /**
+     * 距离
+     */
     private DistancePopupWindow mDistancePopupWindow;
 
 
@@ -75,22 +89,28 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
         @Override
         public void onClick(View view) {
             if (mRewardPopupWindow!=null){
-                mRewardPopupWindow.getHourButton().setTextColor(Color.BLACK);
-                mRewardPopupWindow.getDayButton().setTextColor(Color.BLACK);
-                mRewardPopupWindow.getMonthButton().setTextColor(Color.BLACK);
+                mRewardPopupWindow.getHourButton().setTextColor(getResources().getColor(R.color.btn_color));
+                mRewardPopupWindow.getHourButton().setBackgroundColor(getResources().getColor(R.color.app_item_bg));
+                mRewardPopupWindow.getDayButton().setTextColor(getResources().getColor(R.color.btn_color));
+                mRewardPopupWindow.getDayButton().setBackgroundColor(getResources().getColor(R.color.app_item_bg));
+                mRewardPopupWindow.getMonthButton().setTextColor(getResources().getColor(R.color.btn_color));
+                mRewardPopupWindow.getMonthButton().setBackgroundColor(getResources().getColor(R.color.app_item_bg));
             }
             switch (view.getId()){
                 case R.id.btnRewardHour:
-                    mRewardPopupWindow.getDayButton().setTextColor(Color.RED);
+                    mRewardPopupWindow.getHourButton().setTextColor(getResources().getColor(R.color.app_blue));
+                    mRewardPopupWindow.getHourButton().setBackgroundColor(getResources().getColor(R.color.white));
                     updateRewardData(1);
                     break;
                 case R.id.btnRewardDay:{
-                    mRewardPopupWindow.getDayButton().setTextColor(Color.RED);
+                    mRewardPopupWindow.getDayButton().setTextColor(getResources().getColor(R.color.app_blue));
+                    mRewardPopupWindow.getDayButton().setBackgroundColor(getResources().getColor(R.color.white));
                     updateRewardData(2);
                     break;
                 }
                 case R.id.btnRewardMonth:{
-                    mRewardPopupWindow.getMonthButton().setTextColor(Color.RED);
+                    mRewardPopupWindow.getMonthButton().setTextColor(getResources().getColor(R.color.app_blue));
+                    mRewardPopupWindow.getMonthButton().setBackgroundColor(getResources().getColor(R.color.white));
                     updateRewardData(3);
                     break;
                 }
@@ -103,22 +123,28 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
         @Override
         public void onClick(View view) {
             if (mDistancePopupWindow!=null){
-                mDistancePopupWindow.getNearbyButton().setTextColor(Color.BLACK);
-                mDistancePopupWindow.getAreaButton().setTextColor(Color.BLACK);
-                mDistancePopupWindow.getSubwayButton().setTextColor(Color.BLACK);
+                mDistancePopupWindow.getNearbyButton().setTextColor(getResources().getColor(R.color.btn_color));
+                mDistancePopupWindow.getNearbyButton().setBackgroundColor(getResources().getColor(R.color.app_item_bg));
+                mDistancePopupWindow.getAreaButton().setTextColor(getResources().getColor(R.color.btn_color));
+                mDistancePopupWindow.getAreaButton().setBackgroundColor(getResources().getColor(R.color.app_item_bg));
+                mDistancePopupWindow.getSubwayButton().setTextColor(getResources().getColor(R.color.btn_color));
+                mDistancePopupWindow.getSubwayButton().setBackgroundColor(getResources().getColor(R.color.app_item_bg));
             }
             switch (view.getId()){
                 case R.id.btnDistanceNearby:
-                    mDistancePopupWindow.getNearbyButton().setTextColor(Color.RED);
+                    mDistancePopupWindow.getNearbyButton().setTextColor(getResources().getColor(R.color.app_blue));
+                    mDistancePopupWindow.getNearbyButton().setBackgroundColor(getResources().getColor(R.color.white));
                     updateDistanceData(1);
                     break;
                 case R.id.btnDistanceArea:{
-                    mDistancePopupWindow.getAreaButton().setTextColor(Color.RED);
+                    mDistancePopupWindow.getAreaButton().setTextColor(getResources().getColor(R.color.app_blue));
+                    mDistancePopupWindow.getAreaButton().setBackgroundColor(getResources().getColor(R.color.white));
                     updateDistanceData(2);
                     break;
                 }
                 case R.id.btnDistanceSubway:{
-                    mDistancePopupWindow.getSubwayButton().setTextColor(Color.RED);
+                    mDistancePopupWindow.getSubwayButton().setTextColor(getResources().getColor(R.color.app_blue));
+                    mDistancePopupWindow.getSubwayButton().setBackgroundColor(getResources().getColor(R.color.white));
                     updateDistanceData(3);
                     break;
                 }
@@ -226,9 +252,11 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
                 break;
             }
         }
-
+        ColorDrawable cd = new ColorDrawable(0x000000);
         if (type>2) {
-            mCategoryPopupWindow = new CategoryPopupWindow(this);
+            mCategoryPopupWindow = new CategoryPopupWindow(this,R.layout.popup_category_choose);
+            mCategoryPopupWindow.setBackgroundDrawable(cd);
+            mMaskView.setVisibility(View.VISIBLE);
             mCategoryPopupWindow.showAsDropDown(mHeadLinearLayout);
             mCategoryPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
@@ -243,54 +271,64 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
                             break;
                         }
                     }
+                    mMaskView.setVisibility(View.GONE);
                 }
             });
             updateCategoryPopupData(type);
         }else if (type==1){
             mDistancePopupWindow=new DistancePopupWindow(this,mDistanceClickListener);
+            mDistancePopupWindow.setBackgroundDrawable(cd);
+            mMaskView.setVisibility(View.VISIBLE);
             mDistancePopupWindow.showAsDropDown(mHeadLinearLayout);
             mDistancePopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public void onDismiss() {
                     headView.getArrow1().setImageResource(R.drawable.arrow_down_grpe);
+                    mMaskView.setVisibility(View.GONE);
                 }
             });
-            mDistancePopupWindow.getNearbyButton().setTextColor(Color.RED);
+            mDistancePopupWindow.getNearbyButton().setTextColor(getResources().getColor(R.color.app_blue));
+            mDistancePopupWindow.getNearbyButton().setBackgroundColor(getResources().getColor(R.color.white));
             updateDistanceData(1);
         }else if(type==2){
             mRewardPopupWindow=new RewardPopupWindow(this,mRewardClickListener);
+            mRewardPopupWindow.setBackgroundDrawable(cd);
+            mMaskView.setVisibility(View.VISIBLE);
             mRewardPopupWindow.showAsDropDown(mHeadLinearLayout);
             mRewardPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public void onDismiss() {
                     headView.getArrow2().setImageResource(R.drawable.arrow_down_grpe);
+                    mMaskView.setVisibility(View.GONE);
                 }
             });
-            mRewardPopupWindow.getHourButton().setTextColor(Color.RED);
+            mRewardPopupWindow.getHourButton().setTextColor(getResources().getColor(R.color.app_blue));
+            mRewardPopupWindow.getHourButton().setBackgroundColor(getResources().getColor(R.color.white));
             updateRewardData(1);
         }
     }
 
     private void updateDistanceData(int type){
         try{
+            categoryInfos.clear();
             String val="2";
             DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
             List<CategoryInfo> categoryInfoList=db.findAll(Selector.from(CategoryInfo.class).where("type","=",val));
             if (categoryInfoList!=null&&categoryInfoList.size()>0){
-                categoryInfos.clear();
                 categoryInfos.addAll(categoryInfoList);
             }
 
         }catch (DbException e){
             e.printStackTrace();
         }
-        mDistancePopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos,true));
+        mDistancePopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos,true,R.layout.category_check_box_item));
         mDistancePopupWindow.getListView().setOnItemClickListener(mDistanceItemListener);
 
     }
 
     private void updateRewardData(int type){
         try{
+            categoryInfos.clear();
             String val="4010";
             if (type==2){
                 val="4020";
@@ -300,37 +338,34 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
             DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
             List<CategoryInfo> categoryInfoList=db.findAll(Selector.from(CategoryInfo.class).where("parent_code","=",val));
             if (categoryInfoList!=null&&categoryInfoList.size()>0){
-                categoryInfos.clear();
                 categoryInfos.addAll(categoryInfoList);
             }
 
         }catch (DbException e){
             e.printStackTrace();
         }
-        mRewardPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos,true));
+        mRewardPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos,false,R.layout.category_check_box_item));
         mRewardPopupWindow.getListView().setOnItemClickListener(mRewardItemListener);
     }
 
     private void updateCategoryPopupData(int type){
-        boolean isCheck=true;
-
+        boolean isCheck=false;
         try{
+            paramInfos.clear();
             String val="2";
             if (type==4){
                 val="7";
-                isCheck=false;
             }
             DbUtils db=DbUtils.create(this,AppConfig.DB_NAME);
             List<ParamInfo> paramInfoList=db.findAll(Selector.from(ParamInfo.class).where("type","=",val));
             if (paramInfoList!=null&&paramInfoList.size()>0){
-                paramInfos.clear();
                 paramInfos.addAll(paramInfoList);
             }
 
         }catch (DbException e){
             e.printStackTrace();
         }
-        mCategoryPopupWindow.getListView().setAdapter(new ParamCheckBoxAdapter(this, paramInfos,isCheck));
+        mCategoryPopupWindow.getListView().setAdapter(new ParamCheckBoxAdapter(this, paramInfos,isCheck,R.layout.category_check_box_item));
         mCategoryPopupWindow.getListView().setOnItemClickListener(mCategoryItemListener);
 
     }
@@ -342,6 +377,7 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
             if (paramInfo!=null){
 
             }
+            mCategoryPopupWindow.dismiss();
         }
     };
 
@@ -350,6 +386,7 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            mDistancePopupWindow.dismiss();
         }
     };
 
@@ -357,6 +394,7 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            mRewardPopupWindow.dismiss();
         }
     };
 

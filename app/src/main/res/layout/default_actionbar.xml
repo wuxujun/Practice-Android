@@ -14,7 +14,7 @@
             android:layout_height="wrap_content" android:id="@+id/tvHeadCity"  android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset" android:text="上海" android:textColor="@color/app_blue" android:textSize="@dimen/head_img_size_des"/>
         <ImageView android:id="@+id/ivHeadArrow"
             android:layout_width="@dimen/head_edit_offset" android:visibility="gone"
-            android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/arrow_down_white" android:contentDescription="@string/app_name"/>
+            android:layout_height="@dimen/head_edit_offset" android:layout_marginLeft="@dimen/head_offset" android:layout_marginStart="@dimen/head_offset" android:background="@drawable/ic_arrow_down_s" android:contentDescription="@string/app_name"/>
     </LinearLayout>
     <LinearLayout android:id="@+id/llCenter" android:layout_toRightOf="@+id/btnHeadLeft" android:layout_toLeftOf="@+id/btnHeadRight" android:orientation="horizontal"
         android:layout_width="match_parent"  android:layout_centerVertical="true" android:layout_marginLeft="@dimen/head_edit_offset" android:layout_marginStart="@dimen/head_edit_offset"

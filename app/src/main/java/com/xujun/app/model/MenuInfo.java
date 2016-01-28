@@ -17,6 +17,12 @@ public class MenuInfo  implements Serializable{
         this.resid=0;
     }
 
+    public MenuInfo(int id,String title,int resid){
+        this.id=id;
+        this.title=title;
+        this.resid=resid;
+    }
+
     public int getId() {
         return id;
     }

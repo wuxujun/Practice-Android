@@ -72,7 +72,7 @@ public class RHonorActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.fragment_list);
         ViewUtils.inject(this);
 
-        mHeadTitle.setText(getText(R.string.resume_head_5));
+        mHeadTitle.setText(getText(R.string.resume_head_title_5));
         initHeadBackView();
         hideSearchEditView();
         mHeadBtnRight.setText(getText(R.string.btn_add));

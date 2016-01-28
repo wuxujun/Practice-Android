@@ -53,7 +53,7 @@ public class RLifeActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_list);
         ViewUtils.inject(this);
-        mHeadTitle.setText(getText(R.string.resume_head_4));
+        mHeadTitle.setText(getText(R.string.resume_head_title_6));
         initHeadBackView();
         hideSearchEditView();
 

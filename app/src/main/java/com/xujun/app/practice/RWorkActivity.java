@@ -52,7 +52,7 @@ public class RWorkActivity extends BaseActivity{
         setContentView(R.layout.fragment_list);
         ViewUtils.inject(this);
 
-        mHeadTitle.setText(getText(R.string.resume_head_2));
+        mHeadTitle.setText(getText(R.string.resume_head_title_3));
         initHeadBackView();
         hideSearchEditView();
 

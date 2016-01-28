@@ -5,18 +5,28 @@ package com.xujun.app.model;
  */
 public class MemberInfo extends BaseEntity {
 
+    private int         mid;
+    private String      userAvatar;
     private String      userName;
     private int         sex;
-    private String      srcPlace;
     private String      brithday;
-    private String      schoolName;
-    private String      specialty;
-    private String      graduation;
-    private String      educational;
-    private String      gradepoint;
+    private String      schoolCode;
+    private String      school;
+    private String      specialtyCode;
+    private String      specialty;  //专业
+    private String      educationalCode;
+    private String      educational; //年级
 
     private String      mobile;
     private String      email;
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
 
     public String getUserName() {
         return userName;
@@ -34,13 +44,6 @@ public class MemberInfo extends BaseEntity {
         this.sex = sex;
     }
 
-    public String getSrcPlace() {
-        return srcPlace;
-    }
-
-    public void setSrcPlace(String srcPlace) {
-        this.srcPlace = srcPlace;
-    }
 
     public String getBrithday() {
         return brithday;
@@ -50,13 +53,6 @@ public class MemberInfo extends BaseEntity {
         this.brithday = brithday;
     }
 
-    public String getSchoolName() {
-        return schoolName;
-    }
-
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
-    }
 
     public String getSpecialty() {
         return specialty;
@@ -66,13 +62,6 @@ public class MemberInfo extends BaseEntity {
         this.specialty = specialty;
     }
 
-    public String getGraduation() {
-        return graduation;
-    }
-
-    public void setGraduation(String graduation) {
-        this.graduation = graduation;
-    }
 
     public String getEducational() {
         return educational;
@@ -82,13 +71,6 @@ public class MemberInfo extends BaseEntity {
         this.educational = educational;
     }
 
-    public String getGradepoint() {
-        return gradepoint;
-    }
-
-    public void setGradepoint(String gradepoint) {
-        this.gradepoint = gradepoint;
-    }
 
     public String getMobile() {
         return mobile;
@@ -104,5 +86,45 @@ public class MemberInfo extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserAvatar() {
+        return userAvatar;
+    }
+
+    public void setUserAvatar(String userAvatar) {
+        this.userAvatar = userAvatar;
+    }
+
+    public String getSchoolCode() {
+        return schoolCode;
+    }
+
+    public void setSchoolCode(String schoolCode) {
+        this.schoolCode = schoolCode;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getSpecialtyCode() {
+        return specialtyCode;
+    }
+
+    public void setSpecialtyCode(String specialtyCode) {
+        this.specialtyCode = specialtyCode;
+    }
+
+    public String getEducationalCode() {
+        return educationalCode;
+    }
+
+    public void setEducationalCode(String educationalCode) {
+        this.educationalCode = educationalCode;
     }
 }

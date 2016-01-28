@@ -42,19 +42,24 @@ public class URLs implements Serializable {
 	public final static String MY_COLLECT_URL = URL_API_HOST+"index.php?/ums/myCollect";
 	public final static String COMPANY_LIST_URL=URL_API_HOST+"index.php?/ums/company";
 	public final static String SEARCH_LIST_URL=URL_API_HOST+"index.php?/ums/search";
+	public final static String USER_LOC_URL=URL_API_HOST+"index.php?/ums/location";
 
-	public final static String RESUME_INFO_ADD = URL_API_HOST+"index.php?/ums/addResume";
+	public final static String RESUME_INFO_ADD = URL_API_HOST+"index.php?/ums/addMemberResume";
 	public final static String RESUME_WORK_ADD = URL_API_HOST+"index.php?/ums/addMemberWork";
 	public final static String RESUME_LIFE_ADD = URL_API_HOST+"index.php?/ums/addMemberLife";
 	public final static String RESUME_HONOR_ADD = URL_API_HOST+"index.php?/ums/addMemberHonor";
+	public final static String RESUME_LANG_ADD = URL_API_HOST+"index.php?/ums/addMemberLang";
 
 	public final static String RESUME_INFO_QUERY = URL_API_HOST+"index.php?/ums/resumeInfo";
 	public final static String RESUME_WORK_LIST = URL_API_HOST+"index.php?/ums/resumeWork";
 	public final static String RESUME_LIFE_LIST = URL_API_HOST+"index.php?/ums/resumeLife";
 	public final static String RESUME_HONOR_LIST=URL_API_HOST+"index.php?/ums/resumeHonor";
+	public final static String RESUME_LANG_LIST=URL_API_HOST+"index.php?/ums/resumeLang";
 
 	public final static String UPLOAD_IMAGE=URL_API_HOST+"index.php?/ums/uploadImage";
 	public final static String MEMBER_PHOTO_ADD=URL_API_HOST+"index.php?/ums/addPhoto";
+
+	public final static String SCHOOL_QUERY=URL_API_HOST+"index.php?/ums/edus";
 
 	public final static String MESSAGES_LIST = URL_API_HOST+"index.php/ums/messages";
 

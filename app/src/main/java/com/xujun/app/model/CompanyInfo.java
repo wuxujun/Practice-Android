@@ -27,7 +27,7 @@ public class CompanyInfo extends BaseEntity{
     @Column(column = "remark")
     private String  remark;
 
-    @Column(column = "logo")
+    @Column(column = "address")
     private String  address;
 
     @Column(column = "tel")
@@ -36,7 +36,7 @@ public class CompanyInfo extends BaseEntity{
     @Column(column = "contact")
     private String  contact;
 
-    @Column(column = "logo")
+    @Column(column = "category")
     private String  category;
 
     @Column(column = "website")

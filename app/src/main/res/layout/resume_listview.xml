@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true">
     <LinearLayout
@@ -13,17 +13,26 @@
     <LinearLayout android:id="@+id/llContent" android:layout_below="@+id/llHeader"
         android:layout_width="match_parent"
         android:layout_height="match_parent" android:orientation="vertical">
-        <TextView android:id="@+id/tvTitle" android:gravity="center_vertical"
-            android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10"
-            android:layout_height="wrap_content" android:text="简历模板" />
+        <LinearLayout android:layout_marginTop="@dimen/dimen_10"
+            android:layout_width="match_parent" android:background="@color/app_item_bg"
+            android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:id="@+id/tvTitle" android:gravity="center_vertical" android:textStyle="bold"
+            android:layout_width="match_parent" android:layout_margin="@dimen/dimen_10" android:textSize="@dimen/font_size_18"
+            android:layout_height="wrap_content" android:text="简历模板"  android:textColor="@color/black"/>
         <View
-            android:layout_width="match_parent" android:layout_marginLeft="@dimen/dimen_10" android:layout_marginRight="@dimen/dimen_10"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/line_h" android:background="@color/all_line"/>
-        <com.xujun.app.widget.CustGridView android:layout_weight="1"
-            android:layout_width="match_parent" android:numColumns="3"
-            android:layout_height="200dp" android:id="@+id/gridview"/>
+        </LinearLayout>
+        <ListView
+            android:layout_width="match_parent" android:layout_weight="1"
+            android:id="@+id/list"
+            android:dividerHeight="@dimen/line_h"
+            android:divider="@color/all_line"
+            android:listSelector="@android:color/transparent"
+            android:layout_height="match_parent" android:scrollbars="none"
+            />
 
     </LinearLayout>
     </RelativeLayout>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

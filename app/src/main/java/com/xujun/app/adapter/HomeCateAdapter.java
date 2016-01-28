@@ -62,7 +62,7 @@ public class HomeCateAdapter extends BaseAdapter {
         if (info!=null){
             holder.title.setText(info.getCategory());
             if (info.getCode().equals("103001")){
-                holder.icon.setImageResource(R.drawable.ic_home_cate_2);
+                holder.icon.setImageResource(R.drawable.ic_home_cate_1);
             }else if(info.getCode().equals("103002")){
                 holder.horLine.setVisibility(View.VISIBLE);
                 holder.icon.setImageResource(R.drawable.ic_home_cate_2);

@@ -7,9 +7,11 @@ import com.xujun.app.practice.MRequestActivity;
 import com.xujun.app.practice.MyActivity;
 import com.xujun.app.practice.RHonorActivity;
 import com.xujun.app.practice.RInfoActivity;
+import com.xujun.app.practice.RLangActivity;
 import com.xujun.app.practice.RLifeActivity;
 import com.xujun.app.practice.RPhotoActivity;
 import com.xujun.app.practice.RWorkActivity;
+import com.xujun.app.practice.ShakeActivity;
 
 /**
  * Created by xujunwu on 15/4/20.
@@ -18,6 +20,11 @@ public class UIHelper {
 
     public static void refreshActionBarMenu(Activity activity){
         activity.invalidateOptionsMenu();
+    }
+
+    public static void openShake(Activity activity){
+        Intent intent = new Intent(activity, ShakeActivity.class);
+        activity.startActivity(intent);
     }
 
     public static void openResumeLife(Activity activity){
@@ -42,6 +49,11 @@ public class UIHelper {
 
     public static void openResumePhoto(Activity activity){
         Intent intent = new Intent(activity, RPhotoActivity.class);
+        activity.startActivity(intent);
+    }
+
+    public static void openResumeLang(Activity activity){
+        Intent intent=new Intent(activity, RLangActivity.class);
         activity.startActivity(intent);
     }
 

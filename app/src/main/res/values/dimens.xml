@@ -15,7 +15,7 @@
     <dimen name="menu_popupwindow_height">200dp</dimen>
     <dimen name="home_banner_height">160dp</dimen>
     <dimen name="pop_city_gridview_height">100dp</dimen>
-    <dimen name="home_category_gridview_height">200dp</dimen>
+    <dimen name="home_category_gridview_height">190dp</dimen>
     <dimen name="category_dropdown_height">300dp</dimen>
 
 

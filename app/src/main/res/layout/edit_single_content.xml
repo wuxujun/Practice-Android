@@ -16,8 +16,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         style="@style/App_Resume_Info_LinearLayout">
-        <Button android:id="@+id/btnSave" android:background="@color/transparent"
-            android:layout_width="match_parent" android:layout_weight="1"
+        <Button android:id="@+id/btnSave" android:background="@drawable/btn_bg"
+            android:layout_width="match_parent" android:layout_weight="1" android:textColor="@color/white"
             android:layout_height="wrap_content" android:text="@string/btn_ok"/>
     </LinearLayout>
 </LinearLayout>

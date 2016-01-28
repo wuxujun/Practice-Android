@@ -78,7 +78,7 @@ public class RPhotoActivity extends BaseActivity{
 
         bitmapUtils=new BitmapUtils(this);
 
-        mHeadTitle.setText(getText(R.string.resume_head_3));
+        mHeadTitle.setText(getText(R.string.resume_head_title_2));
         mHeadBtnRight.setText(getText(R.string.btn_add));
         mHeadBtnRight.setOnClickListener(this);
         initHeadBackView();

@@ -223,6 +223,10 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             headView.getCategory2().setText(R.string.category_head_2);
             headView.getCategory3().setText(R.string.category_head_3);
             headView.getCategory4().setText(R.string.category_head_4);
+            headView.getLinearLayout3().setVisibility(View.VISIBLE);
+            headView.getLinearLayout4().setVisibility(View.VISIBLE);
+            headView.getLine2().setVisibility(View.VISIBLE);
+            headView.getLine3().setVisibility(View.VISIBLE);
             mListView.setAdapter(mAdapter);
             mHeadCategory="1010";
             loadData();
@@ -337,7 +341,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
             }
         }
 
-        mCategoryPopupWindow=new CategoryPopupWindow(getActivity());
+        mCategoryPopupWindow=new CategoryPopupWindow(getActivity(),R.layout.popup_category_choose);
         mCategoryPopupWindow.showAsDropDown(mHeadLinearLayout);
         mCategoryPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
@@ -412,7 +416,7 @@ public class CategoryFragment extends BaseFragment implements View.OnClickListen
         }catch (DbException e){
             e.printStackTrace();
         }
-        mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(getActivity(), categoryInfos,true));
+        mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(getActivity(), categoryInfos,true,R.layout.category_down_item));
         mCategoryPopupWindow.getListView().setOnItemClickListener(mCategoryItemListener);
     }
 

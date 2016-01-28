@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -31,11 +32,14 @@ import com.xujun.app.model.InputList;
 import com.xujun.app.model.ParamInfo;
 import com.xujun.app.widget.CategoryPopupWindow;
 import com.xujun.app.widget.EditViewPopupWindow;
+import com.xujun.util.DateUtil;
 import com.xujun.util.JsonUtil;
 import com.xujun.util.L;
 import com.xujun.util.StringUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -53,8 +57,6 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
 
     private List<InputInfo> items=new ArrayList<InputInfo>();
 
-
-    private CategoryPopupWindow     mCategoryPopupWindow;
     private List<CategoryInfo>      categoryInfos=new ArrayList<CategoryInfo>();
     private List<ParamInfo>         paramInfos=new ArrayList<ParamInfo>();
 
@@ -62,6 +64,15 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
     private DialogPlus mDialog;
     private FormEditText etContent;
     private TextView    tvEditTitle;
+
+
+    private ViewHolder          mListHolder;
+    private DialogPlus          mListDialog;
+    private ListView            mCateList;
+    private TextView            mCateTitleTV;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +91,7 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
         mHeadBtnRight.setText(getText(R.string.btn_save));
         mHeadBtnRight.setOnClickListener(this);
 
-        mCategoryPopupWindow=new CategoryPopupWindow(this);
-        mCategoryPopupWindow.getHeader().setVisibility(View.VISIBLE);
-        mCategoryPopupWindow.getDoneButton().setVisibility(View.VISIBLE);
+
         initView();
     }
 
@@ -92,6 +101,16 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
         view.findViewById(R.id.btnSave).setOnClickListener(this);
         etContent=(FormEditText)view.findViewById(R.id.etContent);
         tvEditTitle=(TextView)view.findViewById(R.id.tvTitle);
+
+
+        View viewList=getLayoutInflater().inflate(R.layout.popup_category_down,null);
+        mListHolder=new ViewHolder(viewList);
+        mCateList=(ListView)viewList.findViewById(R.id.list);
+        mCateTitleTV=(TextView)viewList.findViewById(R.id.tvTitle);
+        viewList.findViewById(R.id.btnDone).setOnClickListener(this);
+        viewList.findViewById(R.id.btnCancel).setOnClickListener(this);
+
+
     }
 
     OnClickListener clickDoneListener=new OnClickListener() {
@@ -105,12 +124,22 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
                     dialog.dismiss();
                     break;
                 }
+                case R.id.btnDone:{
+
+                    dialog.dismiss();
+                    break;
+                }
+                case R.id.btnCancel:{
+
+                    dialog.dismiss();
+                    break;
+                }
             }
         }
     };
 
     private void showEditDialog(InputInfo info){
-        mDialog=DialogPlus.newDialog(this).setContentHolder(mEditHolder).setCancelable(false)
+        mDialog=DialogPlus.newDialog(this).setContentHolder(mEditHolder).setCancelable(true)
                 .setGravity(Gravity.CENTER).setOnClickListener(clickDoneListener)
                 .setContentHeight(ViewGroup.LayoutParams.WRAP_CONTENT).create();
         etContent.setText("");
@@ -119,6 +148,16 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
         tvEditTitle.setText(info.getTitle());
         mDialog.show();
     }
+
+    private void showListDiaog(InputInfo info){
+        int height=StringUtil.getScreenHeight(mContext);
+        mListDialog=DialogPlus.newDialog(this).setContentHolder(mListHolder).setCancelable(true).setOnClickListener(clickDoneListener).setGravity(Gravity.BOTTOM).setContentHeight(height/2).setMargin(20,0,20,10).create();
+        mListDialog.show();
+        mCateTitleTV.setText("请选择"+info.getTitle());
+        updateCategoryData(info);
+    }
+
+
 
 
     @Override
@@ -155,6 +194,14 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
                 AttentionSetActivity.this.finish();
                 break;
             }
+            case R.id.btnDone:{
+                mListDialog.dismiss();
+                break;
+            }
+            case R.id.btnCancel:{
+                mListDialog.dismiss();
+                break;
+            }
             default:
                 break;
         }
@@ -168,12 +215,7 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
             if (item.getType()==5){
                 showEditDialog(item);
             }else {
-                if (mCategoryPopupWindow != null) {
-                    mCategoryPopupWindow.getTitleView().setTag(item);
-                    mCategoryPopupWindow.getTitleView().setText("请选择" + item.getTitle());
-                    mCategoryPopupWindow.showAsDropDown(mCenterLine);
-                    updateCategoryData(item);
-                }
+                showListDiaog(item);
             }
         }
     }
@@ -191,16 +233,16 @@ public class AttentionSetActivity extends BaseActivity implements AdapterView.On
                     categoryInfos.clear();
                     categoryInfos.addAll(categoryInfoList);
                 }
-                mCategoryPopupWindow.getListView().setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos,true));
-                mCategoryPopupWindow.getListView().setOnItemClickListener(mCategoryItemListener);
+                mCateList.setAdapter(new CategoryCheckBoxAdapter(this, categoryInfos,true,R.layout.category_down_item));
+                mCateList.setOnItemClickListener(mCategoryItemListener);
             }else if(item.getType()==0){
                 List<ParamInfo>  paramInfoList=db.findAll(Selector.from(ParamInfo.class).where("type","=",item.getParamValue()));
                 if (paramInfoList!=null&&paramInfoList.size()>0){
                     paramInfos.clear();
                     paramInfos.addAll(paramInfoList);
                 }
-                mCategoryPopupWindow.getListView().setAdapter(new ParamCheckBoxAdapter(this,paramInfos,true));
-                mCategoryPopupWindow.getListView().setOnItemClickListener(mParamItemListener);
+                mCateList.setAdapter(new ParamCheckBoxAdapter(this,paramInfos,true,R.layout.category_down_item));
+                mCateList.setOnItemClickListener(mParamItemListener);
             }
 
         } catch (DbException e) {

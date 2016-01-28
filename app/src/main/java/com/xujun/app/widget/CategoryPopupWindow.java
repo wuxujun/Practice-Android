@@ -23,12 +23,13 @@ public class CategoryPopupWindow extends PopupWindow{
     private LinearLayout    mHeader;
     private TextView        mTitleView;
     private Button          mDoneButton;
+    private Button          mCancelButton;
 
 
-    public CategoryPopupWindow(Context context){
+    public CategoryPopupWindow(Context context,int resid){
         super(context);
         LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View interalView=inflater.inflate(R.layout.popup_category_choose,null);
+        View interalView=inflater.inflate(resid,null);
 
         setContentView(interalView);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -42,9 +43,11 @@ public class CategoryPopupWindow extends PopupWindow{
         mHeader=(LinearLayout)interalView.findViewById(R.id.llHeader);
         mTitleView=(TextView)interalView.findViewById(R.id.tvTitle);
         mDoneButton=(Button)interalView.findViewById(R.id.btnDone);
+        mCancelButton=(Button)interalView.findViewById(R.id.btnCancel);
 
         mHeader.setVisibility(View.GONE);
         mDoneButton.setVisibility(View.GONE);
+        mCancelButton.setVisibility(View.GONE);
     }
 
     public ListView  getListView(){
@@ -61,5 +64,9 @@ public class CategoryPopupWindow extends PopupWindow{
 
     public Button   getDoneButton(){
         return mDoneButton;
+    }
+
+    public Button   getCancelButton(){
+        return mCancelButton;
     }
 }

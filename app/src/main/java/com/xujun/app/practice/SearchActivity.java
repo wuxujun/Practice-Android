@@ -36,6 +36,7 @@ import com.xujun.util.L;
 import com.xujun.util.StringUtil;
 import com.xujun.util.URLs;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,7 +80,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         mHeadEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (i == KeyEvent.KEYCODE_ENTER) {
+                if (i == KeyEvent.KEYCODE_ENTER&&KeyEvent.ACTION_DOWN==keyEvent.getAction()) {
                     search(mHeadEditText.getText().toString());
                 }
                 return false;
@@ -89,7 +90,10 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         mHeadEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                search(textView.getText().toString());
+                L.e(".......","..........======>"+i);
+                if (KeyEvent.KEYCODE_SEARCH==i&&KeyEvent.ACTION_DOWN==keyEvent.getAction()) {
+                    search(textView.getText().toString());
+                }
                 return false;
             }
         });
@@ -186,6 +190,20 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 //                    return;
 //                }
 //                search(key);
+                break;
+            }
+            case R.id.btnClear:{
+                try {
+                    DbUtils db = DbUtils.create(this, AppConfig.DB_NAME);
+                    List<SearchHisEntity> searchHisEntityList = db.findAll(SearchHisEntity.class);
+                    if (searchHisEntityList != null && searchHisEntityList.size() > 0) {
+                        items.clear();
+                        db.deleteAll(searchHisEntityList);
+                    }
+                    mAdapter.notifyDataSetChanged();
+                }catch (DbException e){
+                    e.printStackTrace();
+                }
                 break;
             }
             default:

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.xujun.app.practice.R;
 
@@ -18,9 +19,9 @@ import com.xujun.app.practice.R;
 public class RewardPopupWindow extends PopupWindow {
 
     private ListView mListView;
-    private Button  mHourButton;
-    private Button  mDayButton;
-    private Button  mMonthButton;
+    private TextView mHourButton;
+    private TextView  mDayButton;
+    private TextView  mMonthButton;
 
     public RewardPopupWindow(Context context, View.OnClickListener clickListener){
         super(context);
@@ -36,9 +37,9 @@ public class RewardPopupWindow extends PopupWindow {
         setOutsideTouchable(true);
         setBackgroundDrawable(new BitmapDrawable(context.getResources(), (Bitmap) null));
         mListView=(ListView)interalView.findViewById(R.id.list);
-        mHourButton=(Button)interalView.findViewById(R.id.btnRewardHour);
-        mDayButton=(Button)interalView.findViewById(R.id.btnRewardDay);
-        mMonthButton=(Button)interalView.findViewById(R.id.btnRewardMonth);
+        mHourButton=(TextView)interalView.findViewById(R.id.btnRewardHour);
+        mDayButton=(TextView)interalView.findViewById(R.id.btnRewardDay);
+        mMonthButton=(TextView)interalView.findViewById(R.id.btnRewardMonth);
         mHourButton.setOnClickListener(clickListener);
         mDayButton.setOnClickListener(clickListener);
         mMonthButton.setOnClickListener(clickListener);
@@ -48,15 +49,15 @@ public class RewardPopupWindow extends PopupWindow {
         return mListView;
     }
 
-    public Button getHourButton() {
+    public TextView getHourButton() {
         return mHourButton;
     }
 
-    public Button getDayButton() {
+    public TextView getDayButton() {
         return mDayButton;
     }
 
-    public Button getMonthButton() {
+    public TextView getMonthButton() {
         return mMonthButton;
     }
 }

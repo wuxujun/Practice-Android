@@ -89,7 +89,7 @@ public class RLifeEditActivity extends BaseActivity{
         setContentView(R.layout.fragment_list);
         ViewUtils.inject(this);
 
-        mHeadTitle.setText("添加"+getText(R.string.resume_head_4));
+        mHeadTitle.setText("添加"+getText(R.string.resume_head_title_4));
         initHeadBackView();
         hideSearchEditView();
         mHeadBtnRight.setText(getText(R.string.btn_save));

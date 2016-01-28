@@ -3,6 +3,6 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content" android:background="@color/all_line">
     <com.xujun.app.widget.CustListView android:id="@+id/list"
-        android:layout_width="@dimen/menu_popupwindow_width"
-        android:layout_height="wrap_content"/>
+        android:layout_width="@dimen/menu_popupwindow_width" android:dividerHeight="@dimen/line_h"
+        android:layout_height="wrap_content" android:divider="@color/all_line"/>
 </LinearLayout>
